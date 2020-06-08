@@ -1,0 +1,18 @@
+.navbar {
+    display: flex;
+    height: 60px;
+    background: #fff;
+    padding: 0 20px;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.navigationList {
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+
+    li {
+        margin-right: 12px;
+    }
+}
