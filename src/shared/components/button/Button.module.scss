@@ -1,0 +1,19 @@
+@import '../../styles/globalStyles.scss';
+
+.button {
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+}
+
+.primary {
+    background: $primary-color;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+        background: lighten($primary-color, 5%);
+    }
+}

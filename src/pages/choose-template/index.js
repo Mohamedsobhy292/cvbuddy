@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import classNames from 'classnames'
+import { Link } from 'react-router-dom'
 
 import styles from './ChooseTemplate.module.scss'
 import cvTemplate from './resume1.jpg'
 import { RadioButton } from '../../shared/components/radioButton'
+import { Button } from '../../shared/components/button'
+import Arrow from './arrow-right'
 
 const templates = [
     {
@@ -27,6 +30,7 @@ const ChooseTemplate = () => {
     return (
         <div className={styles.chooseTemplateWrapper}>
             <h2 className={styles.title}>Choose Resume Template</h2>
+
             <ul className={styles.templatesList}>
                 {templates.map((item) => {
                     return (
@@ -53,6 +57,13 @@ const ChooseTemplate = () => {
                     )
                 })}
             </ul>
+
+            <Link to="/form" className={styles.proceedBtn}>
+                PROCEED
+                <span className={styles.arrow}>
+                    <Arrow />
+                </span>
+            </Link>
         </div>
     )
 }
