@@ -70,10 +70,9 @@
     height: 50px;
     font-weight: bold;
     align-items: center;
+    font-size: 14px;
     padding: 10px 20px;
     border-radius: 4px;
-    border: none;
-    outline: none;
     background: $primary-color;
     color: #fff;
     cursor: pointer;
@@ -86,6 +85,7 @@
     .arrow {
         margin-left: auto;
         fill: #fff;
-        width: 20px;
+        width: 15px;
+        opacity: 0.5;
     }
 }

@@ -1,7 +1,8 @@
 import React from 'react'
 import { Navbar } from './shared/components/navbar'
 import ChooseTemplate from './pages/choose-template'
-import Form from './pages/form'
+import { BuildResume } from './pages/build-resume'
+import { Volga } from './pages/templates/volga'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './shared/styles/globalStyles.scss'
 
@@ -11,7 +12,8 @@ function App() {
             <Navbar />
             <Routes>
                 <Route path="/" element={<ChooseTemplate />} />
-                <Route path="form/*" element={<Form />} />
+                <Route path="build-resume/*" element={<BuildResume />} />
+                <Route path="/templates/volga" element={<Volga />} />
             </Routes>
         </BrowserRouter>
     )

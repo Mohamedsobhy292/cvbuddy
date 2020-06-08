@@ -1,0 +1,18 @@
+@import '../../styles/variables.scss';
+
+.InputField {
+    // background: #f5f7fa;
+    background: #f5f7eb;
+    color: $text-color;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 16px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    font-size: 12px;
+    outline: none;
+
+    &:focus {
+        border: 1px solid #47a3f3;
+    }
+}

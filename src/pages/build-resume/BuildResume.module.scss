@@ -1,0 +1,48 @@
+@import '../../shared/styles/variables.scss';
+
+.BuildResumeWrapper {
+    display: flex;
+    width: 1170px;
+    margin: auto;
+    padding: 20px;
+}
+
+.contentWrapper {
+    width: 60%;
+    background: #fff;
+    padding: 20px;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+}
+
+.sideArea {
+    width: 40%;
+    margin-left: 30px;
+}
+
+.title {
+    margin-bottom: 40px;
+}
+
+.formContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.formControl {
+    width: calc(50% - 15px);
+    margin-right: 30px;
+    margin-bottom: 30px;
+    input {
+        width: 100%;
+    }
+
+    &:nth-child(even) {
+        margin-right: 0;
+    }
+
+    &.fullWidth {
+        width: 100%;
+        margin-right: 0;
+    }
+}

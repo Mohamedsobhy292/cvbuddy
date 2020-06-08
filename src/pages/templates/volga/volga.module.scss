@@ -1,0 +1,33 @@
+@import '../../../shared/styles/variables.scss';
+
+.templateWrapper {
+    width: 1280px;
+    background: #fff;
+    height: 100%;
+    margin: auto;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+}
+
+.imgContainer {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: $border-color;
+    margin-right: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.contentContainer {
+    padding: 20px 40px;
+}
+
+.placeHolder {
+    width: 20px;
+}

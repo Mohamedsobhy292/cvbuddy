@@ -58,7 +58,7 @@ const ChooseTemplate = () => {
                 })}
             </ul>
 
-            <Link to="/form" className={styles.proceedBtn}>
+            <Link to="/build-resume" className={styles.proceedBtn}>
                 PROCEED
                 <span className={styles.arrow}>
                     <Arrow />
