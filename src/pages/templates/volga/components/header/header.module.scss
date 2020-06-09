@@ -1,0 +1,34 @@
+@import '../../../../../shared/styles/variables.scss';
+
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.contentContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.name {
+    font-size: 24px;
+}
+
+.title {
+    font-size: 14px;
+    color: $text-color-secondary;
+}
+
+.imgContainer {
+    display: flex;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: $border-color;
+    margin-right: 15px;
+    justify-content: center;
+    align-items: center;
+}
