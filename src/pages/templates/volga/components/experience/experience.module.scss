@@ -1,0 +1,42 @@
+@import '../../../../../shared/styles/variables.scss';
+
+.experienceItem {
+    margin-bottom: 35px;
+}
+
+.experienceListContainer {
+}
+
+.title {
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.company {
+    font-size: 14px;
+    font-weight: normal;
+    margin-bottom: 4px;
+}
+
+.duration {
+    font-size: 11px;
+    font-weight: normal;
+    color: $text-color3;
+    font-style: italic;
+}
+
+.descriptionList {
+    padding-left: 20px;
+    margin-top: 15px;
+    line-height: 1.5;
+
+    li {
+        margin-bottom: 5px;
+        display: flex;
+
+        &:before {
+            content: '\25B9';
+            margin-right: 10px;
+        }
+    }
+}

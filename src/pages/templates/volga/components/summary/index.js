@@ -4,7 +4,7 @@ import { SectionTitle } from '../sectionTitle'
 
 const Summary = ({ summary }) => {
     return (
-        <section>
+        <section className={styles.sectionContainer}>
             <SectionTitle>Summary</SectionTitle>
             <p className={styles.summary}>{summary}</p>
         </section>
