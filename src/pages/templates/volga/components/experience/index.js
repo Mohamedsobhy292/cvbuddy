@@ -23,10 +23,9 @@ const Experience = ({ experience }) => {
                                     </h4>
 
                                     <ul className={styles.descriptionList}>
-                                        {item.description &&
-                                            item.description.map((item) => {
-                                                return <li>{item}</li>
-                                            })}
+                                        {item.description.map((item) => {
+                                            return <li>{item}</li>
+                                        })}
                                     </ul>
                                 </li>
                             )

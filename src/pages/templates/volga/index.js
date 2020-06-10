@@ -3,6 +3,7 @@ import styles from './volga.module.scss'
 import { Header } from './components/header/index'
 import { Summary } from './components/summary'
 import { Experience } from './components/experience'
+import { Sidebar } from './components/sidebar'
 
 const Volga = ({
     firstName,
@@ -11,6 +12,7 @@ const Volga = ({
     mail,
     summary,
     experience,
+    phone,
 }) => {
     return (
         <div className={styles.templateWrapper}>
@@ -20,7 +22,6 @@ const Volga = ({
                     firstName={firstName}
                     lastName={lastName}
                     jobTitle={jobTitle}
-                    mail={mail}
                 />
 
                 {/* SUMMARY */}
@@ -29,7 +30,7 @@ const Volga = ({
                 {/* EXPERIENCE */}
                 <Experience experience={experience} />
             </main>
-            <aside className={styles.aside}></aside>
+            <Sidebar mail={mail} phone={phone} />
         </div>
     )
 }

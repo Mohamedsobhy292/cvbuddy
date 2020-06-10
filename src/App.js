@@ -10,6 +10,7 @@ const details = {
     firstName: 'Mohamed',
     lastName: 'sobhy',
     mail: 'mohamedsobhy292@gmail.com',
+    phone: '01092525921',
     jobTitle: 'front end developer',
     summary:
         'Do you think youre living an ordinary life? You are so mistaken its difficult to even explain. The mere fact that you exist makes you extraordinary. The odds of you existing are less than winning the lottery, but here you are. Are you going to let this extraordinary opportunity pass?',

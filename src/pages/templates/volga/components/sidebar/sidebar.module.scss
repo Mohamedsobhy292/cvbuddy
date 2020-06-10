@@ -1,0 +1,33 @@
+@import '../../../../../shared/styles/variables.scss';
+
+.aside {
+    color: $light-text-color;
+    fill: $light-text-color;
+    width: 30%;
+    padding: 20px 40px;
+    padding-top: 180px;
+    // height: 100vh; // to be removed later
+    background: $volga-primary;
+}
+
+.sectionTitle {
+    color: $white-color;
+    font-size: 24px;
+    margin-bottom: 25px;
+}
+
+.item {
+    font-size: 14px;
+    margin-bottom: 15px;
+    font-weight: normal;
+    display: flex;
+}
+
+.icon {
+    // fill: #fff;
+    width: 20px;
+    margin-right: 10px;
+    svg {
+        width: 18px;
+    }
+}
