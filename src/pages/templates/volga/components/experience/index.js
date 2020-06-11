@@ -4,7 +4,7 @@ import { SectionTitle } from '../sectionTitle'
 
 const Experience = ({ experience }) => {
     return (
-        <section>
+        <section className={styles.sectionContainer}>
             <SectionTitle>Experience</SectionTitle>
             <div className={styles.experienceListContainer}>
                 <ul>

@@ -6,7 +6,7 @@ import { PlaceIcon } from './place'
 
 const PersonalInfo = ({ mail, phone }) => {
     return (
-        <div>
+        <div className={styles.sectionContainer}>
             <h3 className={styles.sectionTitle}>Personal Info</h3>
             <h4 className={styles.item}>
                 <span className={styles.icon}>

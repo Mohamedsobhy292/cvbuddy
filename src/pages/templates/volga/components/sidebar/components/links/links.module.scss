@@ -1,0 +1,17 @@
+@import '../../../../../../../shared/styles/variables.scss';
+
+.sectionTitle {
+    color: $white-color;
+    font-size: 24px;
+    margin-bottom: 25px;
+}
+
+.sectionContainer {
+    margin-bottom: 50px;
+}
+
+.SkillsContainer {
+    li {
+        margin-bottom: 10px;
+    }
+}
