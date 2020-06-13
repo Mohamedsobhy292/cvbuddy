@@ -6,6 +6,7 @@ import { Experience } from './components/experience'
 import { Sidebar } from './components/sidebar'
 
 const Volga = ({
+    className,
     firstName,
     lastName,
     jobTitle,
@@ -15,7 +16,7 @@ const Volga = ({
     phone,
 }) => {
     return (
-        <div className={styles.templateWrapper}>
+        <div className={`${styles.templateWrapper} ${className}`}>
             <main className={styles.contentContainer}>
                 {/* HEADER */}
                 <Header
