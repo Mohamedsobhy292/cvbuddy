@@ -51,11 +51,34 @@ const AppStateProvider = ({ children }) => {
             ...details,
         },
     })
+
+    const updateUserField = (fieldName, val) => {
+        dispatch((data) => {
+            return {
+                ...data,
+                userData: {
+                    ...data.userData,
+                    [fieldName]: val,
+                },
+            }
+        })
+    }
+
+    const updateUserData = (formData) => {
+        dispatch((data) => {
+            return {
+                ...data,
+                userData: { ...formData },
+            }
+        })
+    }
+
     return (
         <AppContext.Provider
             value={{
                 state,
-                dispatch,
+                updateUserField,
+                updateUserData,
             }}
         >
             {children}

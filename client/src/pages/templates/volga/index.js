@@ -1,20 +1,22 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styles from './volga.module.scss'
 import { Header } from './components/header/index'
 import { Summary } from './components/summary'
 import { Experience } from './components/experience'
 import { Sidebar } from './components/sidebar'
+import { AppContext } from 'shared/context/appContext'
 
-const Volga = ({
-    className,
-    firstName,
-    lastName,
-    jobTitle,
-    mail,
-    summary,
-    experience,
-    phone,
-}) => {
+const Volga = ({ className }) => {
+    const { state } = useContext(AppContext)
+    const {
+        firstName,
+        lastName,
+        jobTitle,
+        mail,
+        summary,
+        experience,
+        phone,
+    } = state.userData
     return (
         <div className={`${styles.templateWrapper} ${className}`}>
             <main className={styles.contentContainer}>

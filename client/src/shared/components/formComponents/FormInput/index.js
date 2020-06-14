@@ -2,7 +2,7 @@ import React from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
 import { InputField } from 'shared/components/inputField'
 
-const FormInput = ({ name, defaultValue = '' }) => {
+const Input = ({ name, defaultValue = '' }) => {
     const methods = useFormContext()
     const { control } = methods
     return (
@@ -14,5 +14,7 @@ const FormInput = ({ name, defaultValue = '' }) => {
         />
     )
 }
+
+const FormInput = React.memo(Input)
 
 export { FormInput }
