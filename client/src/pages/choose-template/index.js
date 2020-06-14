@@ -4,19 +4,18 @@ import { Link } from 'react-router-dom'
 
 import styles from './ChooseTemplate.module.scss'
 import cvTemplate from './resume1.jpg'
-import { RadioButton } from '../../shared/components/radioButton'
-import { Button } from '../../shared/components/button'
+import { RadioButton } from 'shared/components/radioButton'
 import Arrow from './arrow-right'
 
 const templates = [
     {
-        name: 'developer',
+        name: 'Volga',
     },
     {
-        name: 'engineer',
+        name: 'la plata',
     },
     {
-        name: 'doctor',
+        name: 'Lena',
     },
 ]
 
