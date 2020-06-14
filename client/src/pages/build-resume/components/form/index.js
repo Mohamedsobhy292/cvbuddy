@@ -32,8 +32,8 @@ const Form = () => {
                     </div>
 
                     <div className={styles.formControl}>
-                        <InputLabel>Job title</InputLabel>
-                        <FormInput name="jobTitle" />
+                        <InputLabel>Phone number</InputLabel>
+                        <FormInput name="phone" />
                     </div>
 
                     <div
