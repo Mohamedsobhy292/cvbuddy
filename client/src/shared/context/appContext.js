@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useReducer } from 'react'
 
 const details = {
     firstName: 'Mohamed',
@@ -45,40 +45,36 @@ const AppContext = React.createContext({
     userData: {},
 })
 
+const reducer = (state, action) => {
+    console.log(action)
+    if (action.type === 'UPDATE_USER_FIELD') {
+        return {
+            ...state,
+            userData: {
+                [action.payload.name]: action.payload.value,
+            },
+        }
+    }
+
+    if (action.type === 'RESET_USER_INFO') {
+        console.log(state, action)
+        return {
+            ...state,
+            userData: {
+                ...action.payload,
+            },
+        }
+    }
+}
+
 const AppStateProvider = ({ children }) => {
-    const [state, dispatch] = useState({
-        userData: {
-            ...details,
-        },
-    })
-
-    const updateUserField = (fieldName, val) => {
-        dispatch((data) => {
-            return {
-                ...data,
-                userData: {
-                    ...data.userData,
-                    [fieldName]: val,
-                },
-            }
-        })
-    }
-
-    const updateUserData = (formData) => {
-        dispatch((data) => {
-            return {
-                ...data,
-                userData: { ...formData },
-            }
-        })
-    }
+    const [state, dispatch] = useReducer(reducer, { userData: {} })
 
     return (
         <AppContext.Provider
             value={{
                 state,
-                updateUserField,
-                updateUserData,
+                dispatch,
             }}
         >
             {children}

@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styles from './header.module.scss'
 import { UserIcon } from './user'
+import { AppContext } from 'shared/context/appContext'
 
-const Header = ({ firstName, lastName, jobTitle, mail }) => {
+const Header = () => {
+    const { state } = useContext(AppContext)
+    const { firstName, lastName, jobTitle } = state.userData
     return (
         <div className={styles.header}>
             <div className={styles.imgContainer}>

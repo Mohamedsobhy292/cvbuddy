@@ -8,24 +8,12 @@ import { AppContext } from 'shared/context/appContext'
 
 const Volga = ({ className }) => {
     const { state } = useContext(AppContext)
-    const {
-        firstName,
-        lastName,
-        jobTitle,
-        mail,
-        summary,
-        experience,
-        phone,
-    } = state.userData
+    const { mail, summary, experience, phone } = state.userData
     return (
         <div className={`${styles.templateWrapper} ${className}`}>
             <main className={styles.contentContainer}>
                 {/* HEADER */}
-                <Header
-                    firstName={firstName}
-                    lastName={lastName}
-                    jobTitle={jobTitle}
-                />
+                <Header />
 
                 {/* SUMMARY */}
                 <Summary summary={summary} />
