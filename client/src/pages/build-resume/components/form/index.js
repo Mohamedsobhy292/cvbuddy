@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useContext } from 'react'
 import { useForm, FormContext } from 'react-hook-form'
 
 import { AppContext } from 'shared/context/appContext'
@@ -7,8 +7,12 @@ import { WorkHistory } from './workHistory'
 
 const BuiledResumeForm = () => {
     const methods = useForm()
-    const { handleSubmit } = methods
-    const { dispatch } = useContext(AppContext)
+    const { handleSubmit, reset } = methods
+    const { dispatch, state } = useContext(AppContext)
+
+    const Load = () => {
+        reset(state.userData)
+    }
 
     const onSubmit = (data) => {
         dispatch({
@@ -23,6 +27,9 @@ const BuiledResumeForm = () => {
         <FormContext {...methods}>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <button>Submit</button>
+                <button type="button" onClick={() => Load()}>
+                    Load
+                </button>
                 <div>
                     <PersonalInformation />
                     <WorkHistory />

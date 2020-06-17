@@ -12,8 +12,13 @@ const WorkHistory = () => {
         <>
             <h3 className={styles.title}> Work History</h3>
             {experience &&
-                experience.map((experience) => {
-                    return <WorkHistoryItem experience={experience} />
+                experience.map((experience, index) => {
+                    return (
+                        <WorkHistoryItem
+                            experience={experience}
+                            index={index}
+                        />
+                    )
                 })}
         </>
     )

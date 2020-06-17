@@ -3,7 +3,7 @@ import React, { useReducer } from 'react'
 const details = {
     firstName: 'Mohamed',
     lastName: 'sobhy',
-    mail: 'mohamedsobhy292@gmail.com',
+    email: 'mohamedsobhy292@gmail.com',
     phone: '01092525921',
     jobTitle: 'front end developer',
     summary:
