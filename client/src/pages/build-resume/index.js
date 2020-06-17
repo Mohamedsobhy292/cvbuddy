@@ -10,7 +10,7 @@ const BuildResume = () => {
                 <Form />
             </content>
             <aside className={styles.sideArea}>
-                {/* <Volga className={styles.themeWrapper} /> */}
+                <Volga className={styles.themeWrapper} />
             </aside>
         </div>
     )

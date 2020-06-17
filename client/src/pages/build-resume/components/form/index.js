@@ -11,7 +11,6 @@ const BuiledResumeForm = () => {
     const { dispatch } = useContext(AppContext)
 
     const onSubmit = (data) => {
-        console.log(data)
         dispatch({
             type: 'RESET_USER_INFO',
             payload: {
@@ -19,15 +18,6 @@ const BuiledResumeForm = () => {
             },
         })
     }
-
-    // useEffect(() => {
-    //     dispatch({
-    //         type: 'RESET_USER_INFO',
-    //         payload: {
-    //             ...formValues,
-    //         },
-    //     })
-    // }, [dispatch])
 
     return (
         <FormContext {...methods}>

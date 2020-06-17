@@ -42,22 +42,21 @@ const details = {
     ],
 }
 const AppContext = React.createContext({
-    userData: {},
+    userData: { ...details },
 })
 
 const reducer = (state, action) => {
-    console.log(action)
     if (action.type === 'UPDATE_USER_FIELD') {
         return {
             ...state,
             userData: {
+                ...state.userData,
                 [action.payload.name]: action.payload.value,
             },
         }
     }
 
     if (action.type === 'RESET_USER_INFO') {
-        console.log(state, action)
         return {
             ...state,
             userData: {
@@ -68,7 +67,7 @@ const reducer = (state, action) => {
 }
 
 const AppStateProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(reducer, { userData: {} })
+    const [state, dispatch] = useReducer(reducer, { userData: { ...details } })
 
     return (
         <AppContext.Provider

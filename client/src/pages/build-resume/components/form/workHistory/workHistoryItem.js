@@ -1,32 +1,18 @@
 import React from 'react'
-import classnames from 'classnames'
-
-import { InputLabel } from 'shared/components/inputLabel'
-import { FormInput } from 'shared/components/formComponents/FormInput'
-import { FormTextArea } from 'shared/components/formComponents/formTextArea'
 import styles from '../../../BuildResume.module.scss'
+import { EditIcon } from './editIcon.jsx'
+import { DeleteIcon } from './deleteIcon'
 
-const WorkHistoryItem = ({ name, index }) => {
+const WorkHistoryItem = ({ experience }) => {
     return (
-        <div className={styles.formContainer}>
-            <div className={styles.formControl}>
-                <InputLabel>Job title</InputLabel>
-                <FormInput name={`${name}[${index}].jobTitle`} />
-            </div>
-
-            <div className={styles.formControl}>
-                <InputLabel>Company</InputLabel>
-                <FormInput name={`${name}[${index}].company`} />
-            </div>
-
-            <div className={styles.formControl}>
-                <InputLabel>City</InputLabel>
-                <FormInput name={`${name}[${index}].city`} />
-            </div>
-
-            <div className={classnames(styles.formControl, styles.fullWidth)}>
-                <InputLabel>Description</InputLabel>
-                <FormTextArea name={`${name}[${index}].description`} />
+        <div className={styles.experienceCard}>
+            <h3 className={styles.experienceTitle}>
+                {experience.title} at {experience.company}
+            </h3>
+            <h4 className={styles.duration}>{experience.duration}</h4>
+            <div className={styles.iconsContainer}>
+                <EditIcon width="16px" className={styles.icon} />
+                <DeleteIcon width="16px" className={styles.icon} />
             </div>
         </div>
     )

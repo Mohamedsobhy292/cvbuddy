@@ -2,7 +2,7 @@ import React from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
 import { InputField } from 'shared/components/inputField'
 
-const Input = ({ name, defaultValue = '' }) => {
+const Input = ({ name, defaultValue = '', onChange }) => {
     const methods = useFormContext()
     const { control } = methods
     return (
@@ -11,6 +11,7 @@ const Input = ({ name, defaultValue = '' }) => {
             name={name}
             control={control}
             defaultValue={defaultValue}
+            onChange={(args) => onChange(name)(args[0].currentTarget.value)}
         />
     )
 }
