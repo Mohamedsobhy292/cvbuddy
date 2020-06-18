@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import classnames from 'classnames'
+
+import { AppContext } from 'shared/context/appContext'
 
 import { InputLabel } from 'shared/components/inputLabel'
 import { FormInput } from 'shared/components/formComponents/FormInput'
@@ -9,27 +11,48 @@ import styles from '../../../BuildResume.module.scss'
 import { EditIcon } from './editIcon.jsx'
 import { DeleteIcon } from './deleteIcon'
 
-const WorkHistoryItem = ({ experience, index }) => {
-    const [editMode, seteEditMode] = useState(false)
+const WorkHistoryItem = ({ experience, index, fieldName }) => {
+    const [editMode, seteEditMode] = useState(true)
+    const { dispatch } = useContext(AppContext)
+
+    const handleFieldChange = (name) => (value) => {
+        dispatch({
+            type: 'UPDATE_USER_FIELD',
+            payload: {
+                name,
+                value,
+            },
+        })
+    }
+
     return (
-        <div className={styles.experienceCard}>
+        <div className={styles.experienceCard} key={experience.id}>
             {/* EDIT MODE  */}
 
             {editMode && (
                 <div className={styles.formContainer}>
                     <div className={styles.formControl}>
                         <InputLabel>Job title</InputLabel>
-                        <FormInput name={`experience[${index}].jobTitle`} />
+                        <FormInput
+                            name={`${fieldName}.title`}
+                            onChange={handleFieldChange}
+                        />
                     </div>
 
                     <div className={styles.formControl}>
                         <InputLabel>Company</InputLabel>
-                        <FormInput name="experience.company" />
+                        <FormInput
+                            name={`${fieldName}.company`}
+                            onChange={handleFieldChange}
+                        />
                     </div>
 
                     <div className={styles.formControl}>
                         <InputLabel>City</InputLabel>
-                        <FormInput name="experience.city" />
+                        <FormInput
+                            name={`fieldName[${index}].city`}
+                            onChange={handleFieldChange}
+                        />
                     </div>
 
                     <div
@@ -39,7 +62,10 @@ const WorkHistoryItem = ({ experience, index }) => {
                         )}
                     >
                         <InputLabel>Description</InputLabel>
-                        <FormTextArea name="experience.description" />
+                        <FormTextArea
+                            onChange={handleFieldChange}
+                            name={`fieldName[${index}].description`}
+                        />
                     </div>
                 </div>
             )}
