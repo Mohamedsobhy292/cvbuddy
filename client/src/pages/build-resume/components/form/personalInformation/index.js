@@ -17,6 +17,8 @@ const PersonalInformation = () => {
                 value,
             },
         })
+        console.log(value)
+        return value
     }
     return (
         <>

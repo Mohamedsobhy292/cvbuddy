@@ -10,7 +10,7 @@ const InputField = ({ value, onChange }) => {
             type="text"
             className={styles.InputField}
             value={value}
-            onChange={handleChange}
+            onChange={onChange}
         />
     )
 }

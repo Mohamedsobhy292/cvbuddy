@@ -14,7 +14,7 @@ const WorkHistory = () => {
         name: 'experience',
     })
 
-    console.log(experience)
+    // console.log(experience)
 
     return (
         <>
