@@ -9,9 +9,12 @@ const Experience = ({ experience }) => {
             <div className={styles.experienceListContainer}>
                 <ul>
                     {experience &&
-                        experience.map((item) => {
+                        experience.map((item, index) => {
                             return (
-                                <li className={styles.experienceItem}>
+                                <li
+                                    className={styles.experienceItem}
+                                    key={index}
+                                >
                                     <h2 className={styles.title}>
                                         {item.title}
                                     </h2>
@@ -24,9 +27,15 @@ const Experience = ({ experience }) => {
 
                                     <ul className={styles.descriptionList}>
                                         {item.description &&
-                                            item.description.map((item) => {
-                                                return <li>{item}</li>
-                                            })}
+                                            item.description.map(
+                                                (item, index) => {
+                                                    return (
+                                                        <li key={index}>
+                                                            {item}
+                                                        </li>
+                                                    )
+                                                }
+                                            )}
                                     </ul>
                                 </li>
                             )

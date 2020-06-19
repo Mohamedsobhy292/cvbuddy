@@ -7,17 +7,21 @@ import { WorkHistory } from './workHistory'
 
 const BuiledResumeForm = () => {
     const methods = useForm()
-    const { handleSubmit, reset, watch } = methods
+    const { handleSubmit, reset } = methods
     const { dispatch, state } = useContext(AppContext)
-    const values = watch()
-    console.log(values)
 
     const Load = () => {
         reset(state.userData)
     }
 
     const onSubmit = (data) => {
-        console.log(data)
+        console.log(data.experience)
+        dispatch({
+            type: 'RESET_USER_INFO',
+            payload: {
+                ...data,
+            },
+        })
     }
 
     return (

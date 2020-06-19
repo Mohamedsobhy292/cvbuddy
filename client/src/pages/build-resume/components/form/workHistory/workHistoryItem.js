@@ -10,9 +10,10 @@ import { FormTextArea } from 'shared/components/formComponents/formTextArea'
 import styles from '../../../BuildResume.module.scss'
 import { EditIcon } from './editIcon.jsx'
 import { DeleteIcon } from './deleteIcon'
+import { useFormContext } from 'react-hook-form'
 
 const WorkHistoryItem = ({ experience, index, fieldName }) => {
-    const [editMode, seteEditMode] = useState(true)
+    const [editMode, seteEditMode] = useState(false)
     const { dispatch } = useContext(AppContext)
 
     const handleFieldChange = (name) => (value) => {
@@ -23,6 +24,7 @@ const WorkHistoryItem = ({ experience, index, fieldName }) => {
                 value,
             },
         })
+        return value
     }
 
     return (
@@ -34,7 +36,7 @@ const WorkHistoryItem = ({ experience, index, fieldName }) => {
                     <div className={styles.formControl}>
                         <InputLabel>Job title</InputLabel>
                         <FormInput
-                            name={`${fieldName}.title`}
+                            name={`experience[${index}].title`}
                             onChange={handleFieldChange}
                         />
                     </div>
@@ -42,7 +44,7 @@ const WorkHistoryItem = ({ experience, index, fieldName }) => {
                     <div className={styles.formControl}>
                         <InputLabel>Company</InputLabel>
                         <FormInput
-                            name={`${fieldName}.company`}
+                            name={`experience[${index}].company`}
                             onChange={handleFieldChange}
                         />
                     </div>
@@ -50,7 +52,7 @@ const WorkHistoryItem = ({ experience, index, fieldName }) => {
                     <div className={styles.formControl}>
                         <InputLabel>City</InputLabel>
                         <FormInput
-                            name={`fieldName[${index}].city`}
+                            name={`experience[0].city`}
                             onChange={handleFieldChange}
                         />
                     </div>
@@ -64,7 +66,7 @@ const WorkHistoryItem = ({ experience, index, fieldName }) => {
                         <InputLabel>Description</InputLabel>
                         <FormTextArea
                             onChange={handleFieldChange}
-                            name={`fieldName[${index}].description`}
+                            name={`experience[${index}].title`}
                         />
                     </div>
                 </div>
