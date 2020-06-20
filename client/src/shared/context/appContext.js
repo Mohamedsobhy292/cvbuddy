@@ -42,7 +42,7 @@ const details = {
     ],
 }
 const AppContext = React.createContext({
-    userData: { ...details },
+    userData: {},
 })
 
 const reducer = (state, action) => {
@@ -67,7 +67,7 @@ const reducer = (state, action) => {
 }
 
 const AppStateProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(reducer, { userData: { ...details } })
+    const [state, dispatch] = useReducer(reducer, { userData: {} })
 
     return (
         <AppContext.Provider

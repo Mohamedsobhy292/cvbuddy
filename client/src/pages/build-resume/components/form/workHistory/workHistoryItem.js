@@ -12,16 +12,25 @@ import { EditIcon } from './editIcon.jsx'
 import { DeleteIcon } from './deleteIcon'
 import { useFormContext } from 'react-hook-form'
 
-const WorkHistoryItem = ({ experience, index, fieldName }) => {
-    const [editMode, seteEditMode] = useState(false)
+const WorkHistoryItem = ({
+    experience,
+    index,
+    fieldName,
+    editMode,
+    seteEditMode,
+}) => {
+    const methods = useFormContext()
+    const { getValues } = methods
+    const val = getValues({ nest: true })
+
     const { dispatch } = useContext(AppContext)
 
     const handleFieldChange = (name) => (value) => {
         dispatch({
             type: 'UPDATE_USER_FIELD',
             payload: {
-                name,
-                value,
+                name: 'experience',
+                value: val.experience,
             },
         })
         return value
@@ -31,7 +40,7 @@ const WorkHistoryItem = ({ experience, index, fieldName }) => {
         <div className={styles.experienceCard} key={experience.id}>
             {/* EDIT MODE  */}
 
-            {editMode && (
+            {editMode === index && (
                 <div className={styles.formContainer}>
                     <div className={styles.formControl}>
                         <InputLabel>Job title</InputLabel>
@@ -66,7 +75,7 @@ const WorkHistoryItem = ({ experience, index, fieldName }) => {
                         <InputLabel>Description</InputLabel>
                         <FormTextArea
                             onChange={handleFieldChange}
-                            name={`experience[${index}].title`}
+                            name={`experience[${index}].description`}
                         />
                     </div>
                 </div>
@@ -74,7 +83,7 @@ const WorkHistoryItem = ({ experience, index, fieldName }) => {
 
             {/* DATA */}
 
-            {!editMode && (
+            {editMode !== index && (
                 <>
                     <h3 className={styles.experienceTitle}>
                         {experience.title} at {experience.company}
@@ -84,7 +93,7 @@ const WorkHistoryItem = ({ experience, index, fieldName }) => {
                         <EditIcon
                             width="16px"
                             className={styles.icon}
-                            onClick={() => seteEditMode(true)}
+                            onClick={() => seteEditMode(index)}
                         />
                         <DeleteIcon width="16px" className={styles.icon} />
                     </div>
