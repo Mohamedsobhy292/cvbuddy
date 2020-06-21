@@ -12,41 +12,37 @@ const details = {
         {
             title: 'Front end developer',
             company: 'Auto1',
-            duration: 'Aug 2019 - May 2020',
-            description: [
+            startDate: 'Aug 2019',
+            endDate: 'May 2020',
+            description:
                 'worked on the marketing team for achieving business needs by implementing new features using React + Redux',
-                'Refactored some of the old codebase on the marketing team',
-                'Worked on building  the new car inspection  app using React + Graphql on the inspection team',
-            ],
         },
         {
             title: 'Front end developer',
             company: 'Wuzzuf',
-            duration: 'Aug 2019 - May 2020',
-            description: [
+            startDate: 'Aug 2019',
+            endDate: 'May 2020',
+            description:
                 'worked on the marketing team for achieving business needs by implementing new features using React + Redux',
-                'Refactored some of the old codebase on the marketing team',
-                'Worked on building  the new car inspection  app using React + Graphql on the inspection team',
-            ],
         },
         {
             title: 'Front end developer',
             company: 'Amazon',
-            duration: 'Aug 2019 - May 2020',
-            description: [
+            startDate: 'Aug 2019',
+            endDate: 'May 2020',
+            description:
                 'worked on the marketing team for achieving business needs by implementing new features using React + Redux',
-                'Refactored some of the old codebase on the marketing team',
-                'Worked on building  the new car inspection  app using React + Graphql on the inspection team',
-            ],
         },
     ],
 }
+
 const AppContext = React.createContext({
     userData: {},
 })
 
 const reducer = (state, action) => {
     if (action.type === 'UPDATE_USER_FIELD') {
+        console.log(action)
         return {
             ...state,
             userData: {
@@ -67,7 +63,11 @@ const reducer = (state, action) => {
 }
 
 const AppStateProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(reducer, { userData: {} })
+    const [state, dispatch] = useReducer(reducer, {
+        userData: {
+            ...details,
+        },
+    })
 
     return (
         <AppContext.Provider

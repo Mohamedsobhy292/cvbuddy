@@ -15,6 +15,7 @@ const BuiledResumeForm = () => {
     }
 
     const onSubmit = (data) => {
+        console.log(data)
         dispatch({
             type: 'RESET_USER_INFO',
             payload: {

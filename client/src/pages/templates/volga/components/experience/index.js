@@ -22,11 +22,15 @@ const Experience = ({ experience }) => {
                                         {item.company}
                                     </h3>
                                     <h4 className={styles.duration}>
-                                        {item.duration}
+                                        {item.startDate} -{' '}
+                                        {item.currentlyWorkHere
+                                            ? 'present'
+                                            : item.endDate}
                                     </h4>
 
                                     <ul className={styles.descriptionList}>
-                                        {item.description &&
+                                        {item.description}
+                                        {/* {item.description &&
                                             item.description.map(
                                                 (item, index) => {
                                                     return (
@@ -35,7 +39,7 @@ const Experience = ({ experience }) => {
                                                         </li>
                                                     )
                                                 }
-                                            )}
+                                            )} */}
                                     </ul>
                                 </li>
                             )

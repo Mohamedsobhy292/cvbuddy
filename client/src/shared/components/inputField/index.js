@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './InputField.module.scss'
 
-const InputField = ({ value, onChange }) => {
+const InputField = ({ value, onChange, ...props }) => {
     const handleChange = (e) => {
         onChange(e)
     }
@@ -10,7 +10,8 @@ const InputField = ({ value, onChange }) => {
             type="text"
             className={styles.InputField}
             value={value}
-            onChange={onChange}
+            onChange={handleChange}
+            {...props}
         />
     )
 }

@@ -30,20 +30,34 @@
 }
 
 .formControl {
-    width: calc(50% - 15px);
-    margin-right: 30px;
+    width: 50%;
+    padding-right: 30px;
     margin-bottom: 30px;
     input {
         width: 100%;
     }
 
     &:nth-child(even) {
-        margin-right: 0;
+        padding-right: 0;
     }
 
     &.fullWidth {
         width: 100%;
-        margin-right: 0;
+        padding-right: 0;
+    }
+
+    &.oneThird {
+        width: 33%;
+        padding-left: 8px;
+        padding-right: 8px;
+
+        &:first-child {
+            padding-left: 0;
+        }
+
+        &:last-child {
+            padding-right: 0;
+        }
     }
 }
 
@@ -98,5 +112,16 @@
 
     &:last-of-type {
         margin-right: 0;
+    }
+}
+
+.checkBoxWrapper {
+    display: flex;
+    margin-top: 15px;
+    font-size: 12px;
+    align-items: center;
+
+    .label {
+        margin-left: 8px;
     }
 }

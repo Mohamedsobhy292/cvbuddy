@@ -1,0 +1,31 @@
+@import 'shared/styles/variables.scss';
+
+.checkboxContainer {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    input {
+        display: none;
+    }
+}
+
+.checkBoxRectangle {
+    height: 18px;
+    width: 18px;
+    border: 1px solid $border-color;
+    transition: all 0.3s;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.isActive {
+        background: $primary-color;
+        border: 1px solid $primary-color;
+    }
+}
+
+.checkIcon {
+    width: 10px;
+    fill: #fff;
+}
