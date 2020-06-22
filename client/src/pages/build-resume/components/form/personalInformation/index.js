@@ -1,15 +1,14 @@
 import React, { useContext } from 'react'
-import classnames from 'classnames'
 import styles from '../../../BuildResume.module.scss'
 
-import { InputLabel } from 'shared/components/inputLabel'
-import { FormInput } from 'shared/components/formComponents/FormInput'
 import { FormTextArea } from 'shared/components/formComponents/formTextArea'
 import { AppContext } from 'shared/context/appContext'
+import { PersonalInformationField } from '../../personalInformationField'
 
 const PersonalInformation = () => {
     const { dispatch } = useContext(AppContext)
-    const handleFieldChange = (name) => (value) => {
+    const handleFieldChange = (name) => (e) => {
+        const value = e[0].currentTarget.value
         dispatch({
             type: 'UPDATE_USER_FIELD',
             payload: {
@@ -23,39 +22,44 @@ const PersonalInformation = () => {
         <>
             <h3 className={styles.title}> Personal Information</h3>
             <div className={styles.formContainer}>
-                <div className={styles.formControl}>
-                    <InputLabel>First Name</InputLabel>
-                    <FormInput name="firstName" onChange={handleFieldChange} />
-                </div>
+                <PersonalInformationField
+                    name="firstName"
+                    label="First Name"
+                    handleFieldChange={handleFieldChange}
+                />
 
-                <div className={styles.formControl}>
-                    <InputLabel>Last Name</InputLabel>
-                    <FormInput name="lastName" onChange={handleFieldChange} />
-                </div>
+                <PersonalInformationField
+                    name="lastName"
+                    label="Last Name"
+                    handleFieldChange={handleFieldChange}
+                />
 
-                <div className={styles.formControl}>
-                    <InputLabel>Email</InputLabel>
-                    <FormInput name="email" onChange={handleFieldChange} />
-                </div>
+                <PersonalInformationField
+                    name="Email"
+                    label="email"
+                    handleFieldChange={handleFieldChange}
+                />
 
-                <div className={styles.formControl}>
-                    <InputLabel>Phone number</InputLabel>
-                    <FormInput name="phone" onChange={handleFieldChange} />
-                </div>
+                <PersonalInformationField
+                    name="Phone number"
+                    label="phone"
+                    handleFieldChange={handleFieldChange}
+                />
 
-                <div
-                    className={classnames(styles.formControl, styles.fullWidth)}
-                >
-                    <InputLabel>Job title</InputLabel>
-                    <FormInput name="jobTitle" onChange={handleFieldChange} />
-                </div>
+                <PersonalInformationField
+                    additionalClassName={styles.fullWidth}
+                    name="jobTitle"
+                    label="Job title"
+                    handleFieldChange={handleFieldChange}
+                />
 
-                <div
-                    className={classnames(styles.formControl, styles.fullWidth)}
-                >
-                    <InputLabel>Summary</InputLabel>
-                    <FormTextArea name="summary" onChange={handleFieldChange} />
-                </div>
+                <PersonalInformationField
+                    additionalClassName={styles.fullWidth}
+                    name="summary"
+                    label="Summary"
+                    component={FormTextArea}
+                    handleFieldChange={handleFieldChange}
+                />
             </div>
         </>
     )

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import classnames from 'classnames'
 
 import { AppContext } from 'shared/context/appContext'
@@ -13,25 +13,28 @@ import { DeleteIcon } from './deleteIcon'
 import { useFormContext } from 'react-hook-form'
 import { FormCheckBox } from 'shared/components/formComponents/formCheckbox'
 
-const WorkHistoryItem = ({ experience, index }) => {
+const WorkHistoryItem = ({ experience, index, experiences }) => {
     const [editMode, seteEditMode] = useState(null)
     const methods = useFormContext()
     const { watch } = methods
-    const values = watch({ nest: true })
+    const { dispatch } = useContext(AppContext)
+
+    const experienceObj = watch(`experience`)
 
     const currentlyWorkHere = watch(`experience[${index}].currentlyWorkHere`)
 
-    const { dispatch } = useContext(AppContext)
-
-    const handleFieldChange = () => (value) => {
+    const handleFieldChange = (value) => {
+        const val = value[0].currentTarget.value
+        console.warn(val)
         dispatch({
             type: 'UPDATE_USER_FIELD',
             payload: {
                 name: 'experience',
-                value: values?.experience,
+                value: experienceObj,
             },
         })
-        return value
+
+        return val
     }
 
     return (
@@ -45,7 +48,7 @@ const WorkHistoryItem = ({ experience, index }) => {
                     <InputLabel>Job title</InputLabel>
                     <FormInput
                         name={`experience[${index}].title`}
-                        onChange={handleFieldChange}
+                        onBlur={handleFieldChange}
                         defaultValue={experience.title}
                     />
                 </div>
@@ -56,7 +59,7 @@ const WorkHistoryItem = ({ experience, index }) => {
                     <InputLabel>Company</InputLabel>
                     <FormInput
                         name={`experience[${index}].company`}
-                        onChange={handleFieldChange}
+                        // onChange={handleFieldChange}
                         defaultValue={experience.company}
                     />
                 </div>
@@ -73,7 +76,7 @@ const WorkHistoryItem = ({ experience, index }) => {
                         <InputLabel>Start Date</InputLabel>
                         <FormInput
                             name={`experience[${index}].startDate`}
-                            onChange={handleFieldChange}
+                            // onChange={handleFieldChange}
                             defaultValue={experience.startDate}
                         />
                     </div>
@@ -90,7 +93,7 @@ const WorkHistoryItem = ({ experience, index }) => {
 
                         <FormInput
                             name={`experience[${index}].endDate`}
-                            onChange={handleFieldChange}
+                            // onChange={handleFieldChange}
                             disabled={currentlyWorkHere}
                             defaultValue={experience.endDate}
                         />
@@ -117,7 +120,7 @@ const WorkHistoryItem = ({ experience, index }) => {
                         <InputLabel>City</InputLabel>
                         <FormInput
                             name={`experience[0].city`}
-                            onChange={handleFieldChange}
+                            // onChange={handleFieldChange}
                             defaultValue={experience.city}
                         />
                     </div>
@@ -130,7 +133,7 @@ const WorkHistoryItem = ({ experience, index }) => {
                 >
                     <InputLabel>Description</InputLabel>
                     <FormTextArea
-                        onChange={handleFieldChange}
+                        // onChange={handleFieldChange}
                         name={`experience[${index}].description`}
                     />
                 </div>

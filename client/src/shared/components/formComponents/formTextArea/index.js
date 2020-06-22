@@ -2,7 +2,7 @@ import React from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
 import { TextArea } from 'shared/components/textArea'
 
-const FormTextArea = ({ name, defaultValue = '', onChange }) => {
+const FormTextArea = ({ name, defaultValue = '', ...props }) => {
     const methods = useFormContext()
     const { control } = methods
     return (
@@ -11,7 +11,8 @@ const FormTextArea = ({ name, defaultValue = '', onChange }) => {
             name={name}
             control={control}
             defaultValue={defaultValue}
-            onChange={(args) => onChange(name)(args[0].currentTarget.value)}
+            {...props}
+            // onChange={(args) => onChange(name)(args[0].currentTarget.value)}
         />
     )
 }

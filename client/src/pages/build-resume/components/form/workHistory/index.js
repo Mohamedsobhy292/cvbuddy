@@ -1,32 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 
 import styles from '../../../BuildResume.module.scss'
 import { WorkHistoryItem } from './workHistoryItem'
 import { Button } from 'shared/components/button'
-import { useFormContext, useFieldArray } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 
 const WorkHistory = () => {
     const [editMode, seteEditMode] = useState(false)
-    const { control } = useFormContext()
-    const { fields, append } = useFieldArray({
-        control,
-        name: 'experience',
-    })
-
-    const addExperience = () => {
-        append({})
-    }
-
-    console.log(fields)
+    const { getValues } = useFormContext()
+    const experience = getValues('experience')
 
     return (
         <>
             <h3 className={styles.title}> Work History</h3>
-            {fields &&
-                fields.map((item, index) => {
+            {experience &&
+                experience.map((item, index) => {
                     return (
                         <WorkHistoryItem
-                            fields={fields}
+                            experiences={experience}
                             editMode={editMode}
                             seteEditMode={seteEditMode}
                             key={item.id}
@@ -37,11 +28,11 @@ const WorkHistory = () => {
                     )
                 })}
 
-            <Button onClick={addExperience} variant="primary">
-                Add Experience
-            </Button>
+            <Button variant="primary">Add Experience</Button>
         </>
     )
 }
 
-export { WorkHistory }
+const WorkHistoryMemo = React.memo(WorkHistory)
+
+export { WorkHistoryMemo as WorkHistory }
