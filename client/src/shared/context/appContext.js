@@ -12,24 +12,30 @@ const details = {
         {
             title: 'Front end developer',
             company: 'Auto1',
+            city: 'Cairo',
             startDate: 'Aug 2019',
             endDate: 'May 2020',
+            currentlyWorkHere: false,
             description:
                 'worked on the marketing team for achieving business needs by implementing new features using React + Redux',
         },
         {
             title: 'Front end developer',
             company: 'Wuzzuf',
+            city: 'Cairo',
             startDate: 'Aug 2019',
             endDate: 'May 2020',
+            currentlyWorkHere: false,
             description:
                 'worked on the marketing team for achieving business needs by implementing new features using React + Redux',
         },
         {
             title: 'Front end developer',
             company: 'Amazon',
+            city: 'Cairo',
             startDate: 'Aug 2019',
             endDate: 'May 2020',
+            currentlyWorkHere: false,
             description:
                 'worked on the marketing team for achieving business needs by implementing new features using React + Redux',
         },
@@ -51,15 +57,20 @@ const reducer = (state, action) => {
         }
     }
 
-    if (action.type === 'UPDATE_USER_EXPERIENCE') {
-        const experienceObj = [...state.userData.experience]
-        experienceObj[0] = action.payload.value
-        console.log(experienceObj)
+    if (action.type === 'UPDATE_EXPERIENCE_FIELD') {
+        const experienceObject = [...state.userData.experience]
+        const idx = action.payload.index
+        experienceObject[idx] = action.payload.experience
+
+        console.log(action.payload, 'payload')
+        console.log({ idx })
+        console.log({ experienceObject })
+
         return {
             ...state,
             userData: {
                 ...state.userData,
-                experience: experienceObj,
+                experience: experienceObject,
             },
         }
     }

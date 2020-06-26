@@ -3,12 +3,12 @@ import styles from '../../../BuildResume.module.scss'
 
 import { FormTextArea } from 'shared/components/formComponents/formTextArea'
 import { AppContext } from 'shared/context/appContext'
-import { PersonalInformationField } from '../../personalInformationField'
+import { PersonalInformationField } from './personalInformationField'
 
 const PersonalInformation = () => {
     const { dispatch } = useContext(AppContext)
-    const handleFieldChange = (name) => (e) => {
-        const value = e[0].currentTarget.value
+
+    const handleFieldChange = (name) => (value) => {
         dispatch({
             type: 'UPDATE_USER_FIELD',
             payload: {
@@ -16,8 +16,8 @@ const PersonalInformation = () => {
                 value,
             },
         })
-        return value
     }
+
     return (
         <>
             <h3 className={styles.title}> Personal Information</h3>
@@ -35,14 +35,14 @@ const PersonalInformation = () => {
                 />
 
                 <PersonalInformationField
-                    name="Email"
-                    label="email"
+                    name="email"
+                    label="Email"
                     handleFieldChange={handleFieldChange}
                 />
 
                 <PersonalInformationField
-                    name="Phone number"
-                    label="phone"
+                    label="Phone number"
+                    name="phone"
                     handleFieldChange={handleFieldChange}
                 />
 

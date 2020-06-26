@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './textArea.module.scss'
 
-const TextArea = ({ value, onChange }) => {
+const TextArea = ({ value, onChange, ...props }) => {
     const handleChange = (e) => {
         onChange(e)
     }
@@ -10,6 +10,7 @@ const TextArea = ({ value, onChange }) => {
             className={styles.textArea}
             value={value}
             onChange={handleChange}
+            {...props}
         />
     )
 }

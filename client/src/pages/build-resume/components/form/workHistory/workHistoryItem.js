@@ -1,105 +1,121 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useRef } from 'react'
 import classnames from 'classnames'
 
 import { AppContext } from 'shared/context/appContext'
 
-import { InputLabel } from 'shared/components/inputLabel'
-import { FormInput } from 'shared/components/formComponents/FormInput'
 import { FormTextArea } from 'shared/components/formComponents/formTextArea'
 
 import styles from '../../../BuildResume.module.scss'
-import { EditIcon } from './editIcon.jsx'
 import { DeleteIcon } from './deleteIcon'
 import { useFormContext } from 'react-hook-form'
 import { FormCheckBox } from 'shared/components/formComponents/formCheckbox'
+import { WorkHistoryFormField } from './workHistoryFormField'
+import { useOnClickOutside } from 'shared/hooks/useClickOutside'
+import { ArrowDownIcon } from './arrowDownIcon'
 
-const WorkHistoryItem = ({ experience, index, experiences }) => {
-    const [editMode, seteEditMode] = useState(null)
+const WorkHistoryItem = ({ experience, index, editMode, setEditMode }) => {
     const methods = useFormContext()
     const { watch } = methods
     const { dispatch } = useContext(AppContext)
+    const ref = useRef()
 
-    const experienceObj = watch(`experience`)
+    useOnClickOutside(ref, () => setEditMode(false))
+
+    const isOpen = editMode === index
+
+    const currentExperience = watch(`experience[${index}]`)
 
     const currentlyWorkHere = watch(`experience[${index}].currentlyWorkHere`)
 
-    const handleFieldChange = (value) => {
-        const val = value[0].currentTarget.value
-        console.warn(val)
+    const handleFieldChange = () => {
         dispatch({
-            type: 'UPDATE_USER_FIELD',
+            type: 'UPDATE_EXPERIENCE_FIELD',
             payload: {
                 name: 'experience',
-                value: experienceObj,
+                experience: currentExperience,
+                index,
             },
         })
+    }
 
-        return val
+    const toggle = () => {
+        isOpen ? setEditMode(null) : setEditMode(index)
     }
 
     return (
-        <div className={styles.experienceCard} key={experience.id}>
+        <div className={styles.experienceCard} key={index} ref={ref}>
+            {/* DATA */}
+
+            <div onClick={toggle} className={styles.dataContainer}>
+                <h3 className={styles.experienceTitle}>
+                    {currentExperience?.title} at {currentExperience?.company}
+                </h3>
+                <h4 className={styles.duration}>
+                    {experience.startDate} - {experience.endDate}
+                </h4>
+                <div className={styles.iconsContainer}>
+                    <ArrowDownIcon
+                        width="16px"
+                        className={classnames(styles.arrowDown, styles.icon, {
+                            [styles.active]: isOpen,
+                        })}
+                        onClick={toggle}
+                    />
+
+                    <DeleteIcon width="16px" className={styles.icon} />
+                </div>
+            </div>
+
             {/* EDIT MODE  */}
 
-            {/* {editMode === index && ( */}
-            <div className={styles.formContainer}>
-                <div className={styles.formControl}>
-                    {/* TITLE */}
-                    <InputLabel>Job title</InputLabel>
-                    <FormInput
-                        name={`experience[${index}].title`}
-                        onBlur={handleFieldChange}
-                        defaultValue={experience.title}
-                    />
-                </div>
+            <div
+                className={classnames(styles.formContainer, {
+                    [styles.hidden]: !isOpen,
+                })}
+            >
+                <WorkHistoryFormField
+                    label="Job title"
+                    onBlur={handleFieldChange}
+                    name={`experience[${index}].title`}
+                />
 
                 {/* COMPANY */}
 
-                <div className={styles.formControl}>
-                    <InputLabel>Company</InputLabel>
-                    <FormInput
-                        name={`experience[${index}].company`}
-                        // onChange={handleFieldChange}
-                        defaultValue={experience.company}
-                    />
-                </div>
+                <WorkHistoryFormField
+                    label="Company"
+                    onBlur={handleFieldChange}
+                    name={`experience[${index}].company`}
+                />
 
                 <div className={styles.formContainer}>
+                    <WorkHistoryFormField
+                        additionalClassName={styles.oneThird}
+                        label="City"
+                        onBlur={handleFieldChange}
+                        name={`experience[${index}].city`}
+                    />
+
                     {/* START DATE */}
 
-                    <div
-                        className={classnames(
-                            styles.formControl,
-                            styles.oneThird
-                        )}
-                    >
-                        <InputLabel>Start Date</InputLabel>
-                        <FormInput
-                            name={`experience[${index}].startDate`}
-                            // onChange={handleFieldChange}
-                            defaultValue={experience.startDate}
-                        />
-                    </div>
+                    <WorkHistoryFormField
+                        additionalClassName={styles.oneThird}
+                        label="Start Date"
+                        onBlur={handleFieldChange}
+                        name={`experience[${index}].startDate`}
+                    />
 
                     {/* END DATE */}
 
-                    <div
-                        className={classnames(
-                            styles.formControl,
-                            styles.oneThird
-                        )}
+                    <WorkHistoryFormField
+                        additionalClassName={styles.oneThird}
+                        label="End Date"
+                        onBlur={handleFieldChange}
+                        name={`experience[${index}].endDate`}
+                        disabled={currentlyWorkHere}
                     >
-                        <InputLabel>End Date</InputLabel>
-
-                        <FormInput
-                            name={`experience[${index}].endDate`}
-                            // onChange={handleFieldChange}
-                            disabled={currentlyWorkHere}
-                            defaultValue={experience.endDate}
-                        />
-
                         <div className={styles.checkBoxWrapper}>
                             <FormCheckBox
+                                onChange={handleFieldChange}
                                 name={`experience[${index}].currentlyWorkHere`}
                             >
                                 <span className={styles.label}>
@@ -107,59 +123,19 @@ const WorkHistoryItem = ({ experience, index, experiences }) => {
                                 </span>
                             </FormCheckBox>
                         </div>
-                    </div>
-
-                    {/* CITY */}
-
-                    <div
-                        className={classnames(
-                            styles.formControl,
-                            styles.oneThird
-                        )}
-                    >
-                        <InputLabel>City</InputLabel>
-                        <FormInput
-                            name={`experience[0].city`}
-                            // onChange={handleFieldChange}
-                            defaultValue={experience.city}
-                        />
-                    </div>
+                    </WorkHistoryFormField>
                 </div>
 
                 {/* DESCRIPTION */}
 
-                <div
-                    className={classnames(styles.formControl, styles.fullWidth)}
-                >
-                    <InputLabel>Description</InputLabel>
-                    <FormTextArea
-                        // onChange={handleFieldChange}
-                        name={`experience[${index}].description`}
-                    />
-                </div>
+                <WorkHistoryFormField
+                    additionalClassName={styles.fullWidth}
+                    label="description"
+                    onBlur={handleFieldChange}
+                    name={`experience[${index}].description`}
+                    component={FormTextArea}
+                />
             </div>
-            {/* )} */}
-
-            {/* DATA */}
-
-            {editMode !== index && (
-                <>
-                    <h3 className={styles.experienceTitle}>
-                        {experience.title} at {experience.company}
-                    </h3>
-                    <h4 className={styles.duration}>
-                        {experience.startDate} - {experience.endDate}
-                    </h4>
-                    <div className={styles.iconsContainer}>
-                        <EditIcon
-                            width="16px"
-                            className={styles.icon}
-                            onClick={() => seteEditMode(index)}
-                        />
-                        <DeleteIcon width="16px" className={styles.icon} />
-                    </div>
-                </>
-            )}
         </div>
     )
 }

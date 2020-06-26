@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState } from 'react'
 
 import styles from '../../../BuildResume.module.scss'
 import { WorkHistoryItem } from './workHistoryItem'
@@ -6,9 +6,9 @@ import { Button } from 'shared/components/button'
 import { useFormContext } from 'react-hook-form'
 
 const WorkHistory = () => {
-    const [editMode, seteEditMode] = useState(false)
-    const { getValues } = useFormContext()
-    const experience = getValues('experience')
+    const [editMode, setEditMode] = useState(false)
+    const { watch } = useFormContext()
+    const experience = watch('experience')
 
     return (
         <>
@@ -17,13 +17,11 @@ const WorkHistory = () => {
                 experience.map((item, index) => {
                     return (
                         <WorkHistoryItem
-                            experiences={experience}
+                            key={index}
                             editMode={editMode}
-                            seteEditMode={seteEditMode}
-                            key={item.id}
+                            setEditMode={setEditMode}
                             experience={item}
                             index={index}
-                            fieldName={`experience[${index}]`}
                         />
                     )
                 })}

@@ -9,12 +9,12 @@ const FormCheckBox = ({ name, defaultValue = false, onChange, ...props }) => {
         <Controller
             as={<CheckBox />}
             name={name}
-            onChange={onChange}
             control={control}
             defaultValue={true}
             valueName="checked"
             onChange={(e) => {
-                console.log(e[0].target.checked)
+                const val = e[0].target.checked
+                onChange && onChange(val)
                 return e[0].target.checked
             }}
             {...props}
