@@ -10,7 +10,6 @@ import { DeleteIcon } from './deleteIcon'
 import { useFormContext } from 'react-hook-form'
 import { FormCheckBox } from 'shared/components/formComponents/formCheckbox'
 import { WorkHistoryFormField } from './workHistoryFormField'
-import { useOnClickOutside } from 'shared/hooks/useClickOutside'
 import { ArrowDownIcon } from './arrowDownIcon'
 
 const WorkHistoryItem = ({ experience, index, editMode, setEditMode }) => {
@@ -18,8 +17,6 @@ const WorkHistoryItem = ({ experience, index, editMode, setEditMode }) => {
     const { watch } = methods
     const { dispatch } = useContext(AppContext)
     const ref = useRef()
-
-    useOnClickOutside(ref, () => setEditMode(false))
 
     const isOpen = editMode === index
 
@@ -140,4 +137,6 @@ const WorkHistoryItem = ({ experience, index, editMode, setEditMode }) => {
     )
 }
 
-export { WorkHistoryItem }
+const WorkHistoryMemo = React.memo(WorkHistoryItem)
+
+export { WorkHistoryMemo as WorkHistoryItem }

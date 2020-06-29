@@ -19,7 +19,7 @@ const PersonalInformation = () => {
     }
 
     return (
-        <>
+        <div className={styles.sectionContainer}>
             <h3 className={styles.title}> Personal Information</h3>
             <div className={styles.formContainer}>
                 <PersonalInformationField
@@ -61,7 +61,7 @@ const PersonalInformation = () => {
                     handleFieldChange={handleFieldChange}
                 />
             </div>
-        </>
+        </div>
     )
 }
 

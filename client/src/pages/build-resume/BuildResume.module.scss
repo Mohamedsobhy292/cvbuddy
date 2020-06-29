@@ -28,7 +28,7 @@
     display: flex;
     flex-wrap: wrap;
     visibility: visible;
-    max-height: 800px;
+    max-height: 500px;
     overflow: hidden;
     transition: max-height 0.5s;
     padding-top: 15px;
@@ -143,4 +143,8 @@
 
 .dataContainer {
     cursor: pointer;
+}
+
+.sectionContainer {
+    margin-bottom: 50px;
 }
