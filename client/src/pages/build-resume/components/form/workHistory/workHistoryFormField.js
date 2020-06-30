@@ -21,4 +21,6 @@ const WorkHistoryFormField = ({
     )
 }
 
-export { WorkHistoryFormField }
+const WorkHistoryFormFieldMemo = React.memo(WorkHistoryFormField)
+
+export { WorkHistoryFormFieldMemo as WorkHistoryFormField }

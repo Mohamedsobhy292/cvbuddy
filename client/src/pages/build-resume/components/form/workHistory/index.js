@@ -3,15 +3,33 @@ import React, { useState, useRef } from 'react'
 import styles from '../../../BuildResume.module.scss'
 import { WorkHistoryItem } from './workHistoryItem'
 import { Button } from 'shared/components/button'
-import { useFormContext } from 'react-hook-form'
+import { useFormContext, useFieldArray } from 'react-hook-form'
 import { useOnClickOutside } from 'shared/hooks/useClickOutside'
 
 const WorkHistory = () => {
     const [editMode, setEditMode] = useState(false)
-    const { watch } = useFormContext()
-    const experience = watch('experience')
+    const { control } = useFormContext()
+
+    const { fields: experience, append, remove } = useFieldArray({
+        control,
+        name: 'experience',
+    })
+
     const ref = useRef()
     useOnClickOutside(ref, () => setEditMode(false))
+
+    const handleAdd = () => {
+        append({
+            title: 'new job role',
+            company: 'big company',
+            city: '',
+            startDate: '',
+            endDate: '',
+            currentlyWorkHere: false,
+            description: '',
+        })
+        setEditMode(experience.length)
+    }
 
     return (
         <div ref={ref}>
@@ -20,7 +38,8 @@ const WorkHistory = () => {
                 experience.map((item, index) => {
                     return (
                         <WorkHistoryItem
-                            key={index}
+                            key={item.id}
+                            handleDelete={remove}
                             editMode={editMode}
                             setEditMode={setEditMode}
                             experience={item}
@@ -29,7 +48,9 @@ const WorkHistory = () => {
                     )
                 })}
 
-            <Button variant="primary">Add Experience</Button>
+            <Button onClick={handleAdd} variant="primary">
+                Add Experience
+            </Button>
         </div>
     )
 }

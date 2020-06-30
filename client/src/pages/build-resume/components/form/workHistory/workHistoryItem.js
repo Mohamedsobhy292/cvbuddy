@@ -12,7 +12,13 @@ import { FormCheckBox } from 'shared/components/formComponents/formCheckbox'
 import { WorkHistoryFormField } from './workHistoryFormField'
 import { ArrowDownIcon } from './arrowDownIcon'
 
-const WorkHistoryItem = ({ experience, index, editMode, setEditMode }) => {
+const WorkHistoryItem = ({
+    experience,
+    index,
+    editMode,
+    setEditMode,
+    handleDelete,
+}) => {
     const methods = useFormContext()
     const { watch } = methods
     const { dispatch } = useContext(AppContext)
@@ -43,25 +49,43 @@ const WorkHistoryItem = ({ experience, index, editMode, setEditMode }) => {
         <div className={styles.experienceCard} key={index} ref={ref}>
             {/* DATA */}
 
-            <div onClick={toggle} className={styles.dataContainer}>
-                <h3 className={styles.experienceTitle}>
-                    {currentExperience?.title} at {currentExperience?.company}
-                </h3>
-                <h4 className={styles.duration}>
-                    {experience.startDate} - {experience.endDate}
-                </h4>
-                <div className={styles.iconsContainer}>
-                    <ArrowDownIcon
-                        width="16px"
-                        className={classnames(styles.arrowDown, styles.icon, {
-                            [styles.active]: isOpen,
-                        })}
-                        onClick={toggle}
-                    />
+            {currentExperience?.title && currentExperience?.company && (
+                <div onClick={toggle} className={styles.dataContainer}>
+                    <h3 className={styles.experienceTitle}>
+                        {currentExperience?.title} at{' '}
+                        {currentExperience?.company}
+                    </h3>
+                    <h4 className={styles.duration}>
+                        {currentExperience?.startDate} -{' '}
+                        {currentExperience?.currentlyWorkHere
+                            ? 'present'
+                            : currentExperience?.endDate}
+                    </h4>
+                    <div className={styles.iconsContainer}>
+                        <ArrowDownIcon
+                            width="16px"
+                            className={classnames(
+                                styles.arrowDown,
+                                styles.icon,
+                                {
+                                    [styles.active]: isOpen,
+                                }
+                            )}
+                            onClick={toggle}
+                        />
 
-                    <DeleteIcon width="16px" className={styles.icon} />
+                        <DeleteIcon
+                            width="16px"
+                            className={styles.icon}
+                            onClick={(e) => {
+                                e.stopPropagation()
+                                handleFieldChange()
+                                handleDelete(index)
+                            }}
+                        />
+                    </div>
                 </div>
-            </div>
+            )}
 
             {/* EDIT MODE  */}
 
@@ -70,10 +94,13 @@ const WorkHistoryItem = ({ experience, index, editMode, setEditMode }) => {
                     [styles.hidden]: !isOpen,
                 })}
             >
+                {/* JOB TITLE/ */}
+
                 <WorkHistoryFormField
                     label="Job title"
                     onBlur={handleFieldChange}
                     name={`experience[${index}].title`}
+                    defaultValue={experience.title}
                 />
 
                 {/* COMPANY */}
@@ -82,7 +109,10 @@ const WorkHistoryItem = ({ experience, index, editMode, setEditMode }) => {
                     label="Company"
                     onBlur={handleFieldChange}
                     name={`experience[${index}].company`}
+                    defaultValue={experience.company}
                 />
+
+                {/* CITY */}
 
                 <div className={styles.formContainer}>
                     <WorkHistoryFormField
@@ -90,6 +120,7 @@ const WorkHistoryItem = ({ experience, index, editMode, setEditMode }) => {
                         label="City"
                         onBlur={handleFieldChange}
                         name={`experience[${index}].city`}
+                        defaultValue={experience.city}
                     />
 
                     {/* START DATE */}
@@ -99,6 +130,7 @@ const WorkHistoryItem = ({ experience, index, editMode, setEditMode }) => {
                         label="Start Date"
                         onBlur={handleFieldChange}
                         name={`experience[${index}].startDate`}
+                        defaultValue={experience.startDate}
                     />
 
                     {/* END DATE */}
@@ -109,11 +141,13 @@ const WorkHistoryItem = ({ experience, index, editMode, setEditMode }) => {
                         onBlur={handleFieldChange}
                         name={`experience[${index}].endDate`}
                         disabled={currentlyWorkHere}
+                        defaultValue={experience.endDate}
                     >
                         <div className={styles.checkBoxWrapper}>
                             <FormCheckBox
                                 onChange={handleFieldChange}
                                 name={`experience[${index}].currentlyWorkHere`}
+                                defaultValue={experience.currentlyWorkHere}
                             >
                                 <span className={styles.label}>
                                     I'm currently work here
@@ -131,6 +165,7 @@ const WorkHistoryItem = ({ experience, index, editMode, setEditMode }) => {
                     onBlur={handleFieldChange}
                     name={`experience[${index}].description`}
                     component={FormTextArea}
+                    defaultValue={experience.description}
                 />
             </div>
         </div>

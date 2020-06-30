@@ -42,9 +42,7 @@ const details = {
     ],
 }
 
-const AppContext = React.createContext({
-    userData: {},
-})
+const AppContext = React.createContext()
 
 const reducer = (state, action) => {
     if (action.type === 'UPDATE_USER_FIELD') {
@@ -61,10 +59,6 @@ const reducer = (state, action) => {
         const experienceObject = [...state.userData.experience]
         const idx = action.payload.index
         experienceObject[idx] = action.payload.experience
-
-        console.log(action.payload, 'payload')
-        console.log({ idx })
-        console.log({ experienceObject })
 
         return {
             ...state,

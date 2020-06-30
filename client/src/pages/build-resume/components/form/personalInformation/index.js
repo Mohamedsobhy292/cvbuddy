@@ -4,6 +4,7 @@ import styles from '../../../BuildResume.module.scss'
 import { FormTextArea } from 'shared/components/formComponents/formTextArea'
 import { AppContext } from 'shared/context/appContext'
 import { PersonalInformationField } from './personalInformationField'
+import { Link } from 'react-router-dom'
 
 const PersonalInformation = () => {
     const { dispatch } = useContext(AppContext)
@@ -61,6 +62,7 @@ const PersonalInformation = () => {
                     handleFieldChange={handleFieldChange}
                 />
             </div>
+            <Link to="workHistory">PROCEED</Link>
         </div>
     )
 }

@@ -30,16 +30,6 @@ const Experience = ({ experience }) => {
 
                                     <ul className={styles.descriptionList}>
                                         {item.description}
-                                        {/* {item.description &&
-                                            item.description.map(
-                                                (item, index) => {
-                                                    return (
-                                                        <li key={index}>
-                                                            {item}
-                                                        </li>
-                                                    )
-                                                }
-                                            )} */}
                                     </ul>
                                 </li>
                             )

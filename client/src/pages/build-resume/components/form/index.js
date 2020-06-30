@@ -1,5 +1,6 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { useForm, FormContext } from 'react-hook-form'
+import { Routes, Route } from 'react-router-dom'
 
 import { AppContext } from 'shared/context/appContext'
 import { PersonalInformation } from './personalInformation'
@@ -15,7 +16,6 @@ const BuiledResumeForm = () => {
     }
 
     const onSubmit = (data) => {
-        console.log(data)
         dispatch({
             type: 'RESET_USER_INFO',
             payload: {
@@ -32,8 +32,12 @@ const BuiledResumeForm = () => {
                     Load
                 </button>
                 <div>
-                    <PersonalInformation />
-                    <WorkHistory />
+                    <Routes>
+                        <Route path="/" element={<PersonalInformation />} />
+                        <Route path="/workHistory" element={<WorkHistory />} />
+                        {/* <PersonalInformation /> */}
+                        {/* <WorkHistory /> */}
+                    </Routes>
                 </div>
             </form>
         </FormContext>
