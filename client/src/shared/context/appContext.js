@@ -69,10 +69,34 @@ const reducer = (state, action) => {
         }
     }
 
+    if (action.type === 'REMOVE_EXPERIENCE_FIELD') {
+        const experienceObject = [...state.userData.experience]
+        const idx = action.payload.index
+        experienceObject.splice(idx, 1)
+
+        return {
+            ...state,
+            userData: {
+                ...state.userData,
+                experience: experienceObject,
+            },
+        }
+    }
+
     if (action.type === 'RESET_USER_INFO') {
         return {
             ...state,
             userData: {
+                ...action.payload,
+            },
+        }
+    }
+
+    if (action.type === 'UPDATE_USER_INFO') {
+        return {
+            ...state,
+            userData: {
+                ...state.userData,
                 ...action.payload,
             },
         }
