@@ -6,6 +6,7 @@ import styles from './ChooseTemplate.module.scss'
 import cvTemplate from './resume1.jpg'
 import { RadioButton } from 'shared/components/radioButton'
 import Arrow from './arrow-right'
+import { routes } from 'routes'
 
 const templates = [
     {
@@ -57,7 +58,7 @@ const ChooseTemplate = () => {
                 })}
             </ul>
 
-            <Link to="/build-resume" className={styles.proceedBtn}>
+            <Link to={`../${routes.buildResume}`} className={styles.proceedBtn}>
                 PROCEED
                 <span className={styles.arrow}>
                     <Arrow />

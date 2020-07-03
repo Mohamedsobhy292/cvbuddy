@@ -148,3 +148,16 @@
 .sectionContainer {
     margin-bottom: 50px;
 }
+
+.navigation {
+    display: flex;
+    margin-top: 30px;
+}
+
+.nextBtn {
+    background: $primary-color;
+    margin-left: auto;
+    color: #fff;
+    padding: 10px 40px;
+    border-radius: 4px;
+}

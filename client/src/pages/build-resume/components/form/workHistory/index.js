@@ -1,10 +1,12 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 
 import styles from '../../../BuildResume.module.scss'
 import { WorkHistoryItem } from './workHistoryItem'
 import { Button } from 'shared/components/button'
 import { useFormContext, useFieldArray } from 'react-hook-form'
 import { useOnClickOutside } from 'shared/hooks/useClickOutside'
+import { Link } from 'react-router-dom'
+import { routes } from 'routes'
 
 const WorkHistory = () => {
     const [editMode, setEditMode] = useState(false)
@@ -51,6 +53,13 @@ const WorkHistory = () => {
             <Button onClick={handleAdd} variant="primary">
                 Add Experience
             </Button>
+
+            {/* NAVIGATION */}
+            <div className={styles.navigation}>
+                <Link to={`../${routes.skills}`} className={styles.nextBtn}>
+                    NEXT
+                </Link>
+            </div>
         </div>
     )
 }

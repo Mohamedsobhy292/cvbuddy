@@ -5,6 +5,8 @@ import { Routes, Route } from 'react-router-dom'
 import { AppContext } from 'shared/context/appContext'
 import { PersonalInformation } from './personalInformation'
 import { WorkHistory } from './workHistory'
+import { Skills } from './skills'
+import { routes } from 'routes'
 
 const BuiledResumeForm = () => {
     const methods = useForm()
@@ -27,16 +29,21 @@ const BuiledResumeForm = () => {
     return (
         <FormContext {...methods}>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <button>Submit</button>
+                {/* <button>Submit</button> */}
                 <button type="button" onClick={() => Load()}>
                     Load
                 </button>
                 <div>
                     <Routes>
                         <Route path="/" element={<PersonalInformation />} />
-                        <Route path="/workHistory" element={<WorkHistory />} />
-                        {/* <PersonalInformation /> */}
-                        {/* <WorkHistory /> */}
+                        <Route
+                            path={`/${routes.workHistory}`}
+                            element={<WorkHistory />}
+                        />
+                        <Route
+                            path={`/${routes.skills}`}
+                            element={<Skills />}
+                        />
                     </Routes>
                 </div>
             </form>
