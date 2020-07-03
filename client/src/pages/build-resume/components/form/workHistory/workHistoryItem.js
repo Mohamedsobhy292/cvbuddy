@@ -41,6 +41,16 @@ const WorkHistoryItem = ({
         })
     }
 
+    const handleRemoveExperience = () => {
+        dispatch({
+            type: 'REMOVE_EXPERIENCE_FIELD',
+            payload: {
+                name: 'experience',
+                index,
+            },
+        })
+    }
+
     const toggle = () => {
         isOpen ? setEditMode(null) : setEditMode(index)
     }
@@ -79,8 +89,8 @@ const WorkHistoryItem = ({
                             className={styles.icon}
                             onClick={(e) => {
                                 e.stopPropagation()
-                                handleFieldChange()
                                 handleDelete(index)
+                                handleRemoveExperience()
                             }}
                         />
                     </div>

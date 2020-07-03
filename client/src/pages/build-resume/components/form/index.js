@@ -17,7 +17,7 @@ const BuiledResumeForm = () => {
 
     const onSubmit = (data) => {
         dispatch({
-            type: 'RESET_USER_INFO',
+            type: 'UPDATE_USER_INFO',
             payload: {
                 ...data,
             },
