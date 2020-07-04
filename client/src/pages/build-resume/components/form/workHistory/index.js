@@ -5,8 +5,6 @@ import { WorkHistoryItem } from './workHistoryItem'
 import { Button } from 'shared/components/button'
 import { useFormContext, useFieldArray } from 'react-hook-form'
 import { useOnClickOutside } from 'shared/hooks/useClickOutside'
-import { Link } from 'react-router-dom'
-import { routes } from 'routes'
 
 const WorkHistory = () => {
     const [editMode, setEditMode] = useState(false)
@@ -34,9 +32,13 @@ const WorkHistory = () => {
     }
 
     return (
-        <div ref={ref}>
+        <div ref={ref} className={styles.sectionContainer}>
             <h3 className={styles.title}> Work History</h3>
+
+            {/* DATA */}
+
             {experience &&
+                !!experience.length &&
                 experience.map((item, index) => {
                     return (
                         <WorkHistoryItem
@@ -50,16 +52,11 @@ const WorkHistory = () => {
                     )
                 })}
 
-            <Button onClick={handleAdd} variant="primary">
+            {/* ADD BUTTON */}
+
+            <Button onClick={handleAdd} variant="link">
                 Add Experience
             </Button>
-
-            {/* NAVIGATION */}
-            <div className={styles.navigation}>
-                <Link to={`../${routes.skills}`} className={styles.nextBtn}>
-                    NEXT
-                </Link>
-            </div>
         </div>
     )
 }

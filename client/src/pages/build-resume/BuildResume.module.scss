@@ -151,7 +151,7 @@
 
 .navigation {
     display: flex;
-    margin-top: 30px;
+    margin-top: 60px;
 }
 
 .nextBtn {
@@ -160,4 +160,37 @@
     color: #fff;
     padding: 10px 40px;
     border-radius: 4px;
+}
+
+.previousBtn {
+    background: $primary-color;
+    color: #fff;
+    padding: 10px 40px;
+    border-radius: 4px;
+}
+
+.skillItem {
+    margin-bottom: 20px;
+    display: flex;
+    position: relative;
+    align-items: center;
+
+    &:first-of-type {
+        .deleteIcon {
+            margin-top: 20px;
+        }
+    }
+}
+
+.deleteIcon {
+    @extend .icon;
+    margin-right: 0;
+}
+
+.skillsLevelField {
+    display: flex;
+}
+
+.skillInputContainer {
+    margin-right: 24px;
 }

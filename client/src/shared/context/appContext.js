@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react'
 
-const details = {
+const initialDetails = {
     firstName: 'Mohamed',
     lastName: 'sobhy',
     email: 'mohamedsobhy292@gmail.com',
@@ -40,6 +40,24 @@ const details = {
                 'worked on the marketing team for achieving business needs by implementing new features using React + Redux',
         },
     ],
+    skills: [
+        {
+            name: 'React',
+            level: 'beginner',
+        },
+        {
+            name: 'Angular',
+            level: 'beginner',
+        },
+        {
+            name: 'c++',
+            level: 'beginner',
+        },
+        {
+            name: 'Java',
+            level: 'beginner',
+        },
+    ],
 }
 
 const AppContext = React.createContext()
@@ -69,7 +87,35 @@ const reducer = (state, action) => {
         }
     }
 
-    if (action.type === 'REMOVE_EXPERIENCE_FIELD') {
+    if (action.type === 'UPDATE_SKILLS_FIELD') {
+        const skillsObj = [...state.userData.skills]
+        const idx = action.payload.index
+        skillsObj[idx] = action.payload.skills
+
+        return {
+            ...state,
+            userData: {
+                ...state.userData,
+                skills: skillsObj,
+            },
+        }
+    }
+
+    if (action.type === 'REMOVE_SKILL_ITEM') {
+        const skillObj = [...state.userData.skills]
+        const idx = action.payload.index
+        skillObj.splice(idx, 1)
+
+        return {
+            ...state,
+            userData: {
+                ...state.userData,
+                skills: skillObj,
+            },
+        }
+    }
+
+    if (action.type === 'REMOVE_EXPERIENCE_ITEM') {
         const experienceObject = [...state.userData.experience]
         const idx = action.payload.index
         experienceObject.splice(idx, 1)
@@ -105,9 +151,7 @@ const reducer = (state, action) => {
 
 const AppStateProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, {
-        userData: {
-            ...details,
-        },
+        userData: { ...initialDetails },
     })
 
     return (

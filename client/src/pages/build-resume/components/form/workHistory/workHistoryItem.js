@@ -6,11 +6,11 @@ import { AppContext } from 'shared/context/appContext'
 import { FormTextArea } from 'shared/components/formComponents/formTextArea'
 
 import styles from '../../../BuildResume.module.scss'
-import { DeleteIcon } from './deleteIcon'
+import { DeleteIcon } from 'shared/icons/deleteIcon'
 import { useFormContext } from 'react-hook-form'
 import { FormCheckBox } from 'shared/components/formComponents/formCheckbox'
 import { WorkHistoryFormField } from './workHistoryFormField'
-import { ArrowDownIcon } from './arrowDownIcon'
+import { ArrowDownIcon } from 'shared/icons/arrowDownIcon'
 
 const WorkHistoryItem = ({
     experience,
@@ -43,7 +43,7 @@ const WorkHistoryItem = ({
 
     const handleRemoveExperience = () => {
         dispatch({
-            type: 'REMOVE_EXPERIENCE_FIELD',
+            type: 'REMOVE_EXPERIENCE_ITEM',
             payload: {
                 name: 'experience',
                 index,

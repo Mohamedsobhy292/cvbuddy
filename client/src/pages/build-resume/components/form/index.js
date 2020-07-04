@@ -34,17 +34,9 @@ const BuiledResumeForm = () => {
                     Load
                 </button>
                 <div>
-                    <Routes>
-                        <Route path="/" element={<PersonalInformation />} />
-                        <Route
-                            path={`/${routes.workHistory}`}
-                            element={<WorkHistory />}
-                        />
-                        <Route
-                            path={`/${routes.skills}`}
-                            element={<Skills />}
-                        />
-                    </Routes>
+                    <PersonalInformation />
+                    <WorkHistory />
+                    <Skills />
                 </div>
             </form>
         </FormContext>

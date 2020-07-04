@@ -4,8 +4,6 @@ import styles from '../../../BuildResume.module.scss'
 import { FormTextArea } from 'shared/components/formComponents/formTextArea'
 import { AppContext } from 'shared/context/appContext'
 import { PersonalInformationField } from './personalInformationField'
-import { Link } from 'react-router-dom'
-import { routes } from 'routes'
 
 const PersonalInformation = () => {
     const { dispatch } = useContext(AppContext)
@@ -62,13 +60,6 @@ const PersonalInformation = () => {
                     component={FormTextArea}
                     handleFieldChange={handleFieldChange}
                 />
-            </div>
-
-            {/* NAVIGATION */}
-            <div className={styles.navigation}>
-                <Link to={`${routes.workHistory}`} className={styles.nextBtn}>
-                    NEXT
-                </Link>
             </div>
         </div>
     )
