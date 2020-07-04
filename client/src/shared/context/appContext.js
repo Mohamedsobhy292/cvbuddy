@@ -58,6 +58,20 @@ const initialDetails = {
             level: 'beginner',
         },
     ],
+    links: [
+        {
+            label: 'website',
+            link: 'https://www.linkedin.com/in/mohamedsobhy292/',
+        },
+        {
+            label: 'linkedin',
+            link: 'https://www.linkedin.com/in/mohamedsobhy292/',
+        },
+        {
+            label: 'facebook',
+            link: 'https://www.linkedin.com/in/mohamedsobhy292/',
+        },
+    ],
 }
 
 const AppContext = React.createContext()
@@ -101,6 +115,20 @@ const reducer = (state, action) => {
         }
     }
 
+    if (action.type === 'UPDATE_LINKS_ITEM') {
+        const linksObj = [...state.userData.links]
+        const idx = action.payload.index
+        linksObj[idx] = action.payload.skills
+
+        return {
+            ...state,
+            userData: {
+                ...state.userData,
+                links: linksObj,
+            },
+        }
+    }
+
     if (action.type === 'REMOVE_SKILL_ITEM') {
         const skillObj = [...state.userData.skills]
         const idx = action.payload.index
@@ -111,6 +139,20 @@ const reducer = (state, action) => {
             userData: {
                 ...state.userData,
                 skills: skillObj,
+            },
+        }
+    }
+
+    if (action.type === 'REMOVE_LINKS_ITEM') {
+        const linksObj = [...state.userData.links]
+        const idx = action.payload.index
+        linksObj.splice(idx, 1)
+
+        return {
+            ...state,
+            userData: {
+                ...state.userData,
+                links: linksObj,
             },
         }
     }

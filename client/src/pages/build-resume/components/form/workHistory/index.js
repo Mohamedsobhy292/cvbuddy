@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react'
-
-import styles from '../../../BuildResume.module.scss'
+import styles from 'pages/build-resume/BuildResume.module.scss'
 import { WorkHistoryItem } from './workHistoryItem'
 import { Button } from 'shared/components/button'
 import { useFormContext, useFieldArray } from 'react-hook-form'

@@ -21,7 +21,7 @@
 }
 
 .title {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 .formContainer {
@@ -31,7 +31,7 @@
     max-height: 550px;
     overflow: hidden;
     transition: max-height 0.5s;
-    padding-top: 15px;
+    // padding-top: 15px;
 
     &.hidden {
         visibility: hidden;
@@ -193,4 +193,8 @@
 
 .skillInputContainer {
     margin-right: 24px;
+    flex-basis: 40%;
+    input {
+        width: 100%;
+    }
 }

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import styles from '../../../BuildResume.module.scss'
+import styles from 'pages/build-resume/BuildResume.module.scss'
 
 import { FormTextArea } from 'shared/components/formComponents/formTextArea'
 import { AppContext } from 'shared/context/appContext'

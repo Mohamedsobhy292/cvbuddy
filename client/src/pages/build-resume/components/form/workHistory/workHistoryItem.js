@@ -5,7 +5,7 @@ import { AppContext } from 'shared/context/appContext'
 
 import { FormTextArea } from 'shared/components/formComponents/formTextArea'
 
-import styles from '../../../BuildResume.module.scss'
+import styles from 'pages/build-resume/BuildResume.module.scss'
 import { DeleteIcon } from 'shared/icons/deleteIcon'
 import { useFormContext } from 'react-hook-form'
 import { FormCheckBox } from 'shared/components/formComponents/formCheckbox'

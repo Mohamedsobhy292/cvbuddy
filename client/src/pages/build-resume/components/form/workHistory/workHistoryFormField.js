@@ -1,7 +1,7 @@
 import React from 'react'
 import { InputLabel } from 'shared/components/inputLabel'
 import { FormInput } from 'shared/components/formComponents/FormInput'
-import styles from '../../../BuildResume.module.scss'
+import styles from 'pages/build-resume/BuildResume.module.scss'
 
 const WorkHistoryFormField = ({
     label,

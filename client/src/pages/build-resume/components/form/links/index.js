@@ -2,26 +2,25 @@ import React from 'react'
 import styles from 'pages/build-resume/BuildResume.module.scss'
 import { Button } from 'shared/components/button'
 import { useFieldArray, useFormContext } from 'react-hook-form'
-import { SkillItem } from './skillItem'
+import { LinkItem } from './LinkItem'
 
-const Skills = () => {
+const Links = () => {
     const { control } = useFormContext()
-    const { fields: skills, append, remove } = useFieldArray({
+    const { fields: links, append, remove } = useFieldArray({
         control,
-        name: 'skills',
+        name: 'links',
     })
 
     return (
         <div className={styles.sectionContainer}>
-            <h3 className={styles.title}> Skills</h3>
+            <h3 className={styles.title}>Websites / Links</h3>
 
             {/* DATA */}
-            {skills &&
-                !!skills.length &&
-                skills.map((item, index) => {
+            {links &&
+                links.map((item, index) => {
                     return (
-                        <SkillItem
-                            skill={item}
+                        <LinkItem
+                            website={item}
                             index={index}
                             remove={remove}
                             key={item.id}
@@ -32,10 +31,10 @@ const Skills = () => {
             {/* ADD BUTTON */}
 
             <Button variant="link" onClick={() => append({})}>
-                Add Skill
+                Add Link
             </Button>
         </div>
     )
 }
 
-export { Skills }
+export { Links }

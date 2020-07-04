@@ -6,18 +6,18 @@ import { InputLabel } from 'shared/components/inputLabel'
 import { useFormContext } from 'react-hook-form'
 import { AppContext } from 'shared/context/appContext'
 
-const SkillItem = ({ skill, index, remove }) => {
+const LinkItem = ({ website, index, remove }) => {
     const methods = useFormContext()
     const { watch } = methods
     const { dispatch } = useContext(AppContext)
 
-    const currentSkill = watch(`skills[${index}]`)
+    const currentLink = watch(`links[${index}]`)
 
     const handleFieldChange = () => {
         dispatch({
-            type: 'UPDATE_SKILLS_FIELD',
+            type: 'UPDATE_LINKS_ITEM',
             payload: {
-                skills: currentSkill,
+                links: currentLink,
                 index,
             },
         })
@@ -25,7 +25,7 @@ const SkillItem = ({ skill, index, remove }) => {
 
     const handleRemoveSkill = () => {
         dispatch({
-            type: 'REMOVE_SKILL_ITEM',
+            type: 'REMOVE_LINKS_ITEM',
             payload: {
                 index,
             },
@@ -35,22 +35,22 @@ const SkillItem = ({ skill, index, remove }) => {
     return (
         <div className={styles.skillItem} key={index}>
             <div className={styles.skillInputContainer}>
-                {index === 0 && <InputLabel>skill name</InputLabel>}
+                {index === 0 && <InputLabel>Website Label</InputLabel>}
 
                 <FormInput
                     onBlur={handleFieldChange}
-                    name={`skills[${index}].name`}
-                    defaultValue={skill.name}
+                    name={`links[${index}].name`}
+                    defaultValue={website.label}
                 />
             </div>
 
             <div className={styles.skillInputContainer}>
-                {index === 0 && <InputLabel>skill level</InputLabel>}
+                {index === 0 && <InputLabel>Website Link</InputLabel>}
                 <FormInput
                     onBlur={handleFieldChange}
                     additionalClassName={styles.skillsLevelField}
-                    name={`skills[${index}].level`}
-                    defaultValue={skill.level}
+                    name={`links[${index}].level`}
+                    defaultValue={website.link}
                 />
             </div>
             <DeleteIcon
@@ -65,4 +65,4 @@ const SkillItem = ({ skill, index, remove }) => {
     )
 }
 
-export { SkillItem }
+export { LinkItem }

@@ -1,12 +1,11 @@
 import React, { useContext } from 'react'
 import { useForm, FormContext } from 'react-hook-form'
-import { Routes, Route } from 'react-router-dom'
 
 import { AppContext } from 'shared/context/appContext'
 import { PersonalInformation } from './personalInformation'
 import { WorkHistory } from './workHistory'
 import { Skills } from './skills'
-import { routes } from 'routes'
+import { Links } from './links'
 
 const BuiledResumeForm = () => {
     const methods = useForm()
@@ -37,6 +36,7 @@ const BuiledResumeForm = () => {
                     <PersonalInformation />
                     <WorkHistory />
                     <Skills />
+                    <Links />
                 </div>
             </form>
         </FormContext>
