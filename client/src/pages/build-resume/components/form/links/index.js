@@ -30,7 +30,11 @@ const Links = () => {
 
             {/* ADD BUTTON */}
 
-            <Button variant="link" onClick={() => append({})}>
+            <Button
+                variant="link"
+                onClick={() => append({})}
+                className={styles.addBtn}
+            >
                 Add Link
             </Button>
         </div>

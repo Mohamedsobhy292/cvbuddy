@@ -53,7 +53,11 @@ const WorkHistory = () => {
 
             {/* ADD BUTTON */}
 
-            <Button onClick={handleAdd} variant="link">
+            <Button
+                onClick={handleAdd}
+                variant="link"
+                className={styles.addBtn}
+            >
                 Add Experience
             </Button>
         </div>

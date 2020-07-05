@@ -21,7 +21,7 @@
 
 .templateWrapper {
     background: #ffffff;
-    border-radius: 4px;
+    border-radius: 14px;
     border: 1px solid $border-color;
     width: 300px;
     overflow: hidden;
@@ -57,6 +57,7 @@
 
 .titleWrapper {
     background: #edf2f470;
+    color: $text-color2;
     border-top: 1px solid $light-grey;
     height: 50px;
     line-height: 50px;
@@ -72,7 +73,7 @@
     align-items: center;
     font-size: 14px;
     padding: 10px 20px;
-    border-radius: 4px;
+    border-radius: 24px;
     background: $primary-color;
     color: #fff;
     cursor: pointer;
