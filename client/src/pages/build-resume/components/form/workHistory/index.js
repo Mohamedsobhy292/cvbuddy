@@ -4,6 +4,7 @@ import { WorkHistoryItem } from './workHistoryItem'
 import { Button } from 'shared/components/button'
 import { useFormContext, useFieldArray } from 'react-hook-form'
 import { useOnClickOutside } from 'shared/hooks/useClickOutside'
+import { PlusIcon } from 'shared/icons/plusIcon'
 
 const WorkHistory = () => {
     const [editMode, setEditMode] = useState(false)
@@ -58,6 +59,7 @@ const WorkHistory = () => {
                 variant="link"
                 className={styles.addBtn}
             >
+                <PlusIcon />
                 Add Experience
             </Button>
         </div>

@@ -10,8 +10,17 @@ const Skills = () => {
             <h3 className={styles.sectionTitle}>Skills</h3>
             <ul className={styles.skillsContainer}>
                 {skills &&
-                    skills.map((item) => {
-                        return <li>{item.name}</li>
+                    skills.map((item, index) => {
+                        return (
+                            <li key={index}>
+                                {item.name}{' '}
+                                {item.level && (
+                                    <span className={styles.itemLevel}>
+                                        - {item.level}
+                                    </span>
+                                )}
+                            </li>
+                        )
                     })}
             </ul>
         </div>

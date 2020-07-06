@@ -5,6 +5,7 @@ import { DeleteIcon } from 'shared/icons/deleteIcon'
 import { InputLabel } from 'shared/components/inputLabel'
 import { useFormContext } from 'react-hook-form'
 import { AppContext } from 'shared/context/appContext'
+import { FormDropDown } from 'shared/components/formComponents/formDropDown'
 
 const SkillItem = ({ skill, index, remove }) => {
     const methods = useFormContext()
@@ -46,7 +47,21 @@ const SkillItem = ({ skill, index, remove }) => {
 
             <div className={styles.skillInputContainer}>
                 {index === 0 && <InputLabel>skill level</InputLabel>}
-                <FormInput
+                <FormDropDown
+                    options={[
+                        {
+                            label: 'beginner',
+                            value: 'beginner',
+                        },
+                        {
+                            label: 'intermediate',
+                            value: 'intermediate',
+                        },
+                        {
+                            label: 'advanced',
+                            value: 'advanced',
+                        },
+                    ]}
                     onBlur={handleFieldChange}
                     additionalClassName={styles.skillsLevelField}
                     name={`skills[${index}].level`}

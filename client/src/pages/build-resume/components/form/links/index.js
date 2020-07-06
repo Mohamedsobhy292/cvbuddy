@@ -3,6 +3,7 @@ import styles from 'pages/build-resume/BuildResume.module.scss'
 import { Button } from 'shared/components/button'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import { LinkItem } from './LinkItem'
+import { PlusIcon } from 'shared/icons/plusIcon'
 
 const Links = () => {
     const { control } = useFormContext()
@@ -35,6 +36,7 @@ const Links = () => {
                 onClick={() => append({})}
                 className={styles.addBtn}
             >
+                <PlusIcon />
                 Add Link
             </Button>
         </div>

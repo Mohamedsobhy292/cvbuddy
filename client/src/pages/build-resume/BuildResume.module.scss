@@ -194,11 +194,19 @@
 .skillInputContainer {
     margin-right: 24px;
     flex-basis: 40%;
-    input {
+    input,
+    select {
         width: 100%;
     }
 }
 
 .addBtn {
     margin-top: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg {
+        width: 10px;
+        margin-right: 8px;
+    }
 }
