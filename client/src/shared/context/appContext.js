@@ -72,6 +72,7 @@ const initialDetails = {
             link: 'https://www.linkedin.com/in/mohamedsobhy292/',
         },
     ],
+    showSkillsLevel: true,
 }
 
 const AppContext = React.createContext()
