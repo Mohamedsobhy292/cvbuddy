@@ -10,7 +10,7 @@ const FormCheckBox = ({ name, defaultValue = false, onChange, ...props }) => {
             as={<CheckBox />}
             name={name}
             control={control}
-            defaultValue={true}
+            defaultValue={false}
             valueName="checked"
             onChange={(e) => {
                 const val = e[0].target.checked
