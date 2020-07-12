@@ -5,6 +5,7 @@ import { DeleteIcon } from 'shared/icons/deleteIcon'
 import { InputLabel } from 'shared/components/inputLabel'
 import { useFormContext } from 'react-hook-form'
 import { AppContext } from 'shared/context/appContext'
+import { useDeepCompareEffect } from 'shared/hooks/useDeepCompareEffect'
 
 const LinkItem = ({ website, index, remove }) => {
     const methods = useFormContext()
@@ -23,6 +24,8 @@ const LinkItem = ({ website, index, remove }) => {
         })
     }
 
+    useDeepCompareEffect(handleFieldChange, [currentLink])
+
     const handleRemoveSkill = () => {
         dispatch({
             type: 'REMOVE_LINKS_ITEM',
@@ -38,7 +41,6 @@ const LinkItem = ({ website, index, remove }) => {
                 {index === 0 && <InputLabel>Website Label</InputLabel>}
 
                 <FormInput
-                    onBlur={handleFieldChange}
                     name={`links[${index}].label`}
                     defaultValue={website.label}
                 />
@@ -47,7 +49,6 @@ const LinkItem = ({ website, index, remove }) => {
             <div className={styles.skillInputContainer}>
                 {index === 0 && <InputLabel>Website Link</InputLabel>}
                 <FormInput
-                    onBlur={handleFieldChange}
                     additionalClassName={styles.skillsLevelField}
                     name={`links[${index}].link`}
                     defaultValue={website.link}

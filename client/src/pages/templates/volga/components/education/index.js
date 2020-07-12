@@ -16,20 +16,20 @@ const Education = () => {
                             return (
                                 <li
                                     className={styles.educationItem}
-                                    key={item.id}
+                                    key={item?.id}
                                 >
                                     <h2 className={styles.title}>
-                                        {item.school}
+                                        {item?.school}
                                     </h2>
                                     <h3 className={styles.company}>
-                                        {item.degree}
+                                        {item?.degree}
                                     </h3>
                                     <h4 className={styles.duration}>
-                                        {item.startDate} - {item.endDate}
+                                        {item?.startDate} - {item?.endDate}
                                     </h4>
 
                                     <ul className={styles.descriptionList}>
-                                        {item.description}
+                                        {item?.description}
                                     </ul>
                                 </li>
                             )

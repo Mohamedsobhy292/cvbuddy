@@ -16,11 +16,11 @@ const Links = () => {
                             <li key={index}>
                                 {' '}
                                 <a
-                                    href={link.link}
+                                    href={link?.link}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
-                                    {link.label}
+                                    {link?.label}
                                 </a>
                             </li>
                         )

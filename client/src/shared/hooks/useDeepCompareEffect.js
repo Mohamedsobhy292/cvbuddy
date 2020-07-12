@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useEffect } from 'react'
+import { useRef, useEffect } from 'react'
 import isEqual from 'lodash/isEqual'
 
 function deepCompareEquals(a, b) {

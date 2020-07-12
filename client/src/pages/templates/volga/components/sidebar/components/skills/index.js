@@ -13,10 +13,10 @@ const Skills = () => {
                     skills.map((item, index) => {
                         return (
                             <li key={index}>
-                                {item.name}{' '}
-                                {item.level && showSkillsLevel && (
+                                {item?.name}{' '}
+                                {item?.level && showSkillsLevel && (
                                     <span className={styles.itemLevel}>
-                                        - {item.level}
+                                        - {item?.level}
                                     </span>
                                 )}
                             </li>

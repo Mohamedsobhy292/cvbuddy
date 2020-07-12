@@ -6,6 +6,7 @@ import { InputLabel } from 'shared/components/inputLabel'
 import { useFormContext } from 'react-hook-form'
 import { AppContext } from 'shared/context/appContext'
 import { FormDropDown } from 'shared/components/formComponents/formDropDown'
+import { useDeepCompareEffect } from 'shared/hooks/useDeepCompareEffect'
 
 const SkillItem = ({ skill, index, remove, showSkillsLevel }) => {
     const methods = useFormContext()
@@ -24,6 +25,8 @@ const SkillItem = ({ skill, index, remove, showSkillsLevel }) => {
         })
     }
 
+    useDeepCompareEffect(handleFieldChange, [currentSkill])
+
     const handleRemoveSkill = () => {
         dispatch({
             type: 'REMOVE_SKILL_ITEM',
@@ -39,7 +42,6 @@ const SkillItem = ({ skill, index, remove, showSkillsLevel }) => {
                 {index === 0 && <InputLabel>skill name</InputLabel>}
 
                 <FormInput
-                    onBlur={handleFieldChange}
                     name={`skills[${index}].name`}
                     defaultValue={skill.name}
                 />
@@ -63,7 +65,6 @@ const SkillItem = ({ skill, index, remove, showSkillsLevel }) => {
                                 value: 'advanced',
                             },
                         ]}
-                        onBlur={handleFieldChange}
                         additionalClassName={styles.skillsLevelField}
                         name={`skills[${index}].level`}
                         defaultValue={skill.level}

@@ -10,6 +10,7 @@ import { DeleteIcon } from 'shared/icons/deleteIcon'
 import { useFormContext } from 'react-hook-form'
 import { EducationFormField } from './educationFormField'
 import { ArrowDownIcon } from 'shared/icons/arrowDownIcon'
+import { useDeepCompareEffect } from 'shared/hooks/useDeepCompareEffect'
 
 const EducationItem = ({
     education,
@@ -36,6 +37,8 @@ const EducationItem = ({
             },
         })
     }
+
+    useDeepCompareEffect(handleFieldChange, [currentEducation])
 
     const handleRemoveEducation = () => {
         dispatch({
@@ -104,7 +107,6 @@ const EducationItem = ({
 
                 <EducationFormField
                     label="school name"
-                    onBlur={handleFieldChange}
                     name={`education[${index}].school`}
                     defaultValue={education.school}
                 />
@@ -113,7 +115,6 @@ const EducationItem = ({
 
                 <EducationFormField
                     label="Degree"
-                    onBlur={handleFieldChange}
                     name={`education[${index}].degree`}
                     defaultValue={education.degree}
                 />
@@ -124,7 +125,6 @@ const EducationItem = ({
                     <EducationFormField
                         additionalClassName={styles.oneThird}
                         label="City"
-                        onBlur={handleFieldChange}
                         name={`education[${index}].city`}
                         defaultValue={education.city}
                     />
@@ -134,7 +134,6 @@ const EducationItem = ({
                     <EducationFormField
                         additionalClassName={styles.oneThird}
                         label="Start Date"
-                        onBlur={handleFieldChange}
                         name={`education[${index}].startDate`}
                         defaultValue={education.startDate}
                     />
@@ -144,7 +143,6 @@ const EducationItem = ({
                     <EducationFormField
                         additionalClassName={styles.oneThird}
                         label="End Date"
-                        onBlur={handleFieldChange}
                         name={`education[${index}].endDate`}
                         defaultValue={education.endDate}
                     />
@@ -155,7 +153,6 @@ const EducationItem = ({
                 <EducationFormField
                     additionalClassName={styles.fullWidth}
                     label="description"
-                    onBlur={handleFieldChange}
                     name={`education[${index}].description`}
                     component={FormTextArea}
                     defaultValue={education.description}

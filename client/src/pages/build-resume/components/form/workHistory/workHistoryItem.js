@@ -33,9 +33,8 @@ const WorkHistoryItem = ({
     const currentlyWorkHere = watch(`experience[${index}].currentlyWorkHere`)
     const isInternship = watch(`experience[${index}].isInternship`)
 
-    // useDeepCompareEffect(handleFieldChange, currentExperience)
-
     const handleFieldChange = () => {
+        console.log(currentExperience)
         dispatch({
             type: 'UPDATE_EXPERIENCE_FIELD',
             payload: {
@@ -45,6 +44,8 @@ const WorkHistoryItem = ({
             },
         })
     }
+
+    useDeepCompareEffect(handleFieldChange, [currentExperience])
 
     const handleRemoveExperience = () => {
         dispatch({
@@ -119,7 +120,6 @@ const WorkHistoryItem = ({
 
                 <WorkHistoryFormField
                     label="Job title"
-                    onBlur={handleFieldChange}
                     name={`experience[${index}].title`}
                     defaultValue={experience.title}
                 />
@@ -128,7 +128,6 @@ const WorkHistoryItem = ({
 
                 <WorkHistoryFormField
                     label="Company"
-                    onBlur={handleFieldChange}
                     name={`experience[${index}].company`}
                     defaultValue={experience.company}
                 >
@@ -151,7 +150,6 @@ const WorkHistoryItem = ({
                     <WorkHistoryFormField
                         additionalClassName={styles.oneThird}
                         label="City"
-                        onBlur={handleFieldChange}
                         name={`experience[${index}].city`}
                         defaultValue={experience.city}
                     />
@@ -161,7 +159,6 @@ const WorkHistoryItem = ({
                     <WorkHistoryFormField
                         additionalClassName={styles.oneThird}
                         label="Start Date"
-                        onBlur={handleFieldChange}
                         name={`experience[${index}].startDate`}
                         defaultValue={experience.startDate}
                     />
@@ -171,7 +168,6 @@ const WorkHistoryItem = ({
                     <WorkHistoryFormField
                         additionalClassName={styles.oneThird}
                         label="End Date"
-                        onBlur={handleFieldChange}
                         name={`experience[${index}].endDate`}
                         disabled={currentlyWorkHere}
                         defaultValue={experience.endDate}
@@ -195,7 +191,6 @@ const WorkHistoryItem = ({
                 <WorkHistoryFormField
                     additionalClassName={styles.fullWidth}
                     label="description"
-                    onBlur={handleFieldChange}
                     name={`experience[${index}].description`}
                     component={FormTextArea}
                     defaultValue={experience.description}

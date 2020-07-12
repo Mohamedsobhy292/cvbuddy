@@ -15,14 +15,7 @@ const BuiledResumeForm = () => {
     const { dispatch, state } = useContext(AppContext)
 
     const Load = () => {
-        const form = { ...state.userData }
-        form.experience = state.userData.experience.map((item) => {
-            return {
-                id: uuidv4,
-                ...item,
-            }
-        })
-        reset(form)
+        reset(state.userData)
     }
 
     const onSubmit = (data) => {
