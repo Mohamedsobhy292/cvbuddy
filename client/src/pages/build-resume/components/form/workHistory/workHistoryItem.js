@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useEffect } from 'react'
+import React, { useContext, useRef } from 'react'
 import classnames from 'classnames'
 
 import { AppContext } from 'shared/context/appContext'
@@ -34,7 +34,6 @@ const WorkHistoryItem = ({
     const isInternship = watch(`experience[${index}].isInternship`)
 
     const handleFieldChange = () => {
-        console.log(currentExperience)
         dispatch({
             type: 'UPDATE_EXPERIENCE_FIELD',
             payload: {

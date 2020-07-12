@@ -11,7 +11,7 @@ const Experience = ({ experience }) => {
                 <ul>
                     {experience &&
                         experience.map((item, index) => {
-                            if (!item) return
+                            if (!item) return false
                             return (
                                 <li
                                     className={styles.experienceItem}

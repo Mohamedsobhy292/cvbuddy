@@ -7,30 +7,20 @@ import { WorkHistory } from './workHistory'
 import { Skills } from './skills'
 import { Links } from './links'
 import { Education } from './education'
-import { v4 as uuidv4 } from 'uuid'
+import { Languages } from './languages'
 
 const BuiledResumeForm = () => {
     const methods = useForm()
-    const { handleSubmit, reset } = methods
-    const { dispatch, state } = useContext(AppContext)
+    const { reset } = methods
+    const { state } = useContext(AppContext)
 
     const Load = () => {
         reset(state.userData)
     }
 
-    const onSubmit = (data) => {
-        dispatch({
-            type: 'UPDATE_USER_INFO',
-            payload: {
-                ...data,
-            },
-        })
-    }
-
     return (
         <FormContext {...methods}>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                {/* <button>Submit</button> */}
+            <form>
                 <button type="button" onClick={() => Load()}>
                     Load
                 </button>
@@ -40,6 +30,7 @@ const BuiledResumeForm = () => {
                     <Education />
                     <Skills />
                     <Links />
+                    <Languages />
                 </div>
             </form>
         </FormContext>

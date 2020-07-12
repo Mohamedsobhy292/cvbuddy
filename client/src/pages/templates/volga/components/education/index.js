@@ -8,7 +8,7 @@ const Education = () => {
     const { education } = state.userData
     return (
         <section className={styles.sectionContainer}>
-            <SectionTitle>education</SectionTitle>
+            <SectionTitle>Education</SectionTitle>
             <div className={styles.educationListContainer}>
                 <ul>
                     {education &&

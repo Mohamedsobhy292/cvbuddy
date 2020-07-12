@@ -3,6 +3,7 @@ import styles from './sidebar.module.scss'
 import { PersonalInfo } from './components/personalInfo'
 import { Links } from './components/links'
 import { Skills } from './components/skills'
+import { Languages } from './components/languages'
 
 const Sidebar = ({ mail, phone }) => {
     return (
@@ -10,6 +11,7 @@ const Sidebar = ({ mail, phone }) => {
             <PersonalInfo phone={phone} mail={mail} />
             <Links />
             <Skills />
+            <Languages />
         </aside>
     )
 }

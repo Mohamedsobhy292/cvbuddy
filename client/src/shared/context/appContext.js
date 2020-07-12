@@ -18,7 +18,7 @@ const initialDetails = {
             startDate: 'Aug 2019',
             endDate: 'May 2020',
             currentlyWorkHere: false,
-            isIntenrship: false,
+            isInternship: true,
             description:
                 'worked on the marketing team for achieving business needs by implementing new features using React + Redux',
         },
@@ -30,7 +30,7 @@ const initialDetails = {
             startDate: 'Aug 2019',
             endDate: 'May 2020',
             currentlyWorkHere: false,
-            isIntenrship: false,
+            isInternship: false,
             description:
                 'worked on the marketing team for achieving business needs by implementing new features using React + Redux',
         },
@@ -42,7 +42,7 @@ const initialDetails = {
             startDate: 'Aug 2019',
             endDate: 'May 2020',
             currentlyWorkHere: false,
-            isIntenrship: false,
+            isInternship: false,
             description:
                 'worked on the marketing team for achieving business needs by implementing new features using React + Redux',
         },
@@ -96,6 +96,18 @@ const initialDetails = {
             endDate: 2019,
             description:
                 'Do you think youre living an ordinary life? You are so mistaken its difficult to even explain. The mere fact that y',
+        },
+    ],
+    languages: [
+        {
+            id: uuidv4(),
+            name: 'English',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'Arabic',
+            level: 'intermediate',
         },
     ],
     showSkillsLevel: true,
@@ -166,6 +178,20 @@ const reducer = (state, action) => {
             userData: {
                 ...state.userData,
                 links: linksObj,
+            },
+        }
+    }
+
+    if (action.type === 'UPDATE_LANGUAGES_FIELD') {
+        const languagesObj = [...state.userData.languages]
+        const idx = action.payload.index
+        languagesObj[idx] = action.payload.languages
+
+        return {
+            ...state,
+            userData: {
+                ...state.userData,
+                languages: languagesObj,
             },
         }
     }

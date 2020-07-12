@@ -1,0 +1,19 @@
+@import 'shared/styles/variables.scss';
+
+.sectionTitle {
+    color: $white-color;
+    font-size: 24px;
+    margin-bottom: 25px;
+}
+
+.skillsContainer {
+    li {
+        margin-bottom: 14px;
+    }
+}
+
+.itemLevel {
+    font-size: 12px;
+    font-style: italic;
+    color: $text-color3;
+}
