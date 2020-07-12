@@ -1,0 +1,10 @@
+@import 'shared/styles/variables.scss';
+
+.label {
+    display: inline-block;
+    background: $primary-color-lighter400;
+    color: $primary-color-lighter100;
+    padding: 4px 8px;
+    border-radius: 20px;
+    font-size: 10px;
+}

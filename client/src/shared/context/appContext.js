@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 
 const initialDetails = {
     firstName: 'Mohamed',
@@ -10,66 +11,91 @@ const initialDetails = {
         'Do you think youre living an ordinary life? You are so mistaken its difficult to even explain. The mere fact that you exist makes you extraordinary. The odds of you existing are less than winning the lottery, but here you are. Are you going to let this extraordinary opportunity pass?',
     experience: [
         {
+            id: uuidv4(),
             title: 'Front end developer',
             company: 'Auto1',
             city: 'Cairo',
             startDate: 'Aug 2019',
             endDate: 'May 2020',
             currentlyWorkHere: false,
+            isIntenrship: false,
             description:
                 'worked on the marketing team for achieving business needs by implementing new features using React + Redux',
         },
         {
+            id: uuidv4(),
             title: 'Front end developer',
             company: 'Wuzzuf',
             city: 'Cairo',
             startDate: 'Aug 2019',
             endDate: 'May 2020',
             currentlyWorkHere: false,
+            isIntenrship: false,
             description:
                 'worked on the marketing team for achieving business needs by implementing new features using React + Redux',
         },
         {
+            id: uuidv4(),
             title: 'Front end developer',
             company: 'Amazon',
             city: 'Cairo',
             startDate: 'Aug 2019',
             endDate: 'May 2020',
             currentlyWorkHere: false,
+            isIntenrship: false,
             description:
                 'worked on the marketing team for achieving business needs by implementing new features using React + Redux',
         },
     ],
     skills: [
         {
+            id: uuidv4(),
             name: 'React',
             level: 'beginner',
         },
         {
+            id: uuidv4(),
             name: 'Angular',
             level: 'beginner',
         },
         {
+            id: uuidv4(),
             name: 'c++',
             level: 'beginner',
         },
         {
+            id: uuidv4(),
             name: 'Java',
             level: 'beginner',
         },
     ],
     links: [
         {
+            id: uuidv4(),
             label: 'website',
             link: 'https://www.linkedin.com/in/mohamedsobhy292/',
         },
         {
+            id: uuidv4(),
             label: 'linkedin',
             link: 'https://www.linkedin.com/in/mohamedsobhy292/',
         },
         {
+            id: uuidv4(),
             label: 'facebook',
             link: 'https://www.linkedin.com/in/mohamedsobhy292/',
+        },
+    ],
+    education: [
+        {
+            id: uuidv4(),
+            school: 'hamoksha el thanwya',
+            city: 'Cairo',
+            degree: 'bachelors',
+            startDate: 2019,
+            endDate: 2019,
+            description:
+                'Do you think youre living an ordinary life? You are so mistaken its difficult to even explain. The mere fact that y',
         },
     ],
     showSkillsLevel: true,
@@ -102,6 +128,20 @@ const reducer = (state, action) => {
         }
     }
 
+    if (action.type === 'UPDATE_EDUCATION_FIELD') {
+        const educaitonObj = [...state.userData.education]
+        const idx = action.payload.index
+        educaitonObj[idx] = action.payload.education
+
+        return {
+            ...state,
+            userData: {
+                ...state.userData,
+                education: educaitonObj,
+            },
+        }
+    }
+
     if (action.type === 'UPDATE_SKILLS_FIELD') {
         const skillsObj = [...state.userData.skills]
         const idx = action.payload.index
@@ -119,7 +159,7 @@ const reducer = (state, action) => {
     if (action.type === 'UPDATE_LINKS_ITEM') {
         const linksObj = [...state.userData.links]
         const idx = action.payload.index
-        linksObj[idx] = action.payload.skills
+        linksObj[idx] = action.payload.links
 
         return {
             ...state,
@@ -140,6 +180,20 @@ const reducer = (state, action) => {
             userData: {
                 ...state.userData,
                 skills: skillObj,
+            },
+        }
+    }
+
+    if (action.type === 'REMOVE_EDUCATION_ITEM') {
+        const educationObj = [...state.userData.education]
+        const idx = action.payload.index
+        educationObj.splice(idx, 1)
+
+        return {
+            ...state,
+            userData: {
+                ...state.userData,
+                education: educationObj,
             },
         }
     }

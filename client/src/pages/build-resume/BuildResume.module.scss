@@ -31,7 +31,7 @@
     max-height: 550px;
     overflow: hidden;
     transition: max-height 0.5s;
-    // padding-top: 15px;
+    padding-top: 15px;
 
     &.hidden {
         visibility: hidden;
@@ -71,6 +71,10 @@
             padding-right: 0;
         }
     }
+
+    &:last-of-type {
+        margin-bottom: 0;
+    }
 }
 
 .themeWrapper {
@@ -85,15 +89,25 @@
     border: 1px solid $border-color;
     margin-bottom: 20px;
     border-radius: 2px;
+
+    &:last-of-type {
+        margin-bottom: 0;
+    }
 }
 
 .experienceTitle {
     color: $text-color;
     font-size: 15px;
-    margin-bottom: 6px;
+}
+
+.secondaryTitle {
+    font-size: 12px;
+    color: $text-color2;
+    font-weight: normal;
 }
 
 .duration {
+    margin-top: 6px;
     font-size: 12px;
     font-weight: normal;
     color: $text-color3;
@@ -180,6 +194,10 @@
             margin-top: 20px;
         }
     }
+
+    &:last-of-type {
+        margin-bottom: 0;
+    }
 }
 
 .deleteIcon {
@@ -201,7 +219,7 @@
 }
 
 .addBtn {
-    margin-top: 12px;
+    margin-top: 26px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -209,4 +227,8 @@
         width: 10px;
         margin-right: 8px;
     }
+}
+
+.internshipLabel {
+    margin-left: 12px;
 }

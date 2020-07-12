@@ -5,6 +5,7 @@ import { Summary } from './components/summary'
 import { Experience } from './components/experience'
 import { Sidebar } from './components/sidebar'
 import { AppContext } from 'shared/context/appContext'
+import { Education } from './components/education'
 
 const Volga = ({ className }) => {
     const { state } = useContext(AppContext)
@@ -20,6 +21,8 @@ const Volga = ({ className }) => {
 
                 {/* EXPERIENCE */}
                 <Experience experience={experience} />
+                {/* Education */}
+                <Education />
             </main>
             <Sidebar mail={mail} phone={phone} />
         </div>

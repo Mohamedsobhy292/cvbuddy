@@ -1,19 +1,19 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import styles from 'pages/build-resume/BuildResume.module.scss'
-import { WorkHistoryItem } from './workHistoryItem'
+import { EducationItem } from './educationItem'
 import { Button } from 'shared/components/button'
 import { useFormContext, useFieldArray } from 'react-hook-form'
 import { useOnClickOutside } from 'shared/hooks/useClickOutside'
 import { PlusIcon } from 'shared/icons/plusIcon'
 
-const WorkHistory = () => {
+const Education = () => {
     const [editMode, setEditMode] = useState(false)
     const { control } = useFormContext()
 
-    const { fields: experience, append, remove } = useFieldArray({
+    const { fields: education, append, remove } = useFieldArray({
         control,
-        name: 'experience',
+        name: 'education',
     })
 
     const ref = useRef()
@@ -21,34 +21,27 @@ const WorkHistory = () => {
 
     const handleAdd = () => {
         append({
-            key: uuidv4(),
-            title: 'new job role',
-            company: 'big company',
-            city: '',
-            startDate: '',
-            endDate: '',
-            currentlyWorkHere: false,
-            description: '',
+            id: uuidv4(),
         })
-        setEditMode(experience.length)
+        setEditMode(education.length)
     }
 
     return (
         <div ref={ref} className={styles.sectionContainer}>
-            <h3 className={styles.title}> Work History</h3>
+            <h3 className={styles.title}> Education</h3>
 
             {/* DATA */}
 
-            {experience &&
-                !!experience.length &&
-                experience.map((item, index) => {
+            {education &&
+                !!education.length &&
+                education.map((item, index) => {
                     return (
-                        <WorkHistoryItem
+                        <EducationItem
                             key={item.id}
                             handleDelete={remove}
                             editMode={editMode}
                             setEditMode={setEditMode}
-                            experience={item}
+                            education={item}
                             index={index}
                         />
                     )
@@ -62,12 +55,12 @@ const WorkHistory = () => {
                 className={styles.addBtn}
             >
                 <PlusIcon />
-                Add Experience
+                Add Education
             </Button>
         </div>
     )
 }
 
-const WorkHistoryMemo = React.memo(WorkHistory)
+const EducationMemo = React.memo(Education)
 
-export { WorkHistoryMemo as WorkHistory }
+export { EducationMemo as Education }

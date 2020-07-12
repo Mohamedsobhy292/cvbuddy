@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './experience.module.scss'
 import { SectionTitle } from '../sectionTitle'
+import { Label } from 'shared/components/Label'
 
 const Experience = ({ experience }) => {
     return (
@@ -10,13 +11,18 @@ const Experience = ({ experience }) => {
                 <ul>
                     {experience &&
                         experience.map((item, index) => {
+                            if (!item) return
                             return (
                                 <li
                                     className={styles.experienceItem}
                                     key={index}
                                 >
                                     <h2 className={styles.title}>
-                                        {item.title}
+                                        {item?.title}
+
+                                        {item?.isInternship && (
+                                            <Label>INTERNSHIP</Label>
+                                        )}
                                     </h2>
                                     <h3 className={styles.company}>
                                         {item.company}

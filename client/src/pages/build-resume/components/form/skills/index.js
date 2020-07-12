@@ -29,7 +29,6 @@ const Skills = () => {
     return (
         <div className={styles.sectionContainer}>
             <h3 className={styles.title}> Skills</h3>
-
             {/* DATA */}
             {skills &&
                 !!skills.length &&
@@ -45,18 +44,19 @@ const Skills = () => {
                     )
                 })}
 
-            <FormCheckBox
-                className={styles.checkBoxWrapper}
-                name="showSkillsLevel"
-                defaultValue={false}
-            >
-                <span className={styles.label}>Show skill level</span>
-            </FormCheckBox>
+            {skills && !!skills.length && (
+                <FormCheckBox
+                    className={styles.checkBoxWrapper}
+                    name="showSkillsLevel"
+                    defaultValue={false}
+                >
+                    <span className={styles.label}>Show skill level</span>
+                </FormCheckBox>
+            )}
 
             {/* ADD BUTTON */}
-
             <Button
-                variant="link"
+                variant="tertiary"
                 onClick={() => append({})}
                 className={styles.addBtn}
             >

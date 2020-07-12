@@ -13,5 +13,9 @@
 .SkillsContainer {
     li {
         margin-bottom: 10px;
+
+        a {
+            color: inherit;
+        }
     }
 }

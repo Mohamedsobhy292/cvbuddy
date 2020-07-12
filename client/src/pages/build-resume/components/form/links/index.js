@@ -32,7 +32,7 @@ const Links = () => {
             {/* ADD BUTTON */}
 
             <Button
-                variant="link"
+                variant="tertiary"
                 onClick={() => append({})}
                 className={styles.addBtn}
             >

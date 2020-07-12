@@ -39,7 +39,7 @@ const LinkItem = ({ website, index, remove }) => {
 
                 <FormInput
                     onBlur={handleFieldChange}
-                    name={`links[${index}].name`}
+                    name={`links[${index}].label`}
                     defaultValue={website.label}
                 />
             </div>
@@ -49,7 +49,7 @@ const LinkItem = ({ website, index, remove }) => {
                 <FormInput
                     onBlur={handleFieldChange}
                     additionalClassName={styles.skillsLevelField}
-                    name={`links[${index}].level`}
+                    name={`links[${index}].link`}
                     defaultValue={website.link}
                 />
             </div>

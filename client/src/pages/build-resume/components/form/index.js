@@ -6,6 +6,8 @@ import { PersonalInformation } from './personalInformation'
 import { WorkHistory } from './workHistory'
 import { Skills } from './skills'
 import { Links } from './links'
+import { Education } from './education'
+import { v4 as uuidv4 } from 'uuid'
 
 const BuiledResumeForm = () => {
     const methods = useForm()
@@ -13,7 +15,14 @@ const BuiledResumeForm = () => {
     const { dispatch, state } = useContext(AppContext)
 
     const Load = () => {
-        reset(state.userData)
+        const form = { ...state.userData }
+        form.experience = state.userData.experience.map((item) => {
+            return {
+                id: uuidv4,
+                ...item,
+            }
+        })
+        reset(form)
     }
 
     const onSubmit = (data) => {
@@ -35,6 +44,7 @@ const BuiledResumeForm = () => {
                 <div>
                     <PersonalInformation />
                     <WorkHistory />
+                    <Education />
                     <Skills />
                     <Links />
                 </div>

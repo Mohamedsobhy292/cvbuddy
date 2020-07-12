@@ -7,6 +7,7 @@
     outline: none;
     color: #fff;
     cursor: pointer;
+    transition: all 0.3s;
 }
 
 .primary {
@@ -18,14 +19,16 @@
     }
 }
 
-.link {
-    color: $secondary-color;
-    fill: $secondary-color;
-    background: #fff;
-    // border: 1px solid $primary-color;
-    font-weight: bold;
+.tertiary {
+    color: $primary-color;
+    fill: $primary-color;
+    background: transparent;
+    border: 1px solid $primary-color;
+    font-weight: 600;
 
     &:hover {
-        background: lighten($secondary-color, 45%);
+        background: $primary-color;
+        color: #fff;
+        fill: #fff;
     }
 }

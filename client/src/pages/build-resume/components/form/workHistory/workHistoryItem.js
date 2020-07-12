@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext, useRef, useEffect } from 'react'
 import classnames from 'classnames'
 
 import { AppContext } from 'shared/context/appContext'
@@ -11,6 +11,8 @@ import { useFormContext } from 'react-hook-form'
 import { FormCheckBox } from 'shared/components/formComponents/formCheckbox'
 import { WorkHistoryFormField } from './workHistoryFormField'
 import { ArrowDownIcon } from 'shared/icons/arrowDownIcon'
+import { Label } from 'shared/components/Label'
+import { useDeepCompareEffect } from 'shared/hooks/useDeepCompareEffect'
 
 const WorkHistoryItem = ({
     experience,
@@ -29,6 +31,9 @@ const WorkHistoryItem = ({
     const currentExperience = watch(`experience[${index}]`)
 
     const currentlyWorkHere = watch(`experience[${index}].currentlyWorkHere`)
+    const isInternship = watch(`experience[${index}].isInternship`)
+
+    // useDeepCompareEffect(handleFieldChange, currentExperience)
 
     const handleFieldChange = () => {
         dispatch({
@@ -64,6 +69,11 @@ const WorkHistoryItem = ({
                     <h3 className={styles.experienceTitle}>
                         {currentExperience?.title} at{' '}
                         {currentExperience?.company}
+                        {isInternship && (
+                            <Label className={styles.internshipLabel}>
+                                INTERNSHIP
+                            </Label>
+                        )}
                     </h3>
                     <h4 className={styles.duration}>
                         {currentExperience?.startDate} -{' '}
@@ -71,6 +81,7 @@ const WorkHistoryItem = ({
                             ? 'present'
                             : currentExperience?.endDate}
                     </h4>
+
                     <div className={styles.iconsContainer}>
                         <ArrowDownIcon
                             width="16px"
@@ -120,7 +131,19 @@ const WorkHistoryItem = ({
                     onBlur={handleFieldChange}
                     name={`experience[${index}].company`}
                     defaultValue={experience.company}
-                />
+                >
+                    <div className={styles.checkBoxWrapper}>
+                        <FormCheckBox
+                            onChange={handleFieldChange}
+                            name={`experience[${index}].isInternship`}
+                            defaultValue={experience.isInternship}
+                        >
+                            <span className={styles.label}>
+                                This is internship
+                            </span>
+                        </FormCheckBox>
+                    </div>
+                </WorkHistoryFormField>
 
                 {/* CITY */}
 
