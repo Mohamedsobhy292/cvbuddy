@@ -5,6 +5,9 @@ import { AppContext } from 'shared/context/appContext'
 const Languages = () => {
     const { state } = useContext(AppContext)
     const { languages } = state.userData
+
+    if (!languages) return null
+
     return (
         <div className={styles.sectionContainer}>
             <h3 className={styles.sectionTitle}>Languages</h3>

@@ -5,10 +5,10 @@ import { Links } from './components/links'
 import { Skills } from './components/skills'
 import { Languages } from './components/languages'
 
-const Sidebar = ({ mail, phone }) => {
+const Sidebar = () => {
     return (
         <aside className={styles.aside}>
-            <PersonalInfo phone={phone} mail={mail} />
+            <PersonalInfo />
             <Links />
             <Skills />
             <Languages />

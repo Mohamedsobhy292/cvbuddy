@@ -47,9 +47,16 @@ const PersonalInformation = () => {
                 />
 
                 <PersonalInformationField
-                    additionalClassName={styles.fullWidth}
                     name="jobTitle"
+                    placeholder="e.g data scientist"
                     label="Job title"
+                    handleFieldChange={handleFieldChange}
+                />
+
+                <PersonalInformationField
+                    name="residence"
+                    placeholder="e.g Berlin,Germany"
+                    label="Residence"
                     handleFieldChange={handleFieldChange}
                 />
 

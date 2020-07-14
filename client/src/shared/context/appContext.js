@@ -2,70 +2,71 @@ import React, { useReducer } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
 const initialDetails = {
-    firstName: 'Mohamed',
-    lastName: 'sobhy',
-    email: 'mohamedsobhy292@gmail.com',
-    phone: '01092525921',
-    jobTitle: 'front end developer',
+    firstName: 'Ricky',
+    lastName: 'Metzger',
+    email: 'oneRandomMail@gmail.com',
+    phone: '+1234567989',
+    jobTitle: 'Designer',
+    residence: 'Washington, DC',
     summary:
         'Do you think youre living an ordinary life? You are so mistaken its difficult to even explain. The mere fact that you exist makes you extraordinary. The odds of you existing are less than winning the lottery, but here you are. Are you going to let this extraordinary opportunity pass?',
     experience: [
         {
             id: uuidv4(),
-            title: 'Front end developer',
-            company: 'Auto1',
-            city: 'Cairo',
+            title: 'Product Designer',
+            company: 'Google',
+            city: 'London',
+            startDate: 'Aug 2019',
+            endDate: null,
+            currentlyWorkHere: true,
+            isInternship: false,
+            description:
+                'worked on the marketing team for achieving business needs by implementing new features using React + Redux',
+        },
+        {
+            id: uuidv4(),
+            title: 'UI Designer',
+            company: 'Apple',
+            city: 'New york',
             startDate: 'Aug 2019',
             endDate: 'May 2020',
+            currentlyWorkHere: false,
+            isInternship: false,
+            description:
+                "This is important to remember. Love isn't like pie. You don't need to divide it among all your friends and loved ones",
+        },
+        {
+            id: uuidv4(),
+            title: 'UI Designer',
+            company: 'Amazon',
+            city: 'New york',
+            startDate: 'Aug 2012',
+            endDate: 'May 2019',
             currentlyWorkHere: false,
             isInternship: true,
             description:
-                'worked on the marketing team for achieving business needs by implementing new features using React + Redux',
-        },
-        {
-            id: uuidv4(),
-            title: 'Front end developer',
-            company: 'Wuzzuf',
-            city: 'Cairo',
-            startDate: 'Aug 2019',
-            endDate: 'May 2020',
-            currentlyWorkHere: false,
-            isInternship: false,
-            description:
-                'worked on the marketing team for achieving business needs by implementing new features using React + Redux',
-        },
-        {
-            id: uuidv4(),
-            title: 'Front end developer',
-            company: 'Amazon',
-            city: 'Cairo',
-            startDate: 'Aug 2019',
-            endDate: 'May 2020',
-            currentlyWorkHere: false,
-            isInternship: false,
-            description:
-                'worked on the marketing team for achieving business needs by implementing new features using React + Redux',
+                "This is important to remember. Love isn't like pie. You don't need to divide it among all your friends and loved ones",
         },
     ],
     skills: [
         {
             id: uuidv4(),
-            name: 'React',
+            name: 'Internet',
             level: 'beginner',
         },
         {
             id: uuidv4(),
-            name: 'Angular',
+            name: 'Software',
             level: 'beginner',
         },
         {
             id: uuidv4(),
-            name: 'c++',
+            name: 'Mobile apps',
             level: 'beginner',
         },
         {
             id: uuidv4(),
-            name: 'Java',
+            name: 'Social Network',
             level: 'beginner',
         },
     ],
@@ -89,13 +90,13 @@ const initialDetails = {
     education: [
         {
             id: uuidv4(),
-            school: 'hamoksha el thanwya',
+            school: 'Bachelor Degree of Fine Art (BFA)',
             city: 'Cairo',
             degree: 'bachelors',
             startDate: 2019,
             endDate: 2019,
             description:
-                'Do you think youre living an ordinary life? You are so mistaken its difficult to even explain. The mere fact that y',
+                "This is important to remember. Love isn't like pie. You don't need to divide it among all your friends and loved ones",
         },
     ],
     languages: [
@@ -110,6 +111,7 @@ const initialDetails = {
             level: 'intermediate',
         },
     ],
+    certificates: [],
     showSkillsLevel: true,
 }
 
@@ -127,7 +129,8 @@ const reducer = (state, action) => {
     }
 
     if (action.type === 'UPDATE_EXPERIENCE_FIELD') {
-        const experienceObject = [...state.userData.experience]
+        const experience = state.userData.experience || []
+        const experienceObject = [...experience]
         const idx = action.payload.index
         experienceObject[idx] = action.payload.experience
 
@@ -136,6 +139,20 @@ const reducer = (state, action) => {
             userData: {
                 ...state.userData,
                 experience: experienceObject,
+            },
+        }
+    }
+
+    if (action.type === 'UPDATE_CERTIFICATE_ITEM') {
+        const certificatesObject = [...state.userData.certificates]
+        const idx = action.payload.index
+        certificatesObject[idx] = action.payload.certificates
+
+        return {
+            ...state,
+            userData: {
+                ...state.userData,
+                certificates: certificatesObject,
             },
         }
     }

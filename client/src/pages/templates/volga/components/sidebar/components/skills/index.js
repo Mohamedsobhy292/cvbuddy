@@ -5,6 +5,8 @@ import { AppContext } from 'shared/context/appContext'
 const Skills = () => {
     const { state } = useContext(AppContext)
     const { skills, showSkillsLevel } = state.userData
+
+    if (!skills) return null
     return (
         <div className={styles.sectionContainer}>
             <h3 className={styles.sectionTitle}>Skills</h3>

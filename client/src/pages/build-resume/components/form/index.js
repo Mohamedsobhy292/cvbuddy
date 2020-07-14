@@ -8,6 +8,7 @@ import { Skills } from './skills'
 import { Links } from './links'
 import { Education } from './education'
 import { Languages } from './languages'
+import { Certificates } from './Certificates'
 
 const BuiledResumeForm = () => {
     const methods = useForm()
@@ -31,6 +32,7 @@ const BuiledResumeForm = () => {
                     <Skills />
                     <Links />
                     <Languages />
+                    <Certificates />
                 </div>
             </form>
         </FormContext>

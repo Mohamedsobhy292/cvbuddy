@@ -1,16 +1,12 @@
 @import 'shared/styles/variables.scss';
 
-.experienceItem {
-    margin-bottom: 45px;
+.educationItem {
+    margin-bottom: 35px;
 }
 
 .title {
     font-size: 16px;
     margin-bottom: 4px;
-
-    span {
-        margin-left: 12px;
-    }
 }
 
 .company {
@@ -44,5 +40,5 @@
 }
 
 .sectionContainer {
-    margin-bottom: 60px;
+    margin-bottom: 50px;
 }

@@ -3,25 +3,24 @@ import { InputLabel } from 'shared/components/inputLabel'
 import { FormInput } from 'shared/components/formComponents/FormInput'
 import styles from 'pages/build-resume/BuildResume.module.scss'
 
-const PersonalInformationField = ({
+const CertificateFormField = ({
     label,
-    handleFieldChange,
     name,
     additionalClassName = '',
     component,
+    children,
     ...props
 }) => {
     const Component = component || FormInput
     return (
         <div className={`${styles.formControl} ${additionalClassName}`}>
             <InputLabel>{label}</InputLabel>
-            <Component
-                name={name}
-                onChange={handleFieldChange(name)}
-                {...props}
-            />
+            <Component name={name} {...props} />
+            {children}
         </div>
     )
 }
 
-export { PersonalInformationField }
+const CertificateFormFieldMemo = React.memo(CertificateFormField)
+
+export { CertificateFormFieldMemo as CertificateFormField }

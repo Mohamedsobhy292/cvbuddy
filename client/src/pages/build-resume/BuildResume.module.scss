@@ -26,12 +26,12 @@
 
 .formContainer {
     display: flex;
+    width: 100%;
     flex-wrap: wrap;
     visibility: visible;
     max-height: 550px;
     overflow: hidden;
     transition: max-height 0.5s;
-    padding-top: 15px;
 
     &.hidden {
         visibility: hidden;
@@ -70,10 +70,6 @@
         &:last-child {
             padding-right: 0;
         }
-    }
-
-    &:last-of-type {
-        margin-bottom: 0;
     }
 }
 

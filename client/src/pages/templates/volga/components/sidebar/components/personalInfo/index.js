@@ -7,7 +7,7 @@ import { AppContext } from 'shared/context/appContext'
 
 const PersonalInfo = () => {
     const { state } = useContext(AppContext)
-    const { email, phone } = state.userData
+    const { email, phone, residence } = state.userData
     return (
         <div className={styles.sectionContainer}>
             <h3 className={styles.sectionTitle}>Personal Info</h3>
@@ -27,7 +27,7 @@ const PersonalInfo = () => {
                 <span className={styles.icon}>
                     <PlaceIcon />
                 </span>
-                Berlin,Germany
+                {residence}
             </h4>
         </div>
     )

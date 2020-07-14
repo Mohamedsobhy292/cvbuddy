@@ -6,11 +6,13 @@ const Links = () => {
     const { state } = useContext(AppContext)
     const { links } = state.userData
 
+    if (!links) return null
+
     return (
         <div className={styles.sectionContainer}>
             <h3 className={styles.sectionTitle}>Links</h3>
             <ul className={styles.SkillsContainer}>
-                {!!links.length &&
+                {!!links?.length &&
                     links.map((link, index) => {
                         return (
                             <li key={index}>
