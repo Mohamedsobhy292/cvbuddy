@@ -1,12 +1,17 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
+import RichTextEditor from 'react-rte'
+
 import styles from 'pages/build-resume/BuildResume.module.scss'
 
-import { FormTextArea } from 'shared/components/formComponents/formTextArea'
+import { FormRichTextEditor } from 'shared/components/formComponents/formRichTextEditor'
 import { AppContext } from 'shared/context/appContext'
 import { PersonalInformationField } from './personalInformationField'
+import { useFormContext } from 'react-hook-form'
 
 const PersonalInformation = () => {
     const { dispatch } = useContext(AppContext)
+    const methods = useFormContext()
+    const { watch } = methods
 
     const handleFieldChange = (name) => (value) => {
         dispatch({
@@ -64,7 +69,7 @@ const PersonalInformation = () => {
                     additionalClassName={styles.fullWidth}
                     name="summary"
                     label="Summary"
-                    component={FormTextArea}
+                    component={FormRichTextEditor}
                     handleFieldChange={handleFieldChange}
                 />
             </div>

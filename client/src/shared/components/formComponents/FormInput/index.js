@@ -14,6 +14,7 @@ const Input = ({ name, defaultValue = '', disabled, onChange, ...props }) => {
             disabled={disabled}
             onChange={(e) => {
                 const val = e[0].currentTarget.value
+                console.log(val)
                 onChange && onChange(val)
                 return val
             }}

@@ -11,6 +11,7 @@ import { useFormContext } from 'react-hook-form'
 import { EducationFormField } from './educationFormField'
 import { ArrowDownIcon } from 'shared/icons/arrowDownIcon'
 import { useDeepCompareEffect } from 'shared/hooks/useDeepCompareEffect'
+import { FormRichTextEditor } from 'shared/components/formComponents/formRichTextEditor'
 
 const EducationItem = ({
     education,
@@ -154,7 +155,7 @@ const EducationItem = ({
                     additionalClassName={styles.fullWidth}
                     label="description"
                     name={`education[${index}].description`}
-                    component={FormTextArea}
+                    component={FormRichTextEditor}
                     defaultValue={education.description}
                 />
             </div>

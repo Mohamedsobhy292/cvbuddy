@@ -29,10 +29,10 @@
     width: 100%;
     flex-wrap: wrap;
     visibility: visible;
-    max-height: 550px;
+    max-height: auto;
+    padding-top: 20px;
     overflow: hidden;
-    transition: max-height 0.5s;
-
+    transition: padding 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     &.hidden {
         visibility: hidden;
         max-height: 0;

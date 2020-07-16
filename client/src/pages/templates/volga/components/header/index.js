@@ -6,6 +6,7 @@ import { AppContext } from 'shared/context/appContext'
 const Header = () => {
     const { state } = useContext(AppContext)
     const { firstName, lastName, jobTitle } = state.userData
+    console.log(state.userData)
     return (
         <div className={styles.header}>
             <div className={styles.imgContainer}>

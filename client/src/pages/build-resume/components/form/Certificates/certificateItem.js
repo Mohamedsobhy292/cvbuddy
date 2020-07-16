@@ -11,6 +11,7 @@ import { useFormContext } from 'react-hook-form'
 import { CertificateFormField } from './certificateField'
 import { ArrowDownIcon } from 'shared/icons/arrowDownIcon'
 import { useDeepCompareEffect } from 'shared/hooks/useDeepCompareEffect'
+import { FormRichTextEditor } from 'shared/components/formComponents/formRichTextEditor'
 
 const CertificateItem = ({
     certificate,
@@ -135,7 +136,7 @@ const CertificateItem = ({
                     additionalClassName={styles.fullWidth}
                     label="description"
                     name={`certificates[${index}].description`}
-                    component={FormTextArea}
+                    component={FormRichTextEditor}
                     defaultValue={certificate.description}
                 />
             </div>

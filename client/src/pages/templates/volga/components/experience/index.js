@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styles from './experience.module.scss'
 import { SectionTitle } from '../sectionTitle'
 import { Label } from 'shared/components/Label'
+import { AppContext } from 'shared/context/appContext'
 
-const Experience = ({ experience }) => {
+const Experience = () => {
+    const { state } = useContext(AppContext)
+    const { experience } = state.userData
     return (
         <section className={styles.sectionContainer}>
             <SectionTitle>Experience</SectionTitle>
