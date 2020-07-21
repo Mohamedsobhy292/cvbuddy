@@ -1,5 +1,6 @@
 import React, { useContext, useRef } from 'react'
 import classnames from 'classnames'
+import { useDebouncedCallback } from 'use-debounce'
 
 import { AppContext } from 'shared/context/appContext'
 
@@ -33,9 +34,7 @@ const WorkHistoryItem = ({
     const currentlyWorkHere = watch(`experience[${index}].currentlyWorkHere`)
     const isInternship = watch(`experience[${index}].isInternship`)
 
-    console.log(currentExperience)
-
-    const handleFieldChange = () => {
+    const [handleFieldChange] = useDebouncedCallback(() => {
         dispatch({
             type: 'UPDATE_EXPERIENCE_FIELD',
             payload: {
@@ -44,7 +43,18 @@ const WorkHistoryItem = ({
                 index,
             },
         })
-    }
+    }, 1000)
+
+    // const handleFieldChange = () => {
+    //     dispatch({
+    //         type: 'UPDATE_EXPERIENCE_FIELD',
+    //         payload: {
+    //             name: 'experience',
+    //             experience: currentExperience,
+    //             index,
+    //         },
+    //     })
+    // }
 
     useDeepCompareEffect(handleFieldChange, [currentExperience])
 

@@ -7,6 +7,7 @@ import { useFormContext } from 'react-hook-form'
 import { AppContext } from 'shared/context/appContext'
 import { FormDropDown } from 'shared/components/formComponents/formDropDown'
 import { useDeepCompareEffect } from 'shared/hooks/useDeepCompareEffect'
+import { useDebouncedCallback } from 'use-debounce/lib'
 
 const LanguageItem = ({ language, index, remove }) => {
     const methods = useFormContext()
@@ -16,7 +17,7 @@ const LanguageItem = ({ language, index, remove }) => {
 
     const currentLanguage = watch(`languages[${index}]`)
 
-    const handleFieldChange = () => {
+    const [handleFieldChange] = useDebouncedCallback(() => {
         dispatch({
             type: 'UPDATE_LANGUAGES_FIELD',
             payload: {
@@ -24,7 +25,7 @@ const LanguageItem = ({ language, index, remove }) => {
                 index,
             },
         })
-    }
+    }, 1000)
 
     useDeepCompareEffect(handleFieldChange, [currentLanguage])
 

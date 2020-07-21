@@ -31,7 +31,7 @@ const Education = () => {
                                     <p
                                         className={styles.descriptionList}
                                         dangerouslySetInnerHTML={{
-                                            __html: item.description,
+                                            __html: item?.description,
                                         }}
                                     ></p>
                                 </li>

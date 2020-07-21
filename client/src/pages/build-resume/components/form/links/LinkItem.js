@@ -6,6 +6,7 @@ import { InputLabel } from 'shared/components/inputLabel'
 import { useFormContext } from 'react-hook-form'
 import { AppContext } from 'shared/context/appContext'
 import { useDeepCompareEffect } from 'shared/hooks/useDeepCompareEffect'
+import { useDebouncedCallback } from 'use-debounce/lib'
 
 const LinkItem = ({ website, index, remove }) => {
     const methods = useFormContext()
@@ -14,7 +15,7 @@ const LinkItem = ({ website, index, remove }) => {
 
     const currentLink = watch(`links[${index}]`)
 
-    const handleFieldChange = () => {
+    const [handleFieldChange] = useDebouncedCallback(() => {
         dispatch({
             type: 'UPDATE_LINKS_ITEM',
             payload: {
@@ -22,7 +23,7 @@ const LinkItem = ({ website, index, remove }) => {
                 index,
             },
         })
-    }
+    }, 1000)
 
     useDeepCompareEffect(handleFieldChange, [currentLink])
 
