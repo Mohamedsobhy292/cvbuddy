@@ -45,17 +45,6 @@ const WorkHistoryItem = ({
         })
     }, 1000)
 
-    // const handleFieldChange = () => {
-    //     dispatch({
-    //         type: 'UPDATE_EXPERIENCE_FIELD',
-    //         payload: {
-    //             name: 'experience',
-    //             experience: currentExperience,
-    //             index,
-    //         },
-    //     })
-    // }
-
     useDeepCompareEffect(handleFieldChange, [currentExperience])
 
     const handleRemoveExperience = () => {

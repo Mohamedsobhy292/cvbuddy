@@ -14,7 +14,7 @@ import { initialDetails } from 'shared/context/appContext'
 const BuiledResumeForm = () => {
     const methods = useForm()
     const { reset } = methods
-    const { state, dispatch } = useContext(AppContext)
+    const { dispatch } = useContext(AppContext)
 
     const Load = () => {
         reset(initialDetails)

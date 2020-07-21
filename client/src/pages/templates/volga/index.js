@@ -1,10 +1,9 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import styles from './volga.module.scss'
 import { Header } from './components/header/index'
 import { Summary } from './components/summary'
 import { Experience } from './components/experience'
 import { Sidebar } from './components/sidebar'
-import { AppContext } from 'shared/context/appContext'
 import { Education } from './components/education'
 import { Certificates } from './components/certificates'
 

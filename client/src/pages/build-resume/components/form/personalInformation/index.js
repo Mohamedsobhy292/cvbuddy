@@ -1,17 +1,13 @@
-import React, { useContext, useState, useEffect } from 'react'
-import RichTextEditor from 'react-rte'
+import React, { useContext } from 'react'
 
 import styles from 'pages/build-resume/BuildResume.module.scss'
 
 import { FormRichTextEditor } from 'shared/components/formComponents/formRichTextEditor'
 import { AppContext } from 'shared/context/appContext'
 import { PersonalInformationField } from './personalInformationField'
-import { useFormContext } from 'react-hook-form'
 
 const PersonalInformation = () => {
     const { dispatch } = useContext(AppContext)
-    const methods = useFormContext()
-    const { watch } = methods
 
     const handleFieldChange = (name) => (value) => {
         dispatch({

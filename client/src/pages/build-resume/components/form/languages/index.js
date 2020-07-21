@@ -15,7 +15,13 @@ const Languages = () => {
 
     return (
         <div className={styles.sectionContainer}>
-            <h3 className={styles.title}>Languages</h3>
+            <div className={styles.titleWrapper}>
+                <h3 className={styles.title}>Languages</h3>
+                <p className={styles.sectionDescription}>
+                    Include your last 10 years of relevant experience and dates
+                    in this section. List your most recent position first.
+                </p>
+            </div>
             {/* DATA */}
             {languages &&
                 !!languages.length &&

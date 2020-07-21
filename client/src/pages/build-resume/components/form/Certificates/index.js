@@ -27,7 +27,13 @@ const Certificates = () => {
 
     return (
         <div className={styles.sectionContainer} ref={ref}>
-            <h3 className={styles.title}>Certificates</h3>
+            <div className={styles.titleWrapper}>
+                <h3 className={styles.title}>Certificates</h3>
+                <p className={styles.sectionDescription}>
+                    Include your last 10 years of relevant experience and dates
+                    in this section. List your most recent position first.
+                </p>
+            </div>
 
             {/* DATA */}
             {certificates &&
