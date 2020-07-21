@@ -23,6 +23,16 @@ const PersonalInformation = () => {
         })
     }
 
+    const handleSummaryChange = (name) => (value) => {
+        dispatch({
+            type: 'UPDATE_USER_FIELD',
+            payload: {
+                name,
+                value: value[0],
+            },
+        })
+    }
+
     return (
         <div className={styles.sectionContainer}>
             <h3 className={styles.title}> Personal Information</h3>
@@ -70,7 +80,7 @@ const PersonalInformation = () => {
                     name="summary"
                     label="Summary"
                     component={FormRichTextEditor}
-                    handleFieldChange={handleFieldChange}
+                    handleFieldChange={handleSummaryChange}
                 />
             </div>
         </div>

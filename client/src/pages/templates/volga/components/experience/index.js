@@ -37,9 +37,12 @@ const Experience = () => {
                                             : item.endDate}
                                     </h4>
 
-                                    <ul className={styles.descriptionList}>
-                                        {item.description}
-                                    </ul>
+                                    <p
+                                        className={styles.descriptionList}
+                                        dangerouslySetInnerHTML={{
+                                            __html: item.description,
+                                        }}
+                                    ></p>
                                 </li>
                             )
                         })}
