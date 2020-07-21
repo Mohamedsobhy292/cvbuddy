@@ -9,8 +9,6 @@ import { Education } from './components/education'
 import { Certificates } from './components/certificates'
 
 const Volga = ({ className }) => {
-    const { state } = useContext(AppContext)
-    const { mail, experience, phone } = state.userData
     return (
         <div className={`${styles.templateWrapper} ${className}`}>
             <main className={styles.contentContainer}>
@@ -21,7 +19,7 @@ const Volga = ({ className }) => {
                 <Summary />
 
                 {/* EXPERIENCE */}
-                <Experience experience={experience} />
+                <Experience />
                 {/* Education */}
                 <Education />
                 <Certificates />

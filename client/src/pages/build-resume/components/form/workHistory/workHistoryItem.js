@@ -3,7 +3,7 @@ import classnames from 'classnames'
 
 import { AppContext } from 'shared/context/appContext'
 
-import { FormTextArea } from 'shared/components/formComponents/formTextArea'
+import { FormRichTextEditor } from 'shared/components/formComponents/formRichTextEditor'
 
 import styles from 'pages/build-resume/BuildResume.module.scss'
 import { DeleteIcon } from 'shared/icons/deleteIcon'
@@ -32,6 +32,8 @@ const WorkHistoryItem = ({
 
     const currentlyWorkHere = watch(`experience[${index}].currentlyWorkHere`)
     const isInternship = watch(`experience[${index}].isInternship`)
+
+    console.log(currentExperience)
 
     const handleFieldChange = () => {
         dispatch({
@@ -132,7 +134,6 @@ const WorkHistoryItem = ({
                 >
                     <div className={styles.checkBoxWrapper}>
                         <FormCheckBox
-                            onChange={handleFieldChange}
                             name={`experience[${index}].isInternship`}
                             defaultValue={experience.isInternship}
                         >
@@ -189,9 +190,9 @@ const WorkHistoryItem = ({
 
                 <WorkHistoryFormField
                     additionalClassName={styles.fullWidth}
-                    label="description"
                     name={`experience[${index}].description`}
-                    component={FormTextArea}
+                    label="description"
+                    component={FormRichTextEditor}
                     defaultValue={experience.description}
                 />
             </div>

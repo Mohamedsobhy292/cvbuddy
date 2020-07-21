@@ -10,7 +10,12 @@ const Summary = () => {
     return (
         <section className={styles.sectionContainer}>
             <SectionTitle>Summary</SectionTitle>
-            <p className={styles.summary}>{summary}</p>
+            <p
+                className={styles.summary}
+                dangerouslySetInnerHTML={{
+                    __html: summary,
+                }}
+            ></p>
         </section>
     )
 }

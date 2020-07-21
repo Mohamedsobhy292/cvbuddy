@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
-const initialDetails = {
+export const initialDetails = {
     firstName: 'Ricky',
     lastName: 'Metzger',
     email: 'oneRandomMail@gmail.com',
@@ -144,7 +144,8 @@ const reducer = (state, action) => {
     }
 
     if (action.type === 'UPDATE_CERTIFICATE_ITEM') {
-        const certificatesObject = [...state.userData.certificates]
+        const certificates = state.userData.certificates || []
+        const certificatesObject = [...certificates]
         const idx = action.payload.index
         certificatesObject[idx] = action.payload.certificates
 
@@ -158,7 +159,8 @@ const reducer = (state, action) => {
     }
 
     if (action.type === 'UPDATE_EDUCATION_FIELD') {
-        const educaitonObj = [...state.userData.education]
+        const education = state.userData.education || []
+        const educaitonObj = [...education]
         const idx = action.payload.index
         educaitonObj[idx] = action.payload.education
 
@@ -172,7 +174,8 @@ const reducer = (state, action) => {
     }
 
     if (action.type === 'UPDATE_SKILLS_FIELD') {
-        const skillsObj = [...state.userData.skills]
+        const skills = state.userData.skills || []
+        const skillsObj = [...skills]
         const idx = action.payload.index
         skillsObj[idx] = action.payload.skills
 
@@ -186,7 +189,8 @@ const reducer = (state, action) => {
     }
 
     if (action.type === 'UPDATE_LINKS_ITEM') {
-        const linksObj = [...state.userData.links]
+        const links = state.userData.links || []
+        const linksObj = [...links]
         const idx = action.payload.index
         linksObj[idx] = action.payload.links
 
@@ -200,7 +204,8 @@ const reducer = (state, action) => {
     }
 
     if (action.type === 'UPDATE_LANGUAGES_FIELD') {
-        const languagesObj = [...state.userData.languages]
+        const languages = state.userData.languages || []
+        const languagesObj = [...languages]
         const idx = action.payload.index
         languagesObj[idx] = action.payload.languages
 
@@ -291,7 +296,7 @@ const reducer = (state, action) => {
 
 const AppStateProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, {
-        userData: { ...initialDetails },
+        userData: {},
     })
 
     return (

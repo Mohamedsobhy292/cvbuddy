@@ -30,9 +30,12 @@ const Certificates = () => {
                                         {item?.year}
                                     </h4>
 
-                                    <ul className={styles.descriptionList}>
-                                        {item?.description}
-                                    </ul>
+                                    <p
+                                        className={styles.descriptionList}
+                                        dangerouslySetInnerHTML={{
+                                            __html: item?.description,
+                                        }}
+                                    ></p>
                                 </li>
                             )
                         })}

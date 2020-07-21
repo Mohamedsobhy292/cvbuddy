@@ -9,14 +9,19 @@ import { Links } from './links'
 import { Education } from './education'
 import { Languages } from './languages'
 import { Certificates } from './Certificates'
+import { initialDetails } from 'shared/context/appContext'
 
 const BuiledResumeForm = () => {
     const methods = useForm()
     const { reset } = methods
-    const { state } = useContext(AppContext)
+    const { state, dispatch } = useContext(AppContext)
 
     const Load = () => {
-        reset(state.userData)
+        reset(initialDetails)
+        dispatch({
+            type: 'RESET_USER_INFO',
+            payload: { ...initialDetails },
+        })
     }
 
     return (
