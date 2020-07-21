@@ -1,9 +1,8 @@
 import React, { useContext } from 'react'
 import classnames from 'classnames'
+import { useDebouncedCallback } from 'use-debounce'
 
 import { AppContext } from 'shared/context/appContext'
-
-import { FormTextArea } from 'shared/components/formComponents/formTextArea'
 
 import styles from 'pages/build-resume/BuildResume.module.scss'
 import { DeleteIcon } from 'shared/icons/deleteIcon'
@@ -28,7 +27,7 @@ const EducationItem = ({
 
     const currentEducation = watch(`education[${index}]`)
 
-    const handleFieldChange = () => {
+    const [handleFieldChange] = useDebouncedCallback(() => {
         dispatch({
             type: 'UPDATE_EDUCATION_FIELD',
             payload: {
@@ -37,7 +36,7 @@ const EducationItem = ({
                 index,
             },
         })
-    }
+    }, 1000)
 
     useDeepCompareEffect(handleFieldChange, [currentEducation])
 

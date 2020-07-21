@@ -12,6 +12,7 @@ import { CertificateFormField } from './certificateField'
 import { ArrowDownIcon } from 'shared/icons/arrowDownIcon'
 import { useDeepCompareEffect } from 'shared/hooks/useDeepCompareEffect'
 import { FormRichTextEditor } from 'shared/components/formComponents/formRichTextEditor'
+import { useDebouncedCallback } from 'use-debounce/lib'
 
 const CertificateItem = ({
     certificate,
@@ -28,9 +29,7 @@ const CertificateItem = ({
 
     const currentCertificate = watch(`certificates[${index}]`)
 
-    const val = watch('certificates')
-
-    const handleFieldChange = () => {
+    const [handleFieldChange] = useDebouncedCallback(() => {
         dispatch({
             type: 'UPDATE_CERTIFICATE_ITEM',
             payload: {
@@ -38,7 +37,7 @@ const CertificateItem = ({
                 index,
             },
         })
-    }
+    }, 1000)
 
     useDeepCompareEffect(handleFieldChange, [currentCertificate])
 

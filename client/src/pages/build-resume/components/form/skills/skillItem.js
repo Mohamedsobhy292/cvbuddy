@@ -7,6 +7,7 @@ import { useFormContext } from 'react-hook-form'
 import { AppContext } from 'shared/context/appContext'
 import { FormDropDown } from 'shared/components/formComponents/formDropDown'
 import { useDeepCompareEffect } from 'shared/hooks/useDeepCompareEffect'
+import { useDebouncedCallback } from 'use-debounce/lib'
 
 const SkillItem = ({ skill, index, remove, showSkillsLevel }) => {
     const methods = useFormContext()
@@ -15,7 +16,7 @@ const SkillItem = ({ skill, index, remove, showSkillsLevel }) => {
 
     const currentSkill = watch(`skills[${index}]`)
 
-    const handleFieldChange = () => {
+    const [handleFieldChange] = useDebouncedCallback(() => {
         dispatch({
             type: 'UPDATE_SKILLS_FIELD',
             payload: {
@@ -23,7 +24,7 @@ const SkillItem = ({ skill, index, remove, showSkillsLevel }) => {
                 index,
             },
         })
-    }
+    }, 1000)
 
     useDeepCompareEffect(handleFieldChange, [currentSkill])
 
