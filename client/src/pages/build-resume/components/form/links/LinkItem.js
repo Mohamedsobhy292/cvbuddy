@@ -1,44 +1,32 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { FormInput } from 'shared/components/formComponents/FormInput'
 import styles from 'pages/build-resume/BuildResume.module.scss'
 import { DeleteIcon } from 'shared/icons/deleteIcon'
 import { InputLabel } from 'shared/components/inputLabel'
-import { useFormContext } from 'react-hook-form'
-import { AppContext } from 'shared/context/appContext'
-import { useDeepCompareEffect } from 'shared/hooks/useDeepCompareEffect'
-import { useDebouncedCallback } from 'use-debounce/lib'
+import { LongArrowDown } from 'shared/icons/longArrowDown'
 
-const LinkItem = ({ website, index, remove }) => {
-    const methods = useFormContext()
-    const { watch } = methods
-    const { dispatch } = useContext(AppContext)
-
-    const currentLink = watch(`links[${index}]`)
-
-    const [handleFieldChange] = useDebouncedCallback(() => {
-        dispatch({
-            type: 'UPDATE_LINKS_ITEM',
-            payload: {
-                links: currentLink,
-                index,
-            },
-        })
-    }, 1000)
-
-    useDeepCompareEffect(handleFieldChange, [currentLink])
-
-    const handleRemoveSkill = () => {
-        dispatch({
-            type: 'REMOVE_LINKS_ITEM',
-            payload: {
-                index,
-            },
-        })
-    }
-
+const LinkItem = ({ website, index, remove, move }) => {
     return (
         <div className={styles.skillItem} key={index}>
             <div className={styles.skillInputContainer}>
+                <div className={styles.moveArrows}>
+                    <LongArrowDown
+                        className={styles.moveUpArrow}
+                        type="button"
+                        onClick={(e) => {
+                            e.stopPropagation()
+                            move(index, index - 1)
+                        }}
+                    />
+                    <LongArrowDown
+                        className={styles.moveDownArrow}
+                        type="button"
+                        onClick={(e) => {
+                            e.stopPropagation()
+                            move(index, index + 1)
+                        }}
+                    />
+                </div>
                 {index === 0 && <InputLabel>Website Label</InputLabel>}
 
                 <FormInput
@@ -59,7 +47,6 @@ const LinkItem = ({ website, index, remove }) => {
                 width="16px"
                 className={styles.deleteIcon}
                 onClick={() => {
-                    handleRemoveSkill(index)
                     remove(index)
                 }}
             />

@@ -6,12 +6,9 @@ const DropDown = ({ options, value, ...props }) => {
     return (
         <div className={styles.DropDownContainer}>
             <select className={styles.DropDown} {...props}>
-                {options.map((option) => {
+                {options.map((option, index) => {
                     return (
-                        <option
-                            value={option.value}
-                            selected={option.value === value}
-                        >
+                        <option key={index} value={option.value}>
                             {option.label}
                         </option>
                     )

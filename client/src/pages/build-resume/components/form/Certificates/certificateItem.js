@@ -1,16 +1,13 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import classnames from 'classnames'
-
-import { AppContext } from 'shared/context/appContext'
 
 import styles from 'pages/build-resume/BuildResume.module.scss'
 import { DeleteIcon } from 'shared/icons/deleteIcon'
 import { useFormContext } from 'react-hook-form'
 import { CertificateFormField } from './certificateField'
 import { ArrowDownIcon } from 'shared/icons/arrowDownIcon'
-import { useDeepCompareEffect } from 'shared/hooks/useDeepCompareEffect'
 import { FormRichTextEditor } from 'shared/components/formComponents/formRichTextEditor'
-import { useDebouncedCallback } from 'use-debounce/lib'
+import { LongArrowDown } from 'shared/icons/longArrowDown'
 
 const CertificateItem = ({
     certificate,
@@ -18,36 +15,14 @@ const CertificateItem = ({
     editMode,
     setEditMode,
     handleDelete,
+    move,
 }) => {
     const methods = useFormContext()
     const { watch } = methods
-    const { dispatch } = useContext(AppContext)
 
     const isOpen = editMode === index
 
     const currentCertificate = watch(`certificates[${index}]`)
-
-    const [handleFieldChange] = useDebouncedCallback(() => {
-        dispatch({
-            type: 'UPDATE_CERTIFICATE_ITEM',
-            payload: {
-                certificates: currentCertificate,
-                index,
-            },
-        })
-    }, 1000)
-
-    useDeepCompareEffect(handleFieldChange, [currentCertificate])
-
-    const handleRemoveEducation = () => {
-        dispatch({
-            type: 'REMOVE_CERTIFICATES_ITEM',
-            payload: {
-                name: 'certificates',
-                index,
-            },
-        })
-    }
 
     const toggle = () => {
         isOpen ? setEditMode(null) : setEditMode(index)
@@ -55,6 +30,25 @@ const CertificateItem = ({
 
     return (
         <div className={styles.experienceCard} key={index}>
+            <div className={styles.moveArrows}>
+                <LongArrowDown
+                    className={styles.moveUpArrow}
+                    type="button"
+                    onClick={(e) => {
+                        e.stopPropagation()
+                        move(index, index - 1)
+                    }}
+                />
+                <LongArrowDown
+                    className={styles.moveDownArrow}
+                    type="button"
+                    onClick={(e) => {
+                        e.stopPropagation()
+                        move(index, index + 1)
+                    }}
+                />
+            </div>
+
             {/* DATA */}
 
             {currentCertificate?.name && currentCertificate?.institution && (
@@ -87,7 +81,6 @@ const CertificateItem = ({
                             onClick={(e) => {
                                 e.stopPropagation()
                                 handleDelete(index)
-                                handleRemoveEducation()
                             }}
                         />
                     </div>

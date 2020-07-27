@@ -6,10 +6,12 @@ import { SkillItem } from './skillItem'
 import { PlusIcon } from 'shared/icons/plusIcon'
 import { FormCheckBox } from 'shared/components/formComponents/formCheckbox'
 import { AppContext } from 'shared/context/appContext'
+import { useDebouncedCallback } from 'use-debounce/lib'
+import { useDeepCompareEffect } from 'shared/hooks/useDeepCompareEffect'
 
 const Skills = () => {
     const { control, watch } = useFormContext()
-    const { fields: skills, append, remove } = useFieldArray({
+    const { fields: skills, append, remove, move } = useFieldArray({
         control,
         name: 'skills',
     })
@@ -26,6 +28,20 @@ const Skills = () => {
         })
     }, [showSkillsLevel, dispatch])
 
+    const skillsValue = watch('skills')
+
+    const [handleFieldChange] = useDebouncedCallback(() => {
+        dispatch({
+            type: 'UPDATE_USER_FIELD',
+            payload: {
+                name: 'skills',
+                value: skillsValue,
+            },
+        })
+    }, 1000)
+
+    useDeepCompareEffect(handleFieldChange, [skillsValue])
+
     return (
         <div className={styles.sectionContainer}>
             <div className={styles.titleWrapper}>
@@ -35,20 +51,26 @@ const Skills = () => {
                     in this section. List your most recent position first.
                 </p>
             </div>
+
             {/* DATA */}
-            {skills &&
-                !!skills.length &&
-                skills.map((item, index) => {
-                    return (
-                        <SkillItem
-                            showSkillsLevel={showSkillsLevel}
-                            skill={item}
-                            index={index}
-                            remove={remove}
-                            key={item.id}
-                        />
-                    )
-                })}
+
+            <div>
+                {skills &&
+                    !!skills.length &&
+                    skills.map((item, index) => {
+                        return (
+                            <SkillItem
+                                showSkillsLevel={showSkillsLevel}
+                                skill={item}
+                                index={index}
+                                remove={remove}
+                                move={move}
+                                key={item.id}
+                            />
+                        )
+                    })}
+            </div>
+            {/* DATA */}
 
             {skills && !!skills.length && (
                 <FormCheckBox
