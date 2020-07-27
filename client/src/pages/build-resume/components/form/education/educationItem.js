@@ -1,16 +1,13 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import classnames from 'classnames'
-import { useDebouncedCallback } from 'use-debounce'
-
-import { AppContext } from 'shared/context/appContext'
 
 import styles from 'pages/build-resume/BuildResume.module.scss'
 import { DeleteIcon } from 'shared/icons/deleteIcon'
 import { useFormContext } from 'react-hook-form'
 import { EducationFormField } from './educationFormField'
 import { ArrowDownIcon } from 'shared/icons/arrowDownIcon'
-import { useDeepCompareEffect } from 'shared/hooks/useDeepCompareEffect'
 import { FormRichTextEditor } from 'shared/components/formComponents/formRichTextEditor'
+import { LongArrowDown } from 'shared/icons/longArrowDown'
 
 const EducationItem = ({
     education,
@@ -18,37 +15,14 @@ const EducationItem = ({
     editMode,
     setEditMode,
     handleDelete,
+    move,
 }) => {
     const methods = useFormContext()
     const { watch } = methods
-    const { dispatch } = useContext(AppContext)
 
     const isOpen = editMode === index
 
     const currentEducation = watch(`education[${index}]`)
-
-    const [handleFieldChange] = useDebouncedCallback(() => {
-        dispatch({
-            type: 'UPDATE_EDUCATION_FIELD',
-            payload: {
-                name: 'education',
-                education: currentEducation,
-                index,
-            },
-        })
-    }, 1000)
-
-    useDeepCompareEffect(handleFieldChange, [currentEducation])
-
-    const handleRemoveEducation = () => {
-        dispatch({
-            type: 'REMOVE_EDUCATION_ITEM',
-            payload: {
-                name: 'education',
-                index,
-            },
-        })
-    }
 
     const toggle = () => {
         isOpen ? setEditMode(null) : setEditMode(index)
@@ -56,6 +30,25 @@ const EducationItem = ({
 
     return (
         <div className={styles.experienceCard} key={index}>
+            <div className={styles.moveArrows}>
+                <LongArrowDown
+                    className={styles.moveUpArrow}
+                    type="button"
+                    onClick={(e) => {
+                        e.stopPropagation()
+                        move(index, index - 1)
+                    }}
+                />
+                <LongArrowDown
+                    className={styles.moveDownArrow}
+                    type="button"
+                    onClick={(e) => {
+                        e.stopPropagation()
+                        move(index, index + 1)
+                    }}
+                />
+            </div>
+
             {/* DATA */}
 
             {currentEducation?.school && currentEducation?.degree && (
@@ -89,7 +82,6 @@ const EducationItem = ({
                             onClick={(e) => {
                                 e.stopPropagation()
                                 handleDelete(index)
-                                handleRemoveEducation()
                             }}
                         />
                     </div>

@@ -3,44 +3,31 @@ import { FormInput } from 'shared/components/formComponents/FormInput'
 import styles from 'pages/build-resume/BuildResume.module.scss'
 import { DeleteIcon } from 'shared/icons/deleteIcon'
 import { InputLabel } from 'shared/components/inputLabel'
-import { useFormContext } from 'react-hook-form'
-import { AppContext } from 'shared/context/appContext'
 import { FormDropDown } from 'shared/components/formComponents/formDropDown'
-import { useDeepCompareEffect } from 'shared/hooks/useDeepCompareEffect'
-import { useDebouncedCallback } from 'use-debounce/lib'
+import { LongArrowDown } from 'shared/icons/longArrowDown'
 
-const LanguageItem = ({ language, index, remove }) => {
-    const methods = useFormContext()
-
-    const { watch } = methods
-    const { dispatch } = useContext(AppContext)
-
-    const currentLanguage = watch(`languages[${index}]`)
-
-    const [handleFieldChange] = useDebouncedCallback(() => {
-        dispatch({
-            type: 'UPDATE_LANGUAGES_FIELD',
-            payload: {
-                languages: currentLanguage,
-                index,
-            },
-        })
-    }, 1000)
-
-    useDeepCompareEffect(handleFieldChange, [currentLanguage])
-
-    const handleRemoveSkill = () => {
-        dispatch({
-            type: 'REMOVE_LANGUAGES_ITEM',
-            payload: {
-                index,
-            },
-        })
-    }
-
+const LanguageItem = ({ language, index, remove, move }) => {
     return (
         <div className={styles.skillItem} key={index}>
             <div className={styles.skillInputContainer}>
+                <div className={styles.moveArrows}>
+                    <LongArrowDown
+                        className={styles.moveUpArrow}
+                        type="button"
+                        onClick={(e) => {
+                            e.stopPropagation()
+                            move(index, index - 1)
+                        }}
+                    />
+                    <LongArrowDown
+                        className={styles.moveDownArrow}
+                        type="button"
+                        onClick={(e) => {
+                            e.stopPropagation()
+                            move(index, index + 1)
+                        }}
+                    />
+                </div>
                 {index === 0 && <InputLabel>Language name</InputLabel>}
 
                 <FormInput
@@ -65,7 +52,6 @@ const LanguageItem = ({ language, index, remove }) => {
                             value: 'advanced',
                         },
                     ]}
-                    additionalClassName={styles.skillsLevelField}
                     name={`languages[${index}].level`}
                     defaultValue={language.level}
                 />
@@ -75,7 +61,6 @@ const LanguageItem = ({ language, index, remove }) => {
                 width="16px"
                 className={styles.deleteIcon}
                 onClick={() => {
-                    handleRemoveSkill(index)
                     remove(index)
                 }}
             />

@@ -1,6 +1,5 @@
 import React, { useContext, useRef } from 'react'
 import classnames from 'classnames'
-import { useDebouncedCallback } from 'use-debounce'
 
 import { AppContext } from 'shared/context/appContext'
 
@@ -12,10 +11,11 @@ import { useFormContext } from 'react-hook-form'
 import { FormCheckBox } from 'shared/components/formComponents/formCheckbox'
 import { WorkHistoryFormField } from './workHistoryFormField'
 import { ArrowDownIcon } from 'shared/icons/arrowDownIcon'
+import { LongArrowDown } from 'shared/icons/longArrowDown'
 import { Label } from 'shared/components/Label'
-import { useDeepCompareEffect } from 'shared/hooks/useDeepCompareEffect'
 
 const WorkHistoryItem = ({
+    move,
     experience,
     index,
     editMode,
@@ -24,7 +24,6 @@ const WorkHistoryItem = ({
 }) => {
     const methods = useFormContext()
     const { watch } = methods
-    const { dispatch } = useContext(AppContext)
     const ref = useRef()
 
     const isOpen = editMode === index
@@ -32,30 +31,6 @@ const WorkHistoryItem = ({
     const currentExperience = watch(`experience[${index}]`)
 
     const currentlyWorkHere = watch(`experience[${index}].currentlyWorkHere`)
-    const isInternship = watch(`experience[${index}].isInternship`)
-
-    const [handleFieldChange] = useDebouncedCallback(() => {
-        dispatch({
-            type: 'UPDATE_EXPERIENCE_FIELD',
-            payload: {
-                name: 'experience',
-                experience: currentExperience,
-                index,
-            },
-        })
-    }, 1000)
-
-    useDeepCompareEffect(handleFieldChange, [currentExperience])
-
-    const handleRemoveExperience = () => {
-        dispatch({
-            type: 'REMOVE_EXPERIENCE_ITEM',
-            payload: {
-                name: 'experience',
-                index,
-            },
-        })
-    }
 
     const toggle = () => {
         isOpen ? setEditMode(null) : setEditMode(index)
@@ -63,14 +38,32 @@ const WorkHistoryItem = ({
 
     return (
         <div className={styles.experienceCard} key={index} ref={ref}>
+            <div className={styles.moveArrows}>
+                <LongArrowDown
+                    className={styles.moveUpArrow}
+                    type="button"
+                    onClick={(e) => {
+                        e.stopPropagation()
+                        move(index, index - 1)
+                    }}
+                />
+                <LongArrowDown
+                    className={styles.moveDownArrow}
+                    type="button"
+                    onClick={(e) => {
+                        e.stopPropagation()
+                        move(index, index + 1)
+                    }}
+                />
+            </div>
             {/* DATA */}
 
             {currentExperience?.title && currentExperience?.company && (
                 <div onClick={toggle} className={styles.dataContainer}>
                     <h3 className={styles.experienceTitle}>
-                        {currentExperience?.title} at{' '}
+                        {currentExperience.title} at{' '}
                         {currentExperience?.company}
-                        {isInternship && (
+                        {currentExperience.isInternship && (
                             <Label className={styles.internshipLabel}>
                                 INTERNSHIP
                             </Label>
@@ -102,7 +95,6 @@ const WorkHistoryItem = ({
                             onClick={(e) => {
                                 e.stopPropagation()
                                 handleDelete(index)
-                                handleRemoveExperience()
                             }}
                         />
                     </div>
@@ -173,7 +165,6 @@ const WorkHistoryItem = ({
                     >
                         <div className={styles.checkBoxWrapper}>
                             <FormCheckBox
-                                onChange={handleFieldChange}
                                 name={`experience[${index}].currentlyWorkHere`}
                                 defaultValue={experience.currentlyWorkHere}
                             >

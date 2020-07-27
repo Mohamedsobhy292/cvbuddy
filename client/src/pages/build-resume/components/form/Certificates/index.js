@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useContext } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import styles from 'pages/build-resume/BuildResume.module.scss'
 import { Button } from 'shared/components/button'
@@ -6,17 +6,35 @@ import { useFieldArray, useFormContext } from 'react-hook-form'
 import { CertificateItem } from './certificateItem'
 import { useOnClickOutside } from 'shared/hooks/useClickOutside'
 import { PlusIcon } from 'shared/icons/plusIcon'
+import { useDebouncedCallback } from 'use-debounce/lib'
+import { useDeepCompareEffect } from 'shared/hooks/useDeepCompareEffect'
+import { AppContext } from 'shared/context/appContext'
 
 const Certificates = () => {
     const [editMode, setEditMode] = useState(false)
-    const { control } = useFormContext()
-    const { fields: certificates, append, remove } = useFieldArray({
+    const { control, watch } = useFormContext()
+    const { dispatch } = useContext(AppContext)
+    const { fields: certificates, append, remove, move } = useFieldArray({
         control,
         name: 'certificates',
     })
 
     const ref = useRef()
     useOnClickOutside(ref, () => setEditMode(false))
+
+    const certificatesValue = watch('certificates')
+
+    const [handleFieldChange] = useDebouncedCallback(() => {
+        dispatch({
+            type: 'UPDATE_USER_FIELD',
+            payload: {
+                name: 'certificates',
+                value: certificatesValue,
+            },
+        })
+    }, 1000)
+
+    useDeepCompareEffect(handleFieldChange, [certificatesValue])
 
     const handleAdd = () => {
         append({
@@ -35,21 +53,24 @@ const Certificates = () => {
                 </p>
             </div>
 
-            {/* DATA */}
-            {certificates &&
-                !!certificates.length &&
-                certificates.map((item, index) => {
-                    return (
-                        <CertificateItem
-                            editMode={editMode}
-                            setEditMode={setEditMode}
-                            certificate={item}
-                            index={index}
-                            remove={remove}
-                            key={item.id}
-                        />
-                    )
-                })}
+            <div>
+                {/* DATA */}
+                {certificates &&
+                    !!certificates.length &&
+                    certificates.map((item, index) => {
+                        return (
+                            <CertificateItem
+                                editMode={editMode}
+                                setEditMode={setEditMode}
+                                certificate={item}
+                                index={index}
+                                handleDelete={remove}
+                                move={move}
+                                key={item.id}
+                            />
+                        )
+                    })}
+            </div>
 
             {/* ADD BUTTON */}
 

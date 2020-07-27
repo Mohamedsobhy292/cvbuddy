@@ -17,11 +17,11 @@ const BuiledResumeForm = () => {
     const { dispatch } = useContext(AppContext)
 
     const Load = () => {
-        reset(initialDetails)
         dispatch({
             type: 'RESET_USER_INFO',
             payload: { ...initialDetails },
         })
+        reset(initialDetails)
     }
 
     return (

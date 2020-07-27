@@ -93,10 +93,33 @@
     background: lighten($bg-color, 2%);
     border: 1px solid $border-color;
     margin-bottom: 20px;
+    margin-left: 30px;
     border-radius: 4px;
+
+    .moveArrows {
+        top: 20px;
+        left: -30px;
+    }
 
     &:last-of-type {
         margin-bottom: 0;
+        .moveDownArrow {
+            cursor: not-allowed;
+            opacity: 0.2;
+        }
+    }
+
+    &:first-of-type {
+        .moveUpArrow {
+            opacity: 0.2;
+            cursor: not-allowed;
+        }
+    }
+
+    &:only-child {
+        .moveArrows {
+            display: none;
+        }
     }
 }
 
@@ -143,7 +166,7 @@
 
 .checkBoxWrapper {
     display: flex;
-    margin-top: 15px;
+    margin-top: 25px;
     font-size: 12px;
     align-items: center;
 
@@ -193,6 +216,7 @@
     display: flex;
     position: relative;
     align-items: center;
+    margin-left: 30px;
 
     &:first-of-type {
         .deleteIcon {
@@ -200,8 +224,30 @@
         }
     }
 
+    .moveArrows {
+        bottom: 10px;
+        left: -30px;
+    }
+
     &:last-of-type {
         margin-bottom: 0;
+        .moveDownArrow {
+            cursor: not-allowed;
+            opacity: 0.2;
+        }
+    }
+
+    &:first-of-type {
+        .moveUpArrow {
+            opacity: 0.2;
+            cursor: not-allowed;
+        }
+    }
+
+    &:only-child {
+        .moveArrows {
+            display: none;
+        }
     }
 }
 
@@ -236,4 +282,24 @@
 
 .internshipLabel {
     margin-left: 12px;
+}
+
+.moveArrows {
+    position: absolute;
+    fill: $text-color3;
+}
+
+.moveDownArrow {
+    width: 12px;
+    display: block;
+    margin-top: -6px;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.moveUpArrow {
+    width: 12px;
+    transform: rotate(180deg);
+    opacity: 0.7;
+    cursor: pointer;
 }
