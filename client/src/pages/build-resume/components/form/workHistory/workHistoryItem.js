@@ -37,7 +37,7 @@ const WorkHistoryItem = ({
     }
 
     return (
-        <div className={styles.experienceCard} key={index} ref={ref}>
+        <div className={styles.experienceCard} ref={ref}>
             <div className={styles.moveArrows}>
                 <LongArrowDown
                     className={styles.moveUpArrow}
@@ -57,52 +57,45 @@ const WorkHistoryItem = ({
                 />
             </div>
             {/* DATA */}
+            <div onClick={toggle} className={styles.dataContainer}>
+                <h3 className={styles.experienceTitle}>
+                    {currentExperience?.title &&
+                        `${currentExperience?.title} at`}
+                    {currentExperience?.company}
+                    {currentExperience?.isInternship && (
+                        <Label className={styles.internshipLabel}>
+                            INTERNSHIP
+                        </Label>
+                    )}
+                </h3>
+                <h4 className={styles.duration}>
+                    {currentExperience?.startDate &&
+                        `${currentExperience?.startDate} - `}
+                    {currentExperience?.currentlyWorkHere
+                        ? 'present'
+                        : currentExperience?.endDate}
+                </h4>
 
-            {currentExperience?.title && currentExperience?.company && (
-                <div onClick={toggle} className={styles.dataContainer}>
-                    <h3 className={styles.experienceTitle}>
-                        {currentExperience.title} at{' '}
-                        {currentExperience?.company}
-                        {currentExperience.isInternship && (
-                            <Label className={styles.internshipLabel}>
-                                INTERNSHIP
-                            </Label>
-                        )}
-                    </h3>
-                    <h4 className={styles.duration}>
-                        {currentExperience?.startDate} -{' '}
-                        {currentExperience?.currentlyWorkHere
-                            ? 'present'
-                            : currentExperience?.endDate}
-                    </h4>
+                <div className={styles.iconsContainer}>
+                    <ArrowDownIcon
+                        width="16px"
+                        className={classnames(styles.arrowDown, styles.icon, {
+                            [styles.active]: isOpen,
+                        })}
+                        onClick={toggle}
+                    />
 
-                    <div className={styles.iconsContainer}>
-                        <ArrowDownIcon
-                            width="16px"
-                            className={classnames(
-                                styles.arrowDown,
-                                styles.icon,
-                                {
-                                    [styles.active]: isOpen,
-                                }
-                            )}
-                            onClick={toggle}
-                        />
-
-                        <DeleteIcon
-                            width="16px"
-                            className={styles.icon}
-                            onClick={(e) => {
-                                e.stopPropagation()
-                                handleDelete(index)
-                            }}
-                        />
-                    </div>
+                    <DeleteIcon
+                        width="16px"
+                        className={styles.icon}
+                        onClick={(e) => {
+                            e.stopPropagation()
+                            handleDelete(index)
+                        }}
+                    />
                 </div>
-            )}
-
+            </div>
             {/* EDIT MODE  */}
-
             <div
                 className={classnames(styles.formContainer, {
                     [styles.hidden]: !isOpen,

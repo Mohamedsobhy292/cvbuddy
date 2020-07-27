@@ -1,5 +1,4 @@
 import React, { useState, useRef, useContext } from 'react'
-import { v4 as uuidv4 } from 'uuid'
 import styles from 'pages/build-resume/BuildResume.module.scss'
 import { WorkHistoryItem } from './workHistoryItem'
 import { Button } from 'shared/components/button'
@@ -38,16 +37,7 @@ const WorkHistory = () => {
     useDeepCompareEffect(handleFieldChange, [experienceValue])
 
     const handleAdd = () => {
-        append({
-            key: uuidv4(),
-            title: 'new job role',
-            company: 'big company',
-            city: '',
-            startDate: '',
-            endDate: '',
-            currentlyWorkHere: false,
-            description: '',
-        })
+        append({})
         setEditMode(experience.length)
     }
 

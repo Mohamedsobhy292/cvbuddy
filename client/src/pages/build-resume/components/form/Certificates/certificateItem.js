@@ -51,41 +51,33 @@ const CertificateItem = ({
 
             {/* DATA */}
 
-            {currentCertificate?.name && currentCertificate?.institution && (
-                <div onClick={toggle} className={styles.dataContainer}>
-                    <h3 className={styles.experienceTitle}>
-                        {currentCertificate?.name}
-                    </h3>
-                    <h3 className={styles.secondaryTitle}>
-                        {currentCertificate?.institution}
-                    </h3>
-                    <h4 className={styles.duration}>
-                        {currentCertificate?.year}
-                    </h4>
-                    <div className={styles.iconsContainer}>
-                        <ArrowDownIcon
-                            width="16px"
-                            className={classnames(
-                                styles.arrowDown,
-                                styles.icon,
-                                {
-                                    [styles.active]: isOpen,
-                                }
-                            )}
-                            onClick={toggle}
-                        />
+            <div onClick={toggle} className={styles.dataContainer}>
+                <h3 className={styles.experienceTitle}>
+                    {currentCertificate?.name}
+                </h3>
+                <h3 className={styles.secondaryTitle}>
+                    {currentCertificate?.institution}
+                </h3>
+                <h4 className={styles.duration}>{currentCertificate?.year}</h4>
+                <div className={styles.iconsContainer}>
+                    <ArrowDownIcon
+                        width="16px"
+                        className={classnames(styles.arrowDown, styles.icon, {
+                            [styles.active]: isOpen,
+                        })}
+                        onClick={toggle}
+                    />
 
-                        <DeleteIcon
-                            width="16px"
-                            className={styles.icon}
-                            onClick={(e) => {
-                                e.stopPropagation()
-                                handleDelete(index)
-                            }}
-                        />
-                    </div>
+                    <DeleteIcon
+                        width="16px"
+                        className={styles.icon}
+                        onClick={(e) => {
+                            e.stopPropagation()
+                            handleDelete(index)
+                        }}
+                    />
                 </div>
-            )}
+            </div>
 
             {/* EDIT MODE  */}
 

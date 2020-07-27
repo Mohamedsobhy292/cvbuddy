@@ -30,6 +30,7 @@ const EducationItem = ({
 
     return (
         <div className={styles.experienceCard} key={index}>
+            {/* MOVE ARROWS */}
             <div className={styles.moveArrows}>
                 <LongArrowDown
                     className={styles.moveUpArrow}
@@ -51,42 +52,37 @@ const EducationItem = ({
 
             {/* DATA */}
 
-            {currentEducation?.school && currentEducation?.degree && (
-                <div onClick={toggle} className={styles.dataContainer}>
-                    <h3 className={styles.experienceTitle}>
-                        {currentEducation?.school}
-                    </h3>
-                    <h3 className={styles.secondaryTitle}>
-                        {currentEducation?.degree}
-                    </h3>
-                    <h4 className={styles.duration}>
-                        {currentEducation?.startDate} -{' '}
-                        {currentEducation?.endDate}
-                    </h4>
-                    <div className={styles.iconsContainer}>
-                        <ArrowDownIcon
-                            width="16px"
-                            className={classnames(
-                                styles.arrowDown,
-                                styles.icon,
-                                {
-                                    [styles.active]: isOpen,
-                                }
-                            )}
-                            onClick={toggle}
-                        />
+            <div onClick={toggle} className={styles.dataContainer}>
+                <h3 className={styles.experienceTitle}>
+                    {currentEducation?.school}
+                </h3>
+                <h3 className={styles.secondaryTitle}>
+                    {currentEducation?.degree}
+                </h3>
+                <h4 className={styles.duration}>
+                    {currentEducation?.startDate &&
+                        `${currentEducation?.startDate} -`}{' '}
+                    {currentEducation?.endDate}
+                </h4>
+                <div className={styles.iconsContainer}>
+                    <ArrowDownIcon
+                        width="16px"
+                        className={classnames(styles.arrowDown, styles.icon, {
+                            [styles.active]: isOpen,
+                        })}
+                        onClick={toggle}
+                    />
 
-                        <DeleteIcon
-                            width="16px"
-                            className={styles.icon}
-                            onClick={(e) => {
-                                e.stopPropagation()
-                                handleDelete(index)
-                            }}
-                        />
-                    </div>
+                    <DeleteIcon
+                        width="16px"
+                        className={styles.icon}
+                        onClick={(e) => {
+                            e.stopPropagation()
+                            handleDelete(index)
+                        }}
+                    />
                 </div>
-            )}
+            </div>
 
             {/* EDIT MODE  */}
 
