@@ -1,8 +1,7 @@
 var express = require('express')
 const puppeteer = require('puppeteer')
 const qs = require('qs')
-
-// const { URL } = require('url')
+const mongoose = require('mongoose')
 
 var router = express.Router()
 
@@ -14,8 +13,15 @@ async function printPDF(data) {
         waitUntil: 'networkidle0',
     })
 
+    await page.emulateMediaType('screen')
+
+    const height = await page.evaluate(
+        () => document.documentElement.offsetHeight
+    )
     const pdf = await page.pdf({
         format: 'A4',
+        displayHeaderFooter: false,
+        height: height + 'px',
         printBackground: true,
     })
 
