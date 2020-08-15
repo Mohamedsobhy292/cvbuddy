@@ -5,9 +5,22 @@ var cookieParser = require('cookie-parser')
 var logger = require('morgan')
 var cors = require('cors')
 
-var indexRouter = require('./routes/index')
+const mongoose = require('mongoose')
+require('dotenv').config()
+
+mongoose.connect(process.env.DATABASE_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
+
+const db = mongoose.connection
+
+db.on('error', (error) => console.error(error))
+db.once('open', () => console.log('connected to database'))
 
 var app = express()
+
+require('./routes')(app)
 
 app.use(logger('dev'))
 app.use(express.json())
@@ -15,8 +28,6 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(cors())
-
-app.use('/', indexRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

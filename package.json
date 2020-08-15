@@ -1,0 +1,16 @@
+{
+    "name": "cvbuddy",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "git@github.com:Mohamedsobhy292/cvbuddy.git",
+    "author": "Mohamed Sobhy <mohamedsobhy292@gmail.com>",
+    "license": "MIT",
+    "dependencies": {
+        "concurrently": "^5.3.0"
+    },
+    "scripts": {
+        "start:client": "cd ./client && yarn start",
+        "start:server": "cd ./server && yarn start",
+        "start": "concurrently \"npm run start:client\" \"npm run start:server\""
+    }
+}

@@ -66,6 +66,91 @@ export const initialDetails = {
         },
         {
             id: uuidv4(),
+            name: 'Mobile apps',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'Mobile apps',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'Mobile apps',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'Mobile apps',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'Mobile apps',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'Mobile apps',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'Mobile apps',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'Mobile apps',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'Mobile apps',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'Mobile apps',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'Mobile apps',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'Mobile apps',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'Mobile apps',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'Mobile apps',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'Mobile apps',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'Mobile apps',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'Mobile apps',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
             name: 'Social Network',
             level: 'beginner',
         },
@@ -100,6 +185,116 @@ export const initialDetails = {
         },
     ],
     languages: [
+        {
+            id: uuidv4(),
+            name: 'English',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'English',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'English',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'English',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'English',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'English',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'English',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'English',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'English',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'English',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'English',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'English',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'English',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'English',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'English',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'English',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'English',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'English',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'English',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'English',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'English',
+            level: 'beginner',
+        },
+        {
+            id: uuidv4(),
+            name: 'English',
+            level: 'beginner',
+        },
         {
             id: uuidv4(),
             name: 'English',
