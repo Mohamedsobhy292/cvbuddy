@@ -1,17 +1,29 @@
 const User = require('./userModel')
 
-const getUsers = async (req, res) => {
+exports.getUsers = async (req, res) => {
     try {
-        const users = await User.find()
+        const users = await User.find({})
+        console.log(users)
         res.json(users)
     } catch (e) {
         console.log(e)
-        console.log('hamosha')
+        console.log('hamooksha')
     }
 }
 
-const userController = {
-    getUsers,
-}
+exports.createUser = async (req, res) => {
+    console.log(req.body)
+    const user = new User({
+        email: req.body.email,
+        password: req.body.password,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+    })
 
-module.exports = userController
+    try {
+        const newuser = await user.save()
+        res.json(newuser)
+    } catch (e) {
+        res.json(e)
+    }
+}

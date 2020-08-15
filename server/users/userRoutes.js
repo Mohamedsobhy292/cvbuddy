@@ -1,8 +1,9 @@
-const userController = require('../users/userController')
+const userController = require('./userController')
 const express = require('express')
 const router = express.Router()
 
 router.get('/', userController.getUsers)
+router.post('/', userController.createUser)
 
 // router.get('/:id', (req, res) => {})
 

@@ -1,11 +1,13 @@
 var express = require('express')
+const router = express.Router()
+
 const puppeteer = require('puppeteer')
-const users = require('./users')
+const users = require('../users')
 
 module.exports = function (app) {
     app.use(express.json())
-
-    app.use('/users', users)
+    app.use('/', router)
+    app.use('/users', users.routes)
 }
 
 // async function printPDF(data) {
