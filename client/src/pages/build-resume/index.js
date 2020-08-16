@@ -27,7 +27,7 @@ const BuildResume = () => {
                 const blob = new Blob([response.data], {
                     type: 'application/pdf',
                 })
-                var blobURL = URL.createObjectURL(blob)
+                const blobURL = URL.createObjectURL(blob)
 
                 window.open(blobURL)
 

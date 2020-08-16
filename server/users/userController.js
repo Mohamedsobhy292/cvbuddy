@@ -1,29 +1,25 @@
 const User = require('./userModel')
+const UserRepo = require('./userRepo')
+const userService = require('./userService')
 
 exports.getUsers = async (req, res) => {
     try {
-        const users = await User.find({})
-        console.log(users)
+        const users = await UserRepo.findAllUsers()
         res.json(users)
     } catch (e) {
         console.log(e)
-        console.log('hamooksha')
     }
 }
 
 exports.createUser = async (req, res) => {
-    console.log(req.body)
-    const user = new User({
-        email: req.body.email,
-        password: req.body.password,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-    })
-
+    const user = {
+        ...req.body,
+        password: await userService.cryptPassword(req.body.password),
+    }
     try {
-        const newuser = await user.save()
-        res.json(newuser)
+        const createNewUser = await UserRepo.createNewUser(user)
+        res.json(createNewUser)
     } catch (e) {
-        res.json(e)
+        res.status(403).send({ error: 403, message: 'check your credintials' })
     }
 }
