@@ -19,3 +19,7 @@ exports.createNewUser = async (userObj) => {
         throw 'error creating new user'
     }
 }
+
+exports.findUserByEmail = async (email) => {
+    return User.findOne({ email })
+}
