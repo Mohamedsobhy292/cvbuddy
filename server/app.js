@@ -4,11 +4,17 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const cors = require('cors')
+const passport = require('passport')
+const cookieSession = require('cookie-session')
 
 require('dotenv').config()
 require('./db')
 
 const app = express()
+
+// passport
+require('./config/passport')
+app.use(passport.initialize())
 
 require('./routes')(app)
 

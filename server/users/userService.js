@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt')
 const Joi = require('joi')
 const userRepo = require('./userRepo')
+
 const saltRounds = 10
 
 const schema = Joi.object().keys({

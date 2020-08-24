@@ -64,6 +64,15 @@ const ChooseTemplate = () => {
                     <Arrow />
                 </span>
             </Link>
+            <a
+                href="http://localhost:4000/users/login/google"
+                className={styles.proceedBtn}
+            >
+                LOGIN WITH GOOGLE
+                <span className={styles.arrow}>
+                    <Arrow />
+                </span>
+            </a>
         </div>
     )
 }

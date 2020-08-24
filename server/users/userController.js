@@ -3,6 +3,9 @@ const UserRepo = require('./userRepo')
 const userService = require('./userService')
 
 exports.getUsers = async (req, res) => {
+    console.log('Cookies: ', req.cookies)
+    console.log('Signed Cookies: ', req.signedCookies)
+
     try {
         const users = await UserRepo.findAllUsers()
         res.json(users)
@@ -17,7 +20,6 @@ exports.createUser = async (req, res) => {
     }
 
     const userValidationErrors = await userService.validateUser(user)
-    console.log('userValidationErrors ===========>', userValidationErrors)
 
     if (userValidationErrors) {
         return res.status(403).send({
