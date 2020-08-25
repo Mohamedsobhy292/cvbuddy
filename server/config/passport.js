@@ -12,12 +12,15 @@ const jwtOptions = {
 }
 
 passport.serializeUser((user, done) => {
+    console.log('bla bla bla')
     done(null, user.id)
 })
 
 passport.deserializeUser((id, done) => {
+    console.log('bla bla bla')
     User.findById(id)
         .then((user) => {
+            console.log('bla bla bla')
             done(null, user)
         })
         .catch((e) => {
@@ -25,29 +28,15 @@ passport.deserializeUser((id, done) => {
         })
 })
 
-// Generate an Access Token for the given User ID
-function generateAccessToken(userId) {
-    const expiresIn = '1 hour'
-    const issuer = process.env.TOKEN_ISS
-    const secret = process.env.TOKEN_SECRET
-
-    const token = jwt.sign({}, secret, {
-        expiresIn: expiresIn,
-        issuer: issuer,
-        subject: userId.toString(),
-    })
-
-    return token
-}
-
 // JWT STRATEGY
 
 passport.use(
-    new passportJwt.Strategy(jwtOptions, (payload, done) => {
-        const user = users.getUserById(parseInt(payload.sub))
+    new passportJwt.Strategy(jwtOptions, async (payload, done) => {
+        const user = await User.findById(payload.sub)
         if (user) {
             return done(null, user, payload)
         }
+        console.log('mafesh user')
         return done()
     })
 )
@@ -62,7 +51,7 @@ passport.use(
             callbackURL: '/users/login/google/callback',
         },
         async function (accessToken, refreshToken, profile, cb) {
-            console.log(accessToken)
+            console.log(accessToken, 'accessToken')
 
             //check if user already exists in our db with the given profile ID
             const currentUser = await User.findOne({
@@ -73,8 +62,6 @@ passport.use(
             })
 
             if (currentUser) {
-                console.log('already user ===========================')
-                console.log('accessToken', accessToken)
                 //if we already have a record with the given profile ID
                 return cb(null, currentUser, {
                     accessToken,

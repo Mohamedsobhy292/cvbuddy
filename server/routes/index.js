@@ -35,7 +35,6 @@ module.exports = function (app) {
 // }
 
 // router.get('/', async function (req, res) {
-//     console.log(req.query.userData)
 //     const pdf = await printPDF(req.query.userData)
 //     res.contentType('application/pdf')
 

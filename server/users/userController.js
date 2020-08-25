@@ -3,9 +3,6 @@ const UserRepo = require('./userRepo')
 const userService = require('./userService')
 
 exports.getUsers = async (req, res) => {
-    console.log('Cookies: ', req.cookies)
-    console.log('Signed Cookies: ', req.signedCookies)
-
     try {
         const users = await UserRepo.findAllUsers()
         res.json(users)
