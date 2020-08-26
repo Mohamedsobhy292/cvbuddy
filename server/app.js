@@ -5,7 +5,6 @@ const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const cors = require('cors')
 const passport = require('passport')
-const cookieSession = require('cookie-session')
 
 require('dotenv').config()
 require('./db')

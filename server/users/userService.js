@@ -1,15 +1,10 @@
 const bcrypt = require('bcrypt')
-const Joi = require('joi')
+
+const jwt = require('jsonwebtoken')
 const userRepo = require('./userRepo')
+const { userSchema } = require('./userSchema')
 
 const saltRounds = 10
-
-const schema = Joi.object().keys({
-    firstName: Joi.string().min(2).max(30).required(),
-    lastName: Joi.string().min(2).max(30).required(),
-    email: Joi.string().min(2).max(30).required(),
-    password: Joi.string().min(6).max(30).required(),
-})
 
 exports.cryptPassword = async (password) => {
     const hashedPassword = await bcrypt.hash(password, saltRounds)
@@ -29,6 +24,20 @@ exports.validateUser = async (user) => {
         }
     }
 
-    const { error } = schema.validate(user)
+    const { error } = userSchema.validate(user)
     return error
+}
+
+// Generate an Access Token for the given User ID
+exports.generateAccessToken = async (userId) => {
+    const issuer = process.env.TOKEN_ISS
+    const secret = process.env.TOKEN_SECRET
+
+    const token = jwt.sign({}, secret, {
+        expiresIn: Date.now() + 7 * 1000 * 60 * 60 * 24, // ADD ONE WEEK
+        issuer: issuer,
+        subject: userId.toString(),
+    })
+
+    return token
 }

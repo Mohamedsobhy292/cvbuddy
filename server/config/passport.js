@@ -3,7 +3,7 @@ const passportJwt = require('passport-jwt')
 const GoogleStrategy = require('passport-google-oauth20').Strategy
 const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, SESSION_SECRET } = process.env
 
-const User = require('../users/userModel')
+const UserRepo = require('../users/userRepo')
 
 const jwtOptions = {
     jwtFromRequest: passportJwt.ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -12,15 +12,12 @@ const jwtOptions = {
 }
 
 passport.serializeUser((user, done) => {
-    console.log('bla bla bla')
     done(null, user.id)
 })
 
 passport.deserializeUser((id, done) => {
-    console.log('bla bla bla')
-    User.findById(id)
+    UserRepo.findUserById(id)
         .then((user) => {
-            console.log('bla bla bla')
             done(null, user)
         })
         .catch((e) => {
@@ -32,11 +29,10 @@ passport.deserializeUser((id, done) => {
 
 passport.use(
     new passportJwt.Strategy(jwtOptions, async (payload, done) => {
-        const user = await User.findById(payload.sub)
+        const user = await UserRepo.findUserById(payload.sub)
         if (user) {
             return done(null, user, payload)
         }
-        console.log('mafesh user')
         return done()
     })
 )
@@ -51,10 +47,8 @@ passport.use(
             callbackURL: '/users/login/google/callback',
         },
         async function (accessToken, refreshToken, profile, cb) {
-            console.log(accessToken, 'accessToken')
-
             //check if user already exists in our db with the given profile ID
-            const currentUser = await User.findOne({
+            const currentUser = await UserRepo.findOne({
                 $or: [
                     { 'google.id': profile.id },
                     { email: profile._json.email },
@@ -68,23 +62,11 @@ passport.use(
                 })
             }
             //if not, create a new user
-            new User({
-                firstName: profile._json.given_name,
-                lastName: profile._json.family_name,
-                email: profile._json.email,
-                google: {
-                    id: profile.id,
-                    firstName: profile._json.given_name,
-                    lastName: profile._json.family_name,
-                    email: profile._json.email,
-                },
-            })
-                .save()
-                .then((newUser) => {
-                    return cb(null, newUser, {
-                        accessToken,
-                    })
+            UserRepo.createNewGoogleUser(profile).then((newUser) => {
+                return cb(null, newUser, {
+                    accessToken,
                 })
+            })
         }
     )
 )
