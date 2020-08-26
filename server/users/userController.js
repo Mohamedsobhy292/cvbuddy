@@ -42,5 +42,5 @@ exports.createUser = async (req, res) => {
 
 exports.redirectWithToken = async (req, res) => {
     const accessToken = await userService.generateAccessToken(req.user.id)
-    return res.redirect(`${frontEndUrl}?token=${accessToken}`)
+    return res.redirect(`${frontEndUrl}/?token=${accessToken}`)
 }

@@ -7,4 +7,4 @@ const userSchema = Joi.object().keys({
     password: Joi.string().min(6).max(30).required(),
 })
 
-export { userSchema }
+module.exports = userSchema
