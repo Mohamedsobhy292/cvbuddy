@@ -1,10 +1,9 @@
-const User = require('./userModel')
 const UserRepo = require('./userRepo')
 const userService = require('./userService')
 
 const frontEndUrl = 'http://localhost:3000'
 
-exports.getUsers = async (req, res) => {
+module.exports.getUsers = async (req, res) => {
     try {
         const users = await UserRepo.findAllUsers()
         res.json({
@@ -15,7 +14,7 @@ exports.getUsers = async (req, res) => {
     }
 }
 
-exports.getSingleUser = async (req, res) => {
+module.exports.getSingleUser = async (req, res) => {
     const id = req.params.id
     console.log(id)
     try {
@@ -28,7 +27,7 @@ exports.getSingleUser = async (req, res) => {
     }
 }
 
-exports.createUser = async (req, res) => {
+module.exports.createUser = async (req, res) => {
     const user = {
         ...req.body,
     }
@@ -55,7 +54,7 @@ exports.createUser = async (req, res) => {
     }
 }
 
-exports.redirectWithToken = async (req, res) => {
+module.exports.redirectWithToken = async (req, res) => {
     const accessToken = await userService.generateAccessToken(req.user.id)
     return res.redirect(`${frontEndUrl}/?token=${accessToken}`)
 }

@@ -1,10 +1,10 @@
 const User = require('./userModel')
 
-exports.findAllUsers = async () => {
+module.exports.findAllUsers = async () => {
     return await User.find({})
 }
 
-exports.createNewUser = async (userObj) => {
+module.exports.createNewUser = async (userObj) => {
     const user = new User({
         email: userObj.email,
         password: userObj.password,
@@ -20,7 +20,7 @@ exports.createNewUser = async (userObj) => {
     }
 }
 
-exports.createNewGoogleUser = async (profile) => {
+module.exports.createNewGoogleUser = async (profile) => {
     const user = new User({
         firstName: profile._json.given_name,
         lastName: profile._json.family_name,
@@ -41,14 +41,14 @@ exports.createNewGoogleUser = async (profile) => {
     }
 }
 
-exports.findUserByEmail = async (email) => {
+module.exports.findUserByEmail = async (email) => {
     return await User.findOne({ email })
 }
 
-exports.findUserById = async (id) => {
+module.exports.findUserById = async (id) => {
     return await User.findById(id)
 }
 
-exports.findOne = async (options) => {
+module.exports.findOne = async (options) => {
     return await User.findOne(options)
 }

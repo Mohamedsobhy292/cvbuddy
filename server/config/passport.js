@@ -1,7 +1,7 @@
 const passport = require('passport')
 const passportJwt = require('passport-jwt')
 const GoogleStrategy = require('passport-google-oauth20').Strategy
-const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, SESSION_SECRET } = process.env
+const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } = process.env
 
 const UserRepo = require('../users/userRepo')
 
@@ -21,7 +21,7 @@ passport.deserializeUser((id, done) => {
             done(null, user)
         })
         .catch((e) => {
-            done(new Error('Failed to deserialize an user'))
+            done(new Error(e))
         })
 })
 

@@ -6,12 +6,12 @@ const { userSchema } = require('./userSchema')
 
 const saltRounds = 10
 
-exports.cryptPassword = async (password) => {
+module.exports.cryptPassword = async (password) => {
     const hashedPassword = await bcrypt.hash(password, saltRounds)
     return hashedPassword
 }
 
-exports.validateUser = async (user) => {
+module.exports.validateUser = async (user) => {
     const isExistingUser = await userRepo.findUserByEmail(user.email)
 
     if (isExistingUser) {
@@ -29,7 +29,7 @@ exports.validateUser = async (user) => {
 }
 
 // Generate an Access Token for the given User ID
-exports.generateAccessToken = async (userId) => {
+module.exports.generateAccessToken = async (userId) => {
     const issuer = process.env.TOKEN_ISS
     const secret = process.env.TOKEN_SECRET
 

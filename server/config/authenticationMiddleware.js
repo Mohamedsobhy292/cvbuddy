@@ -3,8 +3,8 @@ const passport = require('passport')
 const protectedRoute = (req, res, next) => {
     passport.authenticate('jwt', { session: false }, function (
         err,
-        user,
-        info
+        user
+        // info
     ) {
         if (err) {
             return next(err)
