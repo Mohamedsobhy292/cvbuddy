@@ -2,12 +2,10 @@ const userController = require('./userController')
 const express = require('express')
 const router = express.Router()
 const passport = require('passport')
+const authenticationMiddleware = require('../config/authenticationMiddleware')
 
-router.get(
-    '/',
-    passport.authenticate('jwt', { session: false }),
-    userController.getUsers
-)
+router.get('/', authenticationMiddleware, userController.getUsers)
+router.get('/:id', authenticationMiddleware, userController.getSingleUser)
 router.post('/', userController.createUser)
 
 router.get(

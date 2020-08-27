@@ -7,7 +7,22 @@ const frontEndUrl = 'http://localhost:3000'
 exports.getUsers = async (req, res) => {
     try {
         const users = await UserRepo.findAllUsers()
-        res.json(users)
+        res.json({
+            data: users,
+        })
+    } catch (e) {
+        console.error(e)
+    }
+}
+
+exports.getSingleUser = async (req, res) => {
+    const id = req.params.id
+    console.log(id)
+    try {
+        const user = await UserRepo.findUserById(id)
+        res.json({
+            data: user,
+        })
     } catch (e) {
         console.error(e)
     }
