@@ -1,7 +1,7 @@
 const passport = require('passport')
 const passportJwt = require('passport-jwt')
 const GoogleStrategy = require('passport-google-oauth20').Strategy
-const UserRepo = require('../users/userRepo')
+const UserRepo = require('../user/userRepo')
 
 const jwtOptions = {
     jwtFromRequest: passportJwt.ExtractJwt.fromAuthHeaderAsBearerToken(),

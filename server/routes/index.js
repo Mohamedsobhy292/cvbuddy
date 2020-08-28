@@ -1,12 +1,14 @@
 const express = require('express')
 const router = express.Router()
 
-const users = require('../users')
+const user = require('../user')
+const resumeInformation = require('../resumeInformation')
 
 module.exports = function (app) {
     app.use(express.json())
     app.use('/', router)
-    app.use('/users', users.routes)
+    app.use('/users', user.routes)
+    app.use('/resumeInformation', resumeInformation.routes)
 }
 
 // async function printPDF(data) {

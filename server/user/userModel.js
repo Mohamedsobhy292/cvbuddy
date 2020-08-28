@@ -22,6 +22,12 @@ const userSchema = new mongoose.Schema(
             firstName: String,
             lastName: String,
         },
+        resumes: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'UserInformation',
+            },
+        ],
     },
     {
         timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' },
