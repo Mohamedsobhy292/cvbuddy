@@ -7,7 +7,7 @@ const passport = require('passport')
 const env = process.env.NODE_ENV || 'development'
 
 // make global config file
-const config = require('./config/appCofiguration')[String(env)]
+const config = require('./config/config')[String(env)]
 global.config = config
 
 require('./db')
