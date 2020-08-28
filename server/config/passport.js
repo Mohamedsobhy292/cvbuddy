@@ -1,14 +1,12 @@
 const passport = require('passport')
 const passportJwt = require('passport-jwt')
 const GoogleStrategy = require('passport-google-oauth20').Strategy
-const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } = process.env
-
 const UserRepo = require('../users/userRepo')
 
 const jwtOptions = {
     jwtFromRequest: passportJwt.ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: process.env.TOKEN_SECRET,
-    issuer: process.env.TOKEN_ISS,
+    secretOrKey: config.passport.secret,
+    issuer: config.passport.TOKEN_ISS,
 }
 
 passport.serializeUser((user, done) => {
@@ -42,8 +40,8 @@ passport.use(
 passport.use(
     new GoogleStrategy(
         {
-            clientID: GOOGLE_CLIENT_ID,
-            clientSecret: GOOGLE_CLIENT_SECRET,
+            clientID: config.google.clientId,
+            clientSecret: config.google.secret,
             callbackURL: '/users/login/google/callback',
         },
         async function (accessToken, refreshToken, profile, cb) {

@@ -1,5 +1,4 @@
 const bcrypt = require('bcrypt')
-
 const jwt = require('jsonwebtoken')
 const userRepo = require('./userRepo')
 const { userSchema } = require('./userSchema')
@@ -30,8 +29,8 @@ module.exports.validateUser = async (user) => {
 
 // Generate an Access Token for the given User ID
 module.exports.generateAccessToken = async (userId) => {
-    const issuer = process.env.TOKEN_ISS
-    const secret = process.env.TOKEN_SECRET
+    const issuer = config.passport.TOKEN_ISS
+    const secret = config.passport.secret
 
     const token = jwt.sign({}, secret, {
         expiresIn: Date.now() + 7 * 1000 * 60 * 60 * 24, // ADD ONE WEEK

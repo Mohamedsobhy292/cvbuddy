@@ -1,14 +1,20 @@
 const mongoose = require('mongoose')
+const chalk = require('chalk')
 
 mongoose.connect(
-    process.env.DATABASE_URL,
+    config.database.url,
     { useNewUrlParser: true, useUnifiedTopology: true },
     (err) => {
         if (!err) {
-            console.log('Successfully Established Connection with MongoDB')
+            console.log(
+                chalk.blue('Successfully Established Connection with MongoDB')
+            )
         } else {
             console.log(
-                'Failed to Establish Connection with MongoDB with Error: ' + err
+                chalk.red(
+                    'Failed to Establish Connection with MongoDB with Error: ' +
+                        err
+                )
             )
         }
     }
