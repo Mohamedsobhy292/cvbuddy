@@ -75,4 +75,24 @@ const userInformationSchema = new mongoose.Schema(
     }
 )
 
+userInformationSchema.pre(
+    'deleteOne',
+    { document: true, query: true },
+    async function (next) {
+        const document = await this.model.findOne(this.getFilter())
+
+        if (document) {
+            await mongoose
+                .model('User')
+                .update(
+                    { _id: document.userId },
+                    { $pull: { resumes: document._id } },
+                    { multi: true }
+                )
+        }
+
+        next()
+    }
+)
+
 module.exports = mongoose.model('UserInformation', userInformationSchema)

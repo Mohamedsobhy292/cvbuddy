@@ -8,11 +8,19 @@ router.get(
     authenticationMiddleware,
     resumeInformationController.getAllResumeInformation
 )
-// router.get(
-//     '/:id',
-//     authenticationMiddleware,
-//     resumeInformationController.getSingleResumeInformation
-// )
+
+router.get(
+    '/:id',
+    authenticationMiddleware,
+    resumeInformationController.getSingleResumeInformation
+)
+
+router.delete(
+    '/:id',
+    authenticationMiddleware,
+    resumeInformationController.deleteSingleResumeInformation
+)
+
 router.post('/', resumeInformationController.createResumeInformation)
 
 module.exports = router

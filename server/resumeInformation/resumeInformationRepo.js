@@ -5,6 +5,16 @@ module.exports.findAll = async () => {
     return await ResumeInformation.find({})
 }
 
+module.exports.findById = async (id) => {
+    return await ResumeInformation.findById(id)
+}
+
+module.exports.deleteOne = async (id) => {
+    return await ResumeInformation.deleteOne({
+        _id: id,
+    })
+}
+
 module.exports.createNewResumeInformation = async (informationObj) => {
     const resumeInformation = new ResumeInformation({
         ...informationObj,

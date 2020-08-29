@@ -11,6 +11,31 @@ module.exports.getAllResumeInformation = async (req, res) => {
     }
 }
 
+module.exports.getSingleResumeInformation = async (req, res) => {
+    const id = req.params.id
+    try {
+        const data = await ResumeInformationRepo.findById(id)
+        res.json({
+            data: data,
+        })
+    } catch (e) {
+        console.error(e)
+    }
+}
+
+module.exports.deleteSingleResumeInformation = async (req, res) => {
+    const id = req.params.id
+
+    try {
+        const deleted = await ResumeInformationRepo.deleteOne(id)
+        res.json({
+            data: deleted,
+        })
+    } catch (e) {
+        console.error(e)
+    }
+}
+
 module.exports.createResumeInformation = async (req, res) => {
     const resumeInformation = {
         ...req.body,
