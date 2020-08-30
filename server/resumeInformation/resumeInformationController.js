@@ -17,25 +17,16 @@ module.exports.getSingleResumeInformation = async (req, res) => {
     const id = req.params.id
     const userId = req.user.id
     try {
-        const data = await ResumeInformationRepo.findById(id)
-
-        // check if the user has access to this data
-        const validationError = await ResumeInformationService.validateAccessToData(
+        const data = await ResumeInformationRepo.find({
+            _id: id,
             userId,
-            data.userId
-        )
+        })
 
-        if (validationError) {
-            return res.status(401).json({
-                error: {
-                    message: validationError,
-                },
-            })
-        }
         return res.json({
             data: data,
         })
     } catch (e) {
+        console.log(e)
         return res.status(500).json({
             error: {
                 message: e,
@@ -49,23 +40,11 @@ module.exports.deleteSingleResumeInformation = async (req, res) => {
     const userId = req.user.id
 
     try {
-        const documentToDelete = await ResumeInformationRepo.findById(id)
-
-        // check if the user has access to this data
-        const validationError = await ResumeInformationService.validateAccessToData(
+        const deleted = await ResumeInformationRepo.findOneAndDelete({
+            _id: id,
             userId,
-            documentToDelete.userId
-        )
+        })
 
-        if (validationError) {
-            return res.status(401).json({
-                error: {
-                    message: validationError,
-                },
-            })
-        }
-
-        const deleted = await ResumeInformationRepo.deleteOne(id)
         res.json({
             data: deleted,
         })
@@ -75,8 +54,10 @@ module.exports.deleteSingleResumeInformation = async (req, res) => {
 }
 
 module.exports.createResumeInformation = async (req, res) => {
+    const userId = req.user.id
     const resumeInformation = {
         ...req.body,
+        userId,
     }
 
     try {
@@ -101,26 +82,9 @@ module.exports.updateResumeInformation = async (req, res) => {
     const userId = req.user.id
     delete req.body.userId
 
-    const documentToUpdate = await ResumeInformationRepo.findById(resumeId)
-
-    // check if the user has access to this data
-
-    const validationError = await ResumeInformationService.validateAccessToData(
-        userId,
-        documentToUpdate.userId
-    )
-
-    if (validationError) {
-        return res.status(401).json({
-            error: {
-                message: validationError,
-            },
-        })
-    }
-
     try {
-        const updatedDocument = await ResumeInformationRepo.updateOne(
-            { _id: resumeId },
+        const updatedDocument = await ResumeInformationRepo.findOneAndUpdate(
+            { _id: resumeId, userId },
             {
                 ...req.body,
             }

@@ -11,14 +11,14 @@ module.exports.findById = async (id) => {
     return await ResumeInformation.findById(id)
 }
 
-module.exports.deleteOne = async (id) => {
-    return await ResumeInformation.deleteOne({
-        _id: id,
-    })
+module.exports.findOneAndDelete = async (condition) => {
+    return await ResumeInformation.findOneAndDelete(condition)
 }
 
-module.exports.updateOne = async (condition, data) => {
-    return await ResumeInformation.updateOne(condition, data)
+module.exports.findOneAndUpdate = async (condition, data) => {
+    return await ResumeInformation.findOneAndUpdate(condition, data, {
+        new: true,
+    })
 }
 
 module.exports.createNewResumeInformation = async (informationObj) => {
@@ -38,4 +38,8 @@ module.exports.createNewResumeInformation = async (informationObj) => {
     } catch (e) {
         throw new Error(e._message)
     }
+}
+
+module.exports.find = async (condition) => {
+    return await ResumeInformation.find(condition)
 }

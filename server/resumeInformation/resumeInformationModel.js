@@ -79,7 +79,7 @@ const userInformationSchema = new mongoose.Schema(
 )
 
 userInformationSchema.pre(
-    'deleteOne',
+    'findOneAndDelete',
     { document: true, query: true },
     async function (next) {
         const document = await this.model.findOne(this.getFilter())
