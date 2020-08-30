@@ -21,7 +21,7 @@ module.exports.createNewGoogleUser = async (profile) => {
         const newuser = await user.save()
         return newuser
     } catch {
-        throw 'error creating new user'
+        throw new Error('error creating new user')
     }
 }
 

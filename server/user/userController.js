@@ -10,7 +10,9 @@ module.exports.getUsers = async (req, res) => {
             data: users,
         })
     } catch (e) {
-        console.error(e)
+        res.status(500).json({
+            message: e,
+        })
     }
 }
 
@@ -23,7 +25,9 @@ module.exports.getSingleUser = async (req, res) => {
             data: user,
         })
     } catch (e) {
-        console.error(e)
+        res.status(500).json({
+            message: e,
+        })
     }
 }
 
@@ -35,8 +39,7 @@ module.exports.createUser = async (req, res) => {
     const userValidationErrors = await userService.validateUser(user)
 
     if (userValidationErrors) {
-        return res.status(403).send({
-            error: 403,
+        res.status(500).json({
             message: userValidationErrors.details[0].message,
         })
     }
@@ -47,9 +50,8 @@ module.exports.createUser = async (req, res) => {
         const createNewUser = await UserRepo.createNewUser(user)
         return res.json(createNewUser)
     } catch (e) {
-        return res.status(403).send({
-            error: 403,
-            message: 'check your credintials',
+        res.status(500).json({
+            message: 'check your credinitials',
         })
     }
 }

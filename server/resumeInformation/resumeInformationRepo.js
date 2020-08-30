@@ -1,8 +1,10 @@
 const ResumeInformation = require('./resumeInformationModel')
 const User = require('../user/userModel')
 
-module.exports.findAll = async () => {
-    return await ResumeInformation.find({})
+module.exports.findAll = async (userId) => {
+    return await ResumeInformation.find({
+        userId,
+    })
 }
 
 module.exports.findById = async (id) => {
@@ -13,6 +15,10 @@ module.exports.deleteOne = async (id) => {
     return await ResumeInformation.deleteOne({
         _id: id,
     })
+}
+
+module.exports.updateOne = async (condition, data) => {
+    return await ResumeInformation.updateOne(condition, data)
 }
 
 module.exports.createNewResumeInformation = async (informationObj) => {
@@ -30,7 +36,6 @@ module.exports.createNewResumeInformation = async (informationObj) => {
         )
         return newResumeInformation
     } catch (e) {
-        console.log(e)
-        throw e._message
+        throw new Error(e._message)
     }
 }

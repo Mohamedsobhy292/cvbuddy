@@ -15,12 +15,22 @@ router.get(
     resumeInformationController.getSingleResumeInformation
 )
 
+router.put(
+    '/:id',
+    authenticationMiddleware,
+    resumeInformationController.updateResumeInformation
+)
+
 router.delete(
     '/:id',
     authenticationMiddleware,
     resumeInformationController.deleteSingleResumeInformation
 )
 
-router.post('/', resumeInformationController.createResumeInformation)
+router.post(
+    '/',
+    authenticationMiddleware,
+    resumeInformationController.createResumeInformation
+)
 
 module.exports = router

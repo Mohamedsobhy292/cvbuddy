@@ -1,11 +1,7 @@
 const passport = require('passport')
 
 const protectedRoute = (req, res, next) => {
-    passport.authenticate('jwt', { session: false }, function (
-        err,
-        user
-        // info
-    ) {
+    passport.authenticate('jwt', { session: false }, function (err, user) {
         if (err) {
             return next(err)
         }
@@ -15,6 +11,7 @@ const protectedRoute = (req, res, next) => {
                 message: 'unauthorized',
             })
         }
+        req.user = user
         next()
     })(req, res, next)
 }

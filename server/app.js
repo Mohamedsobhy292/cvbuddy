@@ -4,13 +4,14 @@ const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const cors = require('cors')
 const passport = require('passport')
+
 const env = process.env.NODE_ENV || 'development'
 
 // make global config file
 const config = require('./config/config')[String(env)]
 global.config = config
 
-require('./db')
+require('./config/db')
 
 const app = express()
 

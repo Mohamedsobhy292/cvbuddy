@@ -16,6 +16,10 @@ const userSchema = new mongoose.Schema(
             index: true,
             unique: true,
         },
+        role: {
+            type: String,
+            default: 'user',
+        },
         google: {
             id: String,
             email: String,

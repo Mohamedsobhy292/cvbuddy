@@ -50,6 +50,9 @@ const certificate = mongoose.Schema({
 
 const userInformationSchema = new mongoose.Schema(
     {
+        firstName: String,
+        lastName: String,
+        email: String,
         phone: String,
         jobTitle: String,
         residence: String,
