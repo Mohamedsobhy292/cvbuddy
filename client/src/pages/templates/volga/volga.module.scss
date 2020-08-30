@@ -4,9 +4,11 @@
     display: flex;
     width: 1280px;
     background: #fff;
-    // height: 100%;
-    min-height: 1400px;
+    align-self: stretch;
+    justify-self: stretch;
     margin: auto;
+    height: 100%;
+    min-height: 100vh;
 }
 
 .contentContainer {

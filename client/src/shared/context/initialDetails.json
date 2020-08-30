@@ -1,0 +1,99 @@
+{
+    "initialDetails": {
+        "firstName": "Ricky",
+        "lastName": "Metzger",
+        "email": "oneRandomMail@gmail.com",
+        "phone": "+1234567989",
+        "jobTitle": "Designer",
+        "residence": "Washington, DC",
+        "summary": "Do you think youre living an ordinary life? You are so mistaken its difficult to even explain. The mere fact that you exist makes you extraordinary. The odds of you existing are less than winning the lottery, but here you are. Are you going to let this extraordinary opportunity pass?",
+        "experience": [
+            {
+                "hamoksha": "sdad",
+                "title": "Product Designer",
+                "company": "Google",
+                "city": "London",
+                "startDate": "Aug 2019",
+                "endDate": "",
+                "currentlyWorkHere": true,
+                "isInternship": false,
+                "description": "worked on the marketing team for achieving business needs by implementing new features using React + Redux"
+            },
+            {
+                "title": "UI Designer",
+                "asasas": "asdas",
+                "company": "Apple",
+                "city": "New york",
+                "startDate": "Aug 2019",
+                "endDate": "May 2020",
+                "currentlyWorkHere": false,
+                "isInternship": false,
+                "description": "This is important to remember. Love isn't like pie. You don't need to divide it among all your friends and loved ones"
+            },
+            {
+                "title": "UI Designer",
+                "company": "Amazon",
+                "city": "New york",
+                "startDate": "Aug 2012",
+                "endDate": "May 2019",
+                "currentlyWorkHere": false,
+                "isInternship": true,
+                "description": "This is important to remember. Love isn't like pie. You don't need to divide it among all your friends and loved ones"
+            }
+        ],
+        "skills": [
+            {
+                "name": "Mobile apps",
+                "level": "beginner"
+            },
+            {
+                "name": "Mobile apps",
+                "level": "beginner"
+            },
+            {
+                "name": "Mobile apps",
+                "level": "beginner"
+            },
+            {
+                "name": "Social Network",
+                "level": "beginner"
+            }
+        ],
+        "links": [
+            {
+                "label": "website",
+                "link": "https://www.linkedin.com/in/mohamedsobhy292/"
+            },
+            {
+                "label": "linkedin",
+                "link": "https://www.linkedin.com/in/mohamedsobhy292/"
+            },
+            {
+                "label": "facebook",
+                "link": "https://www.linkedin.com/in/mohamedsobhy292/"
+            }
+        ],
+        "education": [
+            {
+                "school": "Bachelor Degree of Fine Art (BFA)",
+                "city": "Cairo",
+                "degree": "bachelors",
+                "startDate": 2019,
+                "endDate": 2019,
+                "description": "This is important to remember. Love isn't like pie. You don't need to divide it among all your friends and loved ones"
+            }
+        ],
+        "languages": [
+            {
+                "name": "English",
+                "level": "beginner"
+            },
+            {
+                "name": "Arabic",
+                "level": "intermediate"
+            }
+        ],
+        "certificates": [],
+        "showSkillsLevel": true
+    }
+}

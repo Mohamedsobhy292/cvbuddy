@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import classNames from 'classnames'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import styles from './ChooseTemplate.module.scss'
 import cvTemplate from './resume1.jpg'
@@ -20,12 +20,25 @@ const templates = [
     },
 ]
 
+const pattern = /token=([^&]*)/
+
 const ChooseTemplate = () => {
     const [selectedTemplate, setSelectedTemplate] = useState(null)
+    const location = useLocation()
+    const navigate = useNavigate()
 
     const handleTemplateClick = (item) => {
         setSelectedTemplate(item.name)
     }
+
+    useEffect(() => {
+        const search = location.search.replace('?', '')
+        if (search) {
+            const token = search.match(pattern)[1]
+            localStorage.setItem('cvbuddy_access_token', token)
+            navigate('/')
+        }
+    }, [])
 
     return (
         <div className={styles.chooseTemplateWrapper}>
@@ -64,6 +77,15 @@ const ChooseTemplate = () => {
                     <Arrow />
                 </span>
             </Link>
+            <a
+                href="http://localhost:4000/users/login/google"
+                className={styles.proceedBtn}
+            >
+                LOGIN WITH GOOGLE
+                <span className={styles.arrow}>
+                    <Arrow />
+                </span>
+            </a>
         </div>
     )
 }

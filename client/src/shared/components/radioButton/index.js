@@ -3,7 +3,7 @@ import classnames from 'classnames'
 import styles from './RadioButton.module.scss'
 import { Check } from './check'
 
-const RadioButton = ({ checked, className }) => {
+const RadioButton = ({ checked, className, onChange }) => {
     return (
         <div className={`${styles.radioWrapper} ${className}`}>
             <div
@@ -13,7 +13,7 @@ const RadioButton = ({ checked, className }) => {
             >
                 <Check className={styles.checkIcon} />
             </div>
-            <input type="radio" checked={checked} />
+            <input type="radio" checked={checked} readOnly />
         </div>
     )
 }
