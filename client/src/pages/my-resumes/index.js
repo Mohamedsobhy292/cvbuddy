@@ -16,16 +16,21 @@ const MyResumes = () => {
         <div className={styles.chooseTemplateWrapper}>
             {/* EMPTY STATE */}
 
-            <EmptyStateIcon className={styles.emptyStateIcon} />
-            <h2 className={styles.emptyStateTitle}>
-                You didn't create any resumes yet
-            </h2>
-            <Link
-                className={styles.createFirstResume}
-                to={`/${routes.chooseTemplate}`}
-            >
-                Create your first resume now
-            </Link>
+            {!data?.length && (
+                <>
+                    <EmptyStateIcon className={styles.emptyStateIcon} />
+                    <h2 className={styles.emptyStateTitle}>
+                        You didn't create any resumes yet
+                    </h2>
+                    <Link
+                        className={styles.createFirstResume}
+                        to={`/${routes.chooseTemplate}`}
+                    >
+                        Create your first resume now
+                    </Link>
+                </>
+            )}
+
             {/* DATA */}
             {!!data?.length && (
                 <>
