@@ -17,7 +17,7 @@ module.exports.getSingleResumeInformation = async (req, res) => {
     const id = req.params.id
     const userId = req.user.id
     try {
-        const data = await ResumeInformationRepo.find({
+        const data = await ResumeInformationRepo.findOne({
             _id: id,
             userId,
         })

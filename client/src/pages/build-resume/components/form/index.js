@@ -11,11 +11,14 @@ import { Languages } from './languages'
 import { Certificates } from './Certificates'
 import { initialDetails } from 'shared/context/appContext'
 import Axios from 'axios'
+import { useParams } from 'react-router'
+import { GET_ONE_RESUME } from 'shared/api/endPoints'
 
 const BuiledResumeForm = () => {
     const methods = useForm()
     const { reset } = methods
     const { dispatch } = useContext(AppContext)
+    let { id } = useParams()
 
     const Load = (initialDetails) => {
         dispatch({
@@ -27,18 +30,12 @@ const BuiledResumeForm = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const token = await localStorage.getItem('cvbuddy_access_token')
-            Axios(
-                'http://localhost:4000/resumeInformation/5f529690d7cde75da152ceee',
-                {
-                    headers: {
-                        Authorization: `bearer ${token}`,
-                    },
-                }
-            ).then((res) => {
-                console.log(res.data.data[0])
-                Load(res.data.data[0])
-            })
+            if (id) {
+                const token = await localStorage.getItem('cvbuddy_access_token')
+                Axios(`${GET_ONE_RESUME}/${id}`).then((res) => {
+                    Load(res.data.data)
+                })
+            }
         }
         fetchData()
     }, [])

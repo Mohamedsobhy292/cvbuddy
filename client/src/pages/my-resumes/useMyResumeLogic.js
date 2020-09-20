@@ -11,11 +11,7 @@ const useMyResumeLogic = () => {
     useEffect(() => {
         const fetchData = async () => {
             const token = await localStorage.getItem('cvbuddy_access_token')
-            Axios(ALL_RESUMES_URL, {
-                headers: {
-                    Authorization: `bearer ${token}`,
-                },
-            }).then((res) => {
+            Axios(`${ALL_RESUMES_URL}`).then((res) => {
                 setData(res.data.data)
             })
         }

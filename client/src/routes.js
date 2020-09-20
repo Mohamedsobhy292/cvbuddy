@@ -3,6 +3,7 @@ const routes = {
     editResume: 'edit-resume',
     workHistory: 'work-history',
     skills: 'skills',
+    chooseTemplate: 'choose-template',
 }
 
 export { routes }

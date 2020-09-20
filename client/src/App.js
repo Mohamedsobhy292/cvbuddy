@@ -7,6 +7,7 @@ import { Volga } from './pages/templates/volga'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './shared/styles/globalStyles.scss'
 import { AppStateProvider } from 'shared/context/appContext'
+import 'shared/api/axiosInstance'
 
 function App() {
     return (
@@ -14,11 +15,14 @@ function App() {
             <AppStateProvider>
                 <Navbar />
                 <Routes>
-                    <Route path="/" element={<ChooseTemplate />} />
+                    <Route
+                        path="/choose-template"
+                        element={<ChooseTemplate />}
+                    />
                     <Route path="build-resume" element={<BuildResume />} />
                     <Route path="edit-resume/:id" element={<BuildResume />} />
                     <Route path="/templates/volga" element={<Volga />} />
-                    <Route path="/resumes" element={<MyResumes />} />
+                    <Route path="/" element={<MyResumes />} />
                 </Routes>
             </AppStateProvider>
         </BrowserRouter>
