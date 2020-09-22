@@ -9,6 +9,7 @@ import { DeleteIcon } from 'shared/icons/deleteIcon'
 import { routes } from 'routes'
 import { Link } from 'react-router-dom'
 import { EmptyStateIcon } from './emptyStateIcon'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 const MyResumes = () => {
     const { handleCardClick, handleDelete, data } = useMyResumeLogic()
@@ -37,52 +38,96 @@ const MyResumes = () => {
                     <h2 className={styles.pageTitle}>Your created Resumes</h2>
 
                     <ul className={styles.templatesList}>
-                        {data.map((item) => {
-                            return (
-                                <li
-                                    key={item._id}
-                                    className={styles.templateItem}
-                                    onClick={() => handleCardClick(item._id)}
-                                >
-                                    <div className={styles.imageContainer}>
-                                        <img
-                                            src={cvTemplate}
-                                            alt="cv template"
-                                        />
-                                        {/* CARD ACTIONS */}
-                                        <ul className={styles.actions}>
-                                            <li
-                                                className={styles.iconContainer}
-                                            >
-                                                <DownloadIcon />
-                                            </li>
-
-                                            <li
-                                                className={styles.iconContainer}
-                                                onClick={(e) =>
-                                                    handleDelete(item._id, e)
+                        <TransitionGroup className={styles.templatesList}>
+                            {data.map((item, index) => {
+                                const delay = index * 100
+                                console.log(delay)
+                                return (
+                                    <CSSTransition
+                                        in={true}
+                                        key={item._id}
+                                        appear={true}
+                                        timeout={1000}
+                                        unmountOnExit
+                                        classNames={{
+                                            enter: styles.enter,
+                                            appear: styles.appear,
+                                            appearActive: styles.appearActive,
+                                            enterActive: styles.enterActive,
+                                            exit: styles.leave,
+                                            exitActive: styles.leaveActive,
+                                        }}
+                                    >
+                                        <li
+                                            style={{
+                                                transitionDelay: `${delay}ms`,
+                                            }}
+                                            key={item._id}
+                                            className={styles.templateItem}
+                                            onClick={() =>
+                                                handleCardClick(item._id)
+                                            }
+                                        >
+                                            <div
+                                                className={
+                                                    styles.imageContainer
                                                 }
                                             >
-                                                <DeleteIcon fill="#E31330" />
-                                            </li>
-                                        </ul>
-                                    </div>
+                                                <img
+                                                    src={cvTemplate}
+                                                    alt="cv template"
+                                                />
+                                                {/* CARD ACTIONS */}
+                                                <ul className={styles.actions}>
+                                                    <li
+                                                        className={
+                                                            styles.iconContainer
+                                                        }
+                                                    >
+                                                        <DownloadIcon />
+                                                    </li>
 
-                                    <div className={styles.titleWrapper}>
-                                        {item.firstName} {item.lastName}
-                                        <span className={styles.lastUpdated}>
-                                            last updated{' '}
-                                            {formatDistanceToNowStrict(
-                                                new Date(item.updatedAt),
-                                                {
-                                                    addSuffix: true,
-                                                }
-                                            )}
-                                        </span>
-                                    </div>
-                                </li>
-                            )
-                        })}
+                                                    <li
+                                                        className={
+                                                            styles.iconContainer
+                                                        }
+                                                        onClick={(e) =>
+                                                            handleDelete(
+                                                                item._id,
+                                                                e
+                                                            )
+                                                        }
+                                                    >
+                                                        <DeleteIcon fill="#E31330" />
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                            <div
+                                                className={styles.titleWrapper}
+                                            >
+                                                {item.firstName} {item.lastName}
+                                                <span
+                                                    className={
+                                                        styles.lastUpdated
+                                                    }
+                                                >
+                                                    last updated{' '}
+                                                    {formatDistanceToNowStrict(
+                                                        new Date(
+                                                            item.updatedAt
+                                                        ),
+                                                        {
+                                                            addSuffix: true,
+                                                        }
+                                                    )}
+                                                </span>
+                                            </div>
+                                        </li>
+                                    </CSSTransition>
+                                )
+                            })}
+                        </TransitionGroup>
 
                         <li
                             key={9}
