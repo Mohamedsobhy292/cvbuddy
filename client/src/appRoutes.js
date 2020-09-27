@@ -6,17 +6,6 @@ import { MyResumes } from './pages/my-resumes'
 import { Volga } from './pages/templates/volga'
 import { Routes, Route, useLocation } from 'react-router-dom'
 
-const routes = [
-    { path: '/', name: 'home', Component: MyResumes },
-    {
-        path: '/choose-template',
-        name: 'chooseTemplate',
-        Component: ChooseTemplate,
-    },
-    { path: '/build-resume', name: 'buildResume', Component: BuildResume },
-    { path: '/edit-resume/:id"', name: 'editResume', Component: BuildResume },
-]
-
 function AppRoutes() {
     let location = useLocation()
 
