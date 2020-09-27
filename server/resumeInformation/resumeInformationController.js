@@ -1,5 +1,5 @@
 const ResumeInformationRepo = require('./resumeInformationRepo')
-const ResumeInformationService = require('./resumeInformationService')
+const puppeteer = require('puppeteer')
 
 module.exports.getAllResumeInformation = async (req, res) => {
     const userId = req.user.id
@@ -17,7 +17,7 @@ module.exports.getSingleResumeInformation = async (req, res) => {
     const id = req.params.id
     const userId = req.user.id
     try {
-        const data = await ResumeInformationRepo.find({
+        const data = await ResumeInformationRepo.findOne({
             _id: id,
             userId,
         })
@@ -99,4 +99,25 @@ module.exports.updateResumeInformation = async (req, res) => {
             },
         })
     }
+}
+
+module.exports.printPDF = async (req, res) => {
+    const resumeId = req.params.id
+    const browser = await puppeteer.launch({ headless: true })
+    const page = await browser.newPage()
+    const url = `http://localhost:3000/templates/volga/${resumeId}`
+    await page.goto(url, {
+        waitUntil: 'networkidle0',
+    })
+
+    await page.emulateMediaType('screen')
+
+    const pdf = await page.pdf({
+        format: 'A4',
+        displayHeaderFooter: false,
+        printBackground: true,
+    })
+
+    await browser.close()
+    return pdf
 }

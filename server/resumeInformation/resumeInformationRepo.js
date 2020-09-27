@@ -40,6 +40,6 @@ module.exports.createNewResumeInformation = async (informationObj) => {
     }
 }
 
-module.exports.find = async (condition) => {
-    return await ResumeInformation.find(condition)
+module.exports.findOne = async (condition) => {
+    return await ResumeInformation.findOne(condition)
 }

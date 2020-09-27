@@ -19,13 +19,12 @@ const app = express()
 require('./config/passport')
 app.use(passport.initialize())
 
-require('./routes')(app)
-
 app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(cors())
+require('./routes')(app)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

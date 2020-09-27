@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 import styles from './Navbar.module.scss'
 
 const Navbar = () => {
@@ -8,9 +8,13 @@ const Navbar = () => {
     if (locationData[1] === 'templates') return null
     return (
         <nav className={styles.navbar}>
-            <h1>logo</h1>
+            <h1>
+                <Link to="/">logo</Link>
+            </h1>
             <ul className={styles.navigationList}>
-                <li>account</li>
+                <li>
+                    <Link to="/resumes">resumes</Link>
+                </li>
                 <li>Settings</li>
                 <li>Log out</li>
             </ul>

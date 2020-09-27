@@ -1,0 +1,198 @@
+@import 'shared/styles/variables.scss';
+
+.chooseTemplateWrapper {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    flex-direction: column;
+    width: 1200px;
+    margin: auto;
+}
+
+.pageTitle {
+    margin-bottom: 40px;
+    font-size: 32px;
+}
+
+.emptyStateTitle {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-size: 24px;
+}
+
+.templatesList {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.templateItem {
+    height: 288px;
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid $border-color;
+    width: 250px;
+    overflow: hidden;
+    text-align: center;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.3s;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+
+    img {
+        height: 200px;
+        margin-bottom: 15px;
+    }
+
+    &:hover {
+        .iconContainer {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+}
+
+.titleWrapper {
+    background: #edf2f470;
+    color: $text-color2;
+    border-top: 1px solid $light-grey;
+    padding: 12px 20px;
+    text-transform: capitalize;
+}
+
+.lastUpdated {
+    display: block;
+    color: $text-color3;
+    font-weight: lighter;
+    font-size: 11px;
+    margin-top: 4px;
+    font-style: italic;
+}
+
+.addNewWrapper {
+    border: 1px dashed $primary-color-lighter300;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: $primary-color;
+    fill: $primary-color;
+    font-size: 10px;
+
+    .content {
+        background: $primary-color;
+        color: #fff;
+        padding: 14px 20px;
+        display: flex;
+        border-radius: 4px;
+        z-index: 2;
+        align-items: flex-end;
+        justify-content: center;
+        text-decoration: none;
+    }
+
+    img {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        opacity: 0.7;
+    }
+
+    h3 {
+        font-weight: 300;
+        background: $primary-color;
+    }
+
+    svg {
+        width: 12px;
+        fill: #fff;
+        margin-right: 8px;
+        // margin-bottom: 14px;
+    }
+}
+
+.iconContainer {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    transform: translateX(10px);
+    margin-left: 8px;
+    fill: $text-color;
+    background: $light-grey;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+        background: $border-color;
+    }
+
+    svg {
+        width: 14px;
+    }
+}
+
+.actions {
+    display: flex;
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+}
+
+.imageContainer {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+}
+
+.emptyStateIcon {
+    width: 300px;
+}
+
+.createFirstResume {
+    background: $primary-color;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 4px;
+    font-weight: 300;
+}
+
+.enter {
+    opacity: 0;
+}
+.enterActive {
+    opacity: 1;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.leave {
+    opacity: 1;
+    transform: scale(1);
+}
+.leaveActive {
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.appear {
+    opacity: 0;
+}
+
+.appearActive {
+    opacity: 1;
+    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
