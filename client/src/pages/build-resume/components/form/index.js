@@ -11,7 +11,7 @@ import { Languages } from './languages'
 import { Certificates } from './Certificates'
 import { initialDetails } from 'shared/context/appContext'
 import Axios from 'axios'
-import { useParams } from 'react-router'
+import { useParams } from 'react-router-dom'
 import { GET_ONE_RESUME } from 'shared/api/endPoints'
 
 const BuiledResumeForm = () => {
@@ -31,7 +31,6 @@ const BuiledResumeForm = () => {
     useEffect(() => {
         const fetchData = async () => {
             if (id) {
-                const token = await localStorage.getItem('cvbuddy_access_token')
                 Axios(`${GET_ONE_RESUME}/${id}`).then((res) => {
                     Load(res.data.data)
                 })

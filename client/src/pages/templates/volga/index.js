@@ -6,21 +6,27 @@ import { Experience } from './components/experience'
 import { Sidebar } from './components/sidebar'
 import { Education } from './components/education'
 import { Certificates } from './components/certificates'
-import { useLocation } from 'react-router-dom'
-import qs from 'qs'
+import { useLocation, useParams } from 'react-router-dom'
 import { AppContext } from 'shared/context/appContext'
+import { GET_ONE_RESUME } from 'shared/api/endPoints'
+import Axios from 'axios'
 
 const Volga = ({ className = '' }) => {
-    const location = useLocation()
-    const data = qs.parse(location.search.substring(1))
-
+    const { id } = useParams()
     const { dispatch } = useContext(AppContext)
 
     useEffect(() => {
-        dispatch({
-            type: 'RESET_USER_INFO',
-            payload: { ...data },
-        })
+        const fetchData = async () => {
+            if (id) {
+                Axios(`${GET_ONE_RESUME}/${id}`).then((res) => {
+                    dispatch({
+                        type: 'RESET_USER_INFO',
+                        payload: { ...res.data.data },
+                    })
+                })
+            }
+        }
+        fetchData()
     }, [])
 
     return (

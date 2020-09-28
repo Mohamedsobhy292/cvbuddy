@@ -10,6 +10,12 @@ router.get(
 )
 
 router.get(
+    '/download/:id',
+    authenticationMiddleware,
+    resumeInformationController.downloadResumeInformation
+)
+
+router.get(
     '/:id',
     authenticationMiddleware,
     resumeInformationController.getSingleResumeInformation

@@ -1,8 +1,9 @@
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { routes } from 'routes'
 import { ALL_RESUMES_URL, DELETE_RESUME_URL } from 'shared/api/endPoints'
-import { useState, useEffect } from 'react'
 import Axios from 'axios'
+import { DOWNLOAD_RESUME } from 'shared/api/endPoints'
 
 const useMyResumeLogic = () => {
     const [data, setData] = useState([])
@@ -10,7 +11,6 @@ const useMyResumeLogic = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const token = await localStorage.getItem('cvbuddy_access_token')
             Axios(`${ALL_RESUMES_URL}`).then((res) => {
                 setData(res.data.data)
             })
@@ -18,16 +18,33 @@ const useMyResumeLogic = () => {
         fetchData()
     }, [setData])
 
+    const downloadResume = (id, e) => {
+        e.stopPropagation()
+        Axios(`${DOWNLOAD_RESUME}/${id}`, {
+            responseType: 'blob',
+            headers: {
+                Accept: 'application/pdf',
+            },
+        }).then((response) => {
+            const blob = new Blob([response.data], {
+                type: 'application/pdf',
+            })
+            const blobURL = URL.createObjectURL(blob)
+
+            window.open(blobURL)
+
+            const link = document.createElement('a')
+            link.href = window.URL.createObjectURL(blob)
+            link.download = `${id}.pdf`
+            link.click()
+        })
+    }
+
     const handleDelete = async (id, e) => {
         e.stopPropagation()
-        const token = await localStorage.getItem('cvbuddy_access_token')
 
         try {
-            await Axios.delete(`${DELETE_RESUME_URL}/${id}`, {
-                headers: {
-                    Authorization: `bearer ${token}`,
-                },
-            })
+            await Axios.delete(`${DELETE_RESUME_URL}/${id}`)
             setData(data.filter((item) => item._id !== id))
         } catch (e) {
             console.log(e)
@@ -43,6 +60,7 @@ const useMyResumeLogic = () => {
         setData,
         handleCardClick,
         handleDelete,
+        downloadResume,
     }
 }
 
