@@ -14,6 +14,7 @@ const config = {
             secret: 'perfect123Res456Cv',
             TOKEN_ISS: 'MidoisHere',
         },
+        client_url: 'http://localhost:3000',
     },
     production: {
         url: 'http://my.site.com',

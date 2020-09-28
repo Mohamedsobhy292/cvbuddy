@@ -12,32 +12,6 @@ import { useState } from 'react'
 const BuildResume = () => {
     const [data, setData] = useState([])
 
-    // const handleClick = () => {
-    //     axios
-    //         .get('http://localhost:4000/', {
-    //             responseType: 'blob',
-    //             headers: {
-    //                 Accept: 'application/pdf',
-    //             },
-    //             params: {
-    //                 userData: qs.stringify(userData),
-    //             },
-    //         })
-    //         .then((response) => {
-    //             console.log(response)
-    //             const blob = new Blob([response.data], {
-    //                 type: 'application/pdf',
-    //             })
-    //             const blobURL = URL.createObjectURL(blob)
-
-    //             window.open(blobURL)
-
-    //             const link = document.createElement('a')
-    //             link.href = window.URL.createObjectURL(blob)
-    //             link.download = `your-file-name.pdf`
-    //             link.click()
-    //         })
-    // }
     return (
         <div className={styles.BuildResumeWrapper}>
             <content className={styles.contentWrapper}>

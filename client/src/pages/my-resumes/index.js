@@ -10,9 +10,16 @@ import { routes } from 'routes'
 import { Link } from 'react-router-dom'
 import { EmptyStateIcon } from './emptyStateIcon'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import Axios from 'axios'
 
 const MyResumes = () => {
-    const { handleCardClick, handleDelete, data } = useMyResumeLogic()
+    const {
+        handleCardClick,
+        handleDelete,
+        downloadResume,
+        data,
+    } = useMyResumeLogic()
+
     return (
         <div className={styles.chooseTemplateWrapper}>
             {/* EMPTY STATE */}
@@ -84,7 +91,14 @@ const MyResumes = () => {
                                                             styles.iconContainer
                                                         }
                                                     >
-                                                        <DownloadIcon />
+                                                        <DownloadIcon
+                                                            onClick={(e) =>
+                                                                downloadResume(
+                                                                    item._id,
+                                                                    e
+                                                                )
+                                                            }
+                                                        />
                                                     </li>
 
                                                     <li

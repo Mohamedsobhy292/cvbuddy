@@ -101,11 +101,23 @@ module.exports.updateResumeInformation = async (req, res) => {
     }
 }
 
-module.exports.printPDF = async (req, res) => {
+module.exports.downloadResumeInformation = async (req, res) => {
     const resumeId = req.params.id
     const browser = await puppeteer.launch({ headless: true })
+    const authHeader = req.headers.authorization
+    const token = authHeader.split('bearer')[1]
+
+    browser.on('targetchanged', async (target) => {
+        const targetPage = await target.page()
+        const client = await targetPage.target().createCDPSession()
+        await client.send('Runtime.evaluate', {
+            expression: `localStorage.setItem('cvbuddy_access_token', '${token}')`,
+        })
+    })
+
     const page = await browser.newPage()
-    const url = `http://localhost:3000/templates/volga/${resumeId}`
+    const url = `${config.client_url}/templates/volga/${resumeId}`
+
     await page.goto(url, {
         waitUntil: 'networkidle0',
     })
@@ -118,6 +130,8 @@ module.exports.printPDF = async (req, res) => {
         printBackground: true,
     })
 
+    res.contentType('application/pdf')
+
     await browser.close()
-    return pdf
+    res.send(pdf)
 }

@@ -24,7 +24,7 @@ function AppRoutes() {
                     />
                     <Route path="build-resume" element={<BuildResume />} />
                     <Route path="edit-resume/:id" element={<BuildResume />} />
-                    {/* <Route path="/templates/volga" element={<Volga />} /> */}
+                    <Route path="/templates/volga/:id" element={<Volga />} />
                     <Route path="/" element={<MyResumes />} />
                 </Routes>
             </CSSTransition>
