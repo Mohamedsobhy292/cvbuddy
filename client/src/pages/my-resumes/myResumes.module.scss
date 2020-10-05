@@ -133,6 +133,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 
     &:hover {
         background: $border-color;
@@ -195,4 +196,68 @@
 .appearActive {
     opacity: 1;
     transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.iconDownload {
+    opacity: 0;
+    transform: translateY(0);
+    position: absolute;
+}
+
+.iconDownloadActive {
+    transform: translateY(20px);
+    position: absolute;
+    opacity: 1;
+    transition: all 0.6s ease-in-out;
+}
+
+.iconDownloadleave {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.iconDownloadLeaveActive {
+    position: absolute;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.6s ease-in-out;
+}
+
+.iconLoad {
+    opacity: 0;
+    transform: translateY(-20px);
+    position: absolute;
+    transition: all 1s ease-in-out;
+}
+
+.iconLoadActive {
+    transform: translateY(20px);
+    opacity: 1;
+    position: absolute;
+    transition: all 1s ease-in-out;
+}
+
+.iconLoadleave {
+    opacity: 1;
+    position: absolute;
+    transform: translateY(20px);
+    top: 20px;
+}
+
+.iconLoadLeaveActive {
+    position: absolute;
+    transform: translateY(20px);
+    opacity: 0;
+    top: 0;
+    transition: all 0.6s ease-in-out;
 }

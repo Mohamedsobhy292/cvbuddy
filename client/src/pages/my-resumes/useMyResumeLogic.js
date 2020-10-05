@@ -8,6 +8,7 @@ import { DOWNLOAD_RESUME } from 'shared/api/endPoints'
 const useMyResumeLogic = () => {
     const [data, setData] = useState([])
     const navigate = useNavigate()
+    const [isDownloading, setIsDownloading] = useState(null)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -20,29 +21,31 @@ const useMyResumeLogic = () => {
 
     const downloadResume = (id, e) => {
         e.stopPropagation()
+        setIsDownloading(id)
         Axios(`${DOWNLOAD_RESUME}/${id}`, {
             responseType: 'blob',
             headers: {
                 Accept: 'application/pdf',
             },
-        }).then((response) => {
-            const blob = new Blob([response.data], {
-                type: 'application/pdf',
-            })
-            const blobURL = URL.createObjectURL(blob)
-
-            window.open(blobURL)
-
-            const link = document.createElement('a')
-            link.href = window.URL.createObjectURL(blob)
-            link.download = `${id}.pdf`
-            link.click()
         })
+            .then((response) => {
+                const blob = new Blob([response.data], {
+                    type: 'application/pdf',
+                })
+                const blobURL = URL.createObjectURL(blob)
+
+                window.open(blobURL)
+
+                const link = document.createElement('a')
+                link.href = window.URL.createObjectURL(blob)
+                link.download = `${id}.pdf`
+                link.click()
+            })
+            .finally(() => setIsDownloading(false))
     }
 
     const handleDelete = async (id, e) => {
         e.stopPropagation()
-
         try {
             await Axios.delete(`${DELETE_RESUME_URL}/${id}`)
             setData(data.filter((item) => item._id !== id))
@@ -61,6 +64,7 @@ const useMyResumeLogic = () => {
         handleCardClick,
         handleDelete,
         downloadResume,
+        isDownloading,
     }
 }
 

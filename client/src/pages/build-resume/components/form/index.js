@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useCallback, useContext, useEffect } from 'react'
 import { useForm, FormContext } from 'react-hook-form'
 
 import { AppContext } from 'shared/context/appContext'
@@ -9,7 +9,6 @@ import { Links } from './links'
 import { Education } from './education'
 import { Languages } from './languages'
 import { Certificates } from './Certificates'
-import { initialDetails } from 'shared/context/appContext'
 import Axios from 'axios'
 import { useParams } from 'react-router-dom'
 import { GET_ONE_RESUME } from 'shared/api/endPoints'
@@ -20,13 +19,16 @@ const BuiledResumeForm = () => {
     const { dispatch } = useContext(AppContext)
     let { id } = useParams()
 
-    const Load = (initialDetails) => {
-        dispatch({
-            type: 'RESET_USER_INFO',
-            payload: { ...initialDetails },
-        })
-        reset(initialDetails)
-    }
+    const Load = useCallback(
+        (initialDetails) => {
+            dispatch({
+                type: 'RESET_USER_INFO',
+                payload: { ...initialDetails },
+            })
+            reset(initialDetails)
+        },
+        [dispatch, reset]
+    )
 
     useEffect(() => {
         const fetchData = async () => {
@@ -37,14 +39,11 @@ const BuiledResumeForm = () => {
             }
         }
         fetchData()
-    }, [])
+    }, [Load, id])
 
     return (
         <FormContext {...methods}>
             <form>
-                <button type="button" onClick={() => Load()}>
-                    Load
-                </button>
                 <div>
                     <PersonalInformation />
                     <WorkHistory />

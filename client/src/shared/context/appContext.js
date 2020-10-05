@@ -1,6 +1,4 @@
 import React, { useReducer } from 'react'
-import { v4 as uuidv4 } from 'uuid'
-import initialDetails from './initialDetails.json'
 
 const AppContext = React.createContext()
 
@@ -52,4 +50,4 @@ const AppStateProvider = ({ children }) => {
     )
 }
 
-export { AppStateProvider, AppContext, initialDetails }
+export { AppStateProvider, AppContext }
