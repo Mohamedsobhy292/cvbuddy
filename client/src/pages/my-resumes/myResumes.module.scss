@@ -198,25 +198,13 @@
     transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@keyframes rotate {
-    from {
-        transform: rotate(0);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
 .iconDownload {
     opacity: 0;
-    transform: translateY(0);
-    position: absolute;
+    transform: translateY(20px);
 }
 
 .iconDownloadActive {
-    transform: translateY(20px);
-    position: absolute;
+    transform: translateY(0);
     opacity: 1;
     transition: all 0.6s ease-in-out;
 }
@@ -227,37 +215,30 @@
 }
 
 .iconDownloadLeaveActive {
-    position: absolute;
     transform: translateY(20px);
     opacity: 0;
     transition: all 0.6s ease-in-out;
 }
 
 .iconLoad {
-    opacity: 0;
-    transform: translateY(-20px);
     position: absolute;
-    transition: all 1s ease-in-out;
+    opacity: 0;
+    transform: translateY(20px);
 }
 
 .iconLoadActive {
-    transform: translateY(20px);
+    transform: translateY(0);
     opacity: 1;
-    position: absolute;
-    transition: all 1s ease-in-out;
+    transition: all 0.6s ease-in-out;
 }
 
 .iconLoadleave {
     opacity: 1;
-    position: absolute;
-    transform: translateY(20px);
-    top: 20px;
+    transform: translateY(0);
 }
 
 .iconLoadLeaveActive {
-    position: absolute;
     transform: translateY(20px);
-    opacity: 0;
-    top: 0;
     transition: all 0.6s ease-in-out;
+    opacity: 0;
 }

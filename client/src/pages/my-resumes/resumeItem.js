@@ -21,7 +21,7 @@ const ResumeItem = ({
             in={true}
             key={item._id}
             appear={true}
-            timeout={1000}
+            timeout={600}
             unmountOnExit
             classNames={{
                 enter: styles.enter,
@@ -50,13 +50,13 @@ const ResumeItem = ({
                         >
                             <CSSTransition
                                 in={isDownloading === item._id}
-                                timeout={1000}
+                                timeout={600}
                                 unmountOnExit
                                 classNames={{
                                     enter: styles.iconLoad,
                                     enterActive: styles.iconLoadActive,
                                     exit: styles.iconLoadleave,
-                                    exitActive: styles.iconLoadActive,
+                                    exitActive: styles.iconLoadLeaveActive,
                                 }}
                             >
                                 <Loader color="#494d70" size="16" />
@@ -64,14 +64,14 @@ const ResumeItem = ({
 
                             <CSSTransition
                                 in={isDownloading !== item._id}
-                                timeout={1000}
+                                timeout={600}
                                 key={2}
                                 unmountOnExit
                                 classNames={{
-                                    enter: styles.iconDownload,
-                                    enterActive: styles.iconDownloadActive,
-                                    exit: styles.iconDownloadleave,
-                                    exitActive: styles.iconDownloadLeaveActive,
+                                    enter: styles.iconLoad,
+                                    enterActive: styles.iconLoadActive,
+                                    exit: styles.iconLoadleave,
+                                    exitActive: styles.iconLoadLeaveActive,
                                 }}
                             >
                                 <div>

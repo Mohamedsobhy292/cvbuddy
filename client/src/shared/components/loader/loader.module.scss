@@ -7,3 +7,13 @@
     border-radius: 50%;
     animation: rotate 1s linear 0s infinite normal forwards;
 }
+
+@keyframes rotate {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
