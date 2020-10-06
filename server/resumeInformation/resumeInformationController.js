@@ -80,13 +80,15 @@ module.exports.createResumeInformation = async (req, res) => {
 module.exports.updateResumeInformation = async (req, res) => {
     const resumeId = req.params.id
     const userId = req.user.id
-    delete req.body.userId
 
     try {
+        const data = req.body.data
+        delete data.userId
+
         const updatedDocument = await ResumeInformationRepo.findOneAndUpdate(
             { _id: resumeId, userId },
             {
-                ...req.body,
+                ...req.body.data,
             }
         )
         res.json({

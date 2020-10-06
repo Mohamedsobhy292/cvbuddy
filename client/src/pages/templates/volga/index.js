@@ -6,7 +6,7 @@ import { Experience } from './components/experience'
 import { Sidebar } from './components/sidebar'
 import { Education } from './components/education'
 import { Certificates } from './components/certificates'
-import { useLocation, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { AppContext } from 'shared/context/appContext'
 import { GET_ONE_RESUME } from 'shared/api/endPoints'
 import Axios from 'axios'
@@ -27,7 +27,7 @@ const Volga = ({ className = '' }) => {
             }
         }
         fetchData()
-    }, [])
+    }, [dispatch, id])
 
     return (
         <div className={`${styles.templateWrapper} ${className}`}>

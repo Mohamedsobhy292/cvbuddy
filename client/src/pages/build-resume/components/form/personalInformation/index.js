@@ -10,6 +10,7 @@ const PersonalInformation = () => {
     const { dispatch } = useContext(AppContext)
 
     const handleFieldChange = (name) => (value) => {
+        console.log(name, value)
         dispatch({
             type: 'UPDATE_USER_FIELD',
             payload: {

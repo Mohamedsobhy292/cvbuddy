@@ -7,6 +7,9 @@ import cvTemplate from './resume1.jpg'
 import { RadioButton } from 'shared/components/radioButton'
 import Arrow from './arrow-right'
 import { routes } from 'routes'
+import { CREATE_RESUME_URL } from 'shared/api/endPoints'
+import Axios from 'axios'
+import { Button } from 'shared/components/button'
 
 const templates = [
     {
@@ -31,6 +34,14 @@ const ChooseTemplate = () => {
         setSelectedTemplate(item.name)
     }
 
+    const handleProceed = async () => {
+        const { data } = await Axios.post(`${CREATE_RESUME_URL}`, {
+            data: {},
+        })
+        const id = data.data._id
+        navigate(`/${routes.editResume}/${id}`)
+    }
+
     useEffect(() => {
         const search = location.search.replace('?', '')
         if (search) {
@@ -38,7 +49,7 @@ const ChooseTemplate = () => {
             localStorage.setItem('cvbuddy_access_token', token)
             navigate('/')
         }
-    }, [])
+    }, [location.search, navigate])
 
     return (
         <div className={styles.chooseTemplateWrapper}>
@@ -71,12 +82,12 @@ const ChooseTemplate = () => {
                 })}
             </ul>
 
-            <Link to={`../${routes.buildResume}`} className={styles.proceedBtn}>
+            <Button className={styles.proceedBtn} onClick={handleProceed}>
                 PROCEED
                 <span className={styles.arrow}>
                     <Arrow />
                 </span>
-            </Link>
+            </Button>
             <a
                 href="http://localhost:4000/users/login/google"
                 className={styles.proceedBtn}
