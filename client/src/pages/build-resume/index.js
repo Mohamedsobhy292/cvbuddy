@@ -5,7 +5,11 @@ import { Form } from './components/form'
 import { Button } from 'shared/components/button'
 import { AppContext } from 'shared/context/appContext'
 import Axios from 'axios'
-import { DOWNLOAD_RESUME, UPADTE_RESUME_URL } from 'shared/api/endPoints'
+import {
+    DOWNLOAD_RESUME,
+    UPADTE_RESUME_URL,
+    CREATE_RESUME_URL,
+} from 'shared/api/endPoints'
 import { useParams } from 'react-router'
 import { useState } from 'react'
 import { Loader } from 'shared/components/loader'
@@ -21,16 +25,18 @@ const BuildResume = () => {
     const { state } = useContext(AppContext)
     let { id } = useParams()
 
-    const updateDate = async () => {
+    const updateData = async () => {
         const data = state.userData
-        Axios.put(`${UPADTE_RESUME_URL}/${id}`, {
-            data,
-        })
+        if (id) {
+            return Axios.put(`${UPADTE_RESUME_URL}/${id}`, {
+                data,
+            })
+        }
     }
 
     const handleSaveChangesClick = async () => {
         setLoadingState(componentState.save_changes)
-        await updateDate()
+        await updateData()
         setLoadingState(false)
     }
 
@@ -57,7 +63,7 @@ const BuildResume = () => {
 
     const handleGeneratePDF = async () => {
         setLoadingState(componentState.generate_pdf)
-        await updateDate()
+        await updateData()
         await downloadResume()
         setLoadingState(false)
     }
