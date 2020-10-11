@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import styles from './ChooseTemplate.module.scss'
-import cvTemplate from './resume1.jpg'
+import volgaImg from './volga.jpeg'
 import { RadioButton } from 'shared/components/radioButton'
 import Arrow from './arrow-right'
 import { routes } from 'routes'
@@ -23,11 +23,8 @@ const templates = [
     },
 ]
 
-const pattern = /token=([^&]*)/
-
 const ChooseTemplate = () => {
     const [selectedTemplate, setSelectedTemplate] = useState(null)
-    const location = useLocation()
     const navigate = useNavigate()
 
     const handleTemplateClick = (item) => {
@@ -41,15 +38,6 @@ const ChooseTemplate = () => {
         const id = data.data._id
         navigate(`/${routes.editResume}/${id}`)
     }
-
-    useEffect(() => {
-        const search = location.search.replace('?', '')
-        if (search) {
-            const token = search.match(pattern)[1]
-            localStorage.setItem('cvbuddy_access_token', token)
-            navigate('/')
-        }
-    }, [location.search, navigate])
 
     return (
         <div className={styles.chooseTemplateWrapper}>
@@ -69,7 +57,7 @@ const ChooseTemplate = () => {
                             })}
                             onClick={() => handleTemplateClick(item)}
                         >
-                            <img src={cvTemplate} alt="cv template" />
+                            <img src={volgaImg} alt="cv template" />
                             <RadioButton
                                 className={styles.itemRadio}
                                 checked={selectedTemplate === item.name}
@@ -82,13 +70,18 @@ const ChooseTemplate = () => {
                 })}
             </ul>
 
-            <Button className={styles.proceedBtn} onClick={handleProceed}>
+            <Button
+                className={styles.proceedBtn}
+                onClick={handleProceed}
+                variant="primary"
+            >
                 PROCEED
                 <span className={styles.arrow}>
                     <Arrow />
                 </span>
             </Button>
-            <a
+            <Button
+                variant="primary"
                 href="http://localhost:4000/users/login/google"
                 className={styles.proceedBtn}
             >
@@ -96,7 +89,7 @@ const ChooseTemplate = () => {
                 <span className={styles.arrow}>
                     <Arrow />
                 </span>
-            </a>
+            </Button>
         </div>
     )
 }

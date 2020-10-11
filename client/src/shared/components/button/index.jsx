@@ -6,10 +6,14 @@ const Button = ({ children, variant, className, ...props }) => {
     return (
         <button
             type="button"
-            className={classnames(styles.button, className, {
-                [styles.primary]: variant === 'primary',
-                [styles.tertiary]: variant === 'tertiary',
-            })}
+            className={classnames(
+                styles.button,
+                {
+                    [styles.primary]: variant === 'primary',
+                    [styles.tertiary]: variant === 'tertiary',
+                },
+                className
+            )}
             {...props}
         >
             {children}

@@ -56,7 +56,7 @@ module.exports.deleteSingleResumeInformation = async (req, res) => {
 module.exports.createResumeInformation = async (req, res) => {
     const userId = req.user.id
     const resumeInformation = {
-        ...req.body,
+        ...req.body.data,
         userId,
     }
 
