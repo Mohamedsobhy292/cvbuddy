@@ -1,7 +1,6 @@
 @import 'shared/styles/variables.scss';
 
 .templateItem {
-    height: 288px;
     background: #fff;
     border-radius: 6px;
     border: 1px solid $border-color;
@@ -18,8 +17,10 @@
     cursor: pointer;
 
     img {
-        height: 200px;
-        margin-bottom: 15px;
+        width: 100%;
+        object-fit: cover;
+        object-position: top;
+        height: 250px;
     }
 
     &:hover {

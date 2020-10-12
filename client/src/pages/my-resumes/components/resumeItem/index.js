@@ -5,7 +5,7 @@ import { DeleteIcon } from 'shared/icons/deleteIcon'
 import { CSSTransition } from 'react-transition-group'
 import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict'
 import { Loader } from 'shared/components/loader'
-import cvTemplate from './resume1.jpg'
+import cvTemplate from './volga.jpeg'
 import styles from './resumeItem.module.scss'
 
 const ResumeItem = ({
