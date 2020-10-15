@@ -1,7 +1,5 @@
-import React, { useContext, useRef } from 'react'
+import React, { useRef } from 'react'
 import classnames from 'classnames'
-
-import { AppContext } from 'shared/context/appContext'
 
 import { FormRichTextEditor } from 'shared/components/formComponents/formRichTextEditor'
 

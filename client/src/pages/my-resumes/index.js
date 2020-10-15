@@ -23,9 +23,12 @@ const MyResumes = () => {
 
             {!data?.length && <EmptyState />}
 
-            <h2 className={styles.pageTitle}>Your created Resumes</h2>
-
             {/* DATA */}
+
+            {!!data?.length && (
+                <h2 className={styles.pageTitle}>Your created Resumes</h2>
+            )}
+
             <div className={styles.dataContainer}>
                 {!!data?.length && (
                     <>

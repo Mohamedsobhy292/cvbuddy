@@ -5,6 +5,10 @@ import { BuildResume } from './pages/build-resume'
 import { MyResumes } from './pages/my-resumes'
 import { Volga } from './pages/templates/volga'
 import { Routes, Route, useLocation } from 'react-router-dom'
+import { Login } from 'pages/login'
+import { ProtectedRoute } from 'shared/components/protectedRoute'
+import { LoginToken } from 'pages/loginToken'
+import { routes } from 'routes'
 
 function AppRoutes() {
     let location = useLocation()
@@ -18,14 +22,26 @@ function AppRoutes() {
                 unmountOnExit
             >
                 <Routes location={location}>
+                    <Route path={routes.login} element={<Login />} />
+                    <Route path={routes.loginToken} element={<LoginToken />} />
                     <Route
-                        path="/choose-template"
+                        path={routes.chooseTemplate}
                         element={<ChooseTemplate />}
                     />
-                    <Route path="build-resume" element={<BuildResume />} />
-                    <Route path="edit-resume/:id" element={<BuildResume />} />
-                    <Route path="/templates/volga/:id" element={<Volga />} />
-                    <Route path="/" element={<MyResumes />} />
+                    <ProtectedRoute
+                        path={routes.buildResume}
+                        element={<BuildResume />}
+                    />
+
+                    <ProtectedRoute
+                        path={`${routes.editResume}/:id`}
+                        element={<BuildResume />}
+                    />
+                    <ProtectedRoute
+                        path="/templates/volga/:id"
+                        element={<Volga />}
+                    />
+                    <ProtectedRoute path="/" element={<MyResumes />} />
                 </Routes>
             </CSSTransition>
         </TransitionGroup>

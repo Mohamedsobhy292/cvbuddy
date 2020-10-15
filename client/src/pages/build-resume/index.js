@@ -5,15 +5,12 @@ import { Form } from './components/form'
 import { Button } from 'shared/components/button'
 import { AppContext } from 'shared/context/appContext'
 import Axios from 'axios'
-import {
-    DOWNLOAD_RESUME,
-    UPADTE_RESUME_URL,
-    CREATE_RESUME_URL,
-} from 'shared/api/endPoints'
-import { useParams } from 'react-router'
+import { DOWNLOAD_RESUME, UPADTE_RESUME_URL } from 'shared/api/endPoints'
+import { useNavigate, useParams } from 'react-router'
 import { useState } from 'react'
 import { Loader } from 'shared/components/loader'
 import { CSSTransition } from 'react-transition-group'
+import { routes } from 'routes'
 
 const componentState = {
     save_changes: 'save_changes',
@@ -23,7 +20,8 @@ const componentState = {
 const BuildResume = () => {
     const [loadingState, setLoadingState] = useState(null)
     const { state } = useContext(AppContext)
-    let { id } = useParams()
+    const { id } = useParams()
+    const navigate = useNavigate()
 
     const updateData = async () => {
         const data = state.userData
@@ -38,6 +36,7 @@ const BuildResume = () => {
         setLoadingState(componentState.save_changes)
         await updateData()
         setLoadingState(false)
+        navigate(routes.myResumes)
     }
 
     const downloadResume = async () => {
