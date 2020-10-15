@@ -1,13 +1,26 @@
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { routes } from 'routes'
 import { ALL_RESUMES_URL, DELETE_RESUME_URL } from 'shared/api/endPoints'
 import Axios from 'axios'
 import { DOWNLOAD_RESUME } from 'shared/api/endPoints'
+import { toast } from 'react-toastify'
+
+const pattern = /(status=[\w-]+)/g
+
+const SuccessToast = ({ closeToast }) => {
+    return (
+        <div>
+            Lorem ipsum dolor
+            <button onClick={closeToast}>Close</button>
+        </div>
+    )
+}
 
 const useMyResumeLogic = () => {
     const [data, setData] = useState([])
     const navigate = useNavigate()
+    const location = useLocation()
     const [isDownloading, setIsDownloading] = useState(null)
 
     useEffect(() => {
@@ -18,6 +31,21 @@ const useMyResumeLogic = () => {
         }
         fetchData()
     }, [setData])
+
+    useEffect(() => {
+        const search = location.search.replace('?', '')
+
+        if (search) {
+            const status = search.match(pattern)
+            status &&
+                toast.success('🦄 Wow so easy!', {
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: 0.1,
+                })
+        }
+    }, [location.search])
 
     const downloadResume = (id, e) => {
         e.stopPropagation()

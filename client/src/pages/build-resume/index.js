@@ -36,7 +36,7 @@ const BuildResume = () => {
         setLoadingState(componentState.save_changes)
         await updateData()
         setLoadingState(false)
-        navigate(routes.myResumes)
+        navigate(`${routes.myResumes}/?status=saved-changes`)
     }
 
     const downloadResume = async () => {
