@@ -7,9 +7,11 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { ResumeItem } from './components/resumeItem'
 import { EmptyState } from './components/emptyState'
 import { CreateResumeCard } from './components/createResumeCard'
+import { LOADING_STATUS } from 'shared/constants'
 
 const MyResumes = () => {
     const {
+        status,
         handleCardClick,
         handleDelete,
         downloadResume,
@@ -21,7 +23,9 @@ const MyResumes = () => {
         <div className={styles.chooseTemplateWrapper}>
             {/* EMPTY STATE */}
 
-            {!data?.length && <EmptyState />}
+            {!data?.length && status === LOADING_STATUS.RESOLVED && (
+                <EmptyState />
+            )}
 
             {/* DATA */}
 

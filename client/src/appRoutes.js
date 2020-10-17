@@ -1,5 +1,4 @@
 import React from 'react'
-import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import ChooseTemplate from './pages/choose-template'
 import { BuildResume } from './pages/build-resume'
 import { MyResumes } from './pages/my-resumes'
@@ -14,37 +13,22 @@ function AppRoutes() {
     let location = useLocation()
 
     return (
-        <TransitionGroup>
-            <CSSTransition
-                key={location.key}
-                classNames="fade"
-                timeout={1000}
-                unmountOnExit
-            >
-                <Routes location={location}>
-                    <Route path={routes.login} element={<Login />} />
-                    <Route path={routes.loginToken} element={<LoginToken />} />
-                    <Route
-                        path={routes.chooseTemplate}
-                        element={<ChooseTemplate />}
-                    />
-                    <ProtectedRoute
-                        path={routes.buildResume}
-                        element={<BuildResume />}
-                    />
+        <Routes location={location}>
+            <Route path={routes.login} element={<Login />} />
+            <Route path={routes.loginToken} element={<LoginToken />} />
+            <Route path={routes.chooseTemplate} element={<ChooseTemplate />} />
+            <ProtectedRoute
+                path={routes.buildResume}
+                element={<BuildResume />}
+            />
 
-                    <ProtectedRoute
-                        path={`${routes.editResume}/:id`}
-                        element={<BuildResume />}
-                    />
-                    <ProtectedRoute
-                        path="/templates/volga/:id"
-                        element={<Volga />}
-                    />
-                    <ProtectedRoute path="/" element={<MyResumes />} />
-                </Routes>
-            </CSSTransition>
-        </TransitionGroup>
+            <ProtectedRoute
+                path={`${routes.editResume}/:id`}
+                element={<BuildResume />}
+            />
+            <ProtectedRoute path="/templates/volga/:id" element={<Volga />} />
+            <ProtectedRoute path="/" element={<MyResumes />} />
+        </Routes>
     )
 }
 

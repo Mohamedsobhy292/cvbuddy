@@ -5,7 +5,7 @@ import './shared/styles/globalStyles.scss'
 import { AppStateProvider } from 'shared/context/appContext'
 import 'shared/api/axiosInstance'
 import { AppRoutes } from './appRoutes'
-import { ToastContainer } from 'react-toastify'
+import { ToastContainer, Slide } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
@@ -15,13 +15,11 @@ function App() {
                 <Navbar />
                 <ToastContainer
                     position="bottom-right"
+                    autoClose={3000}
                     hideProgressBar
                     closeOnClick
+                    transition={Slide}
                 />
-
-                <Route path="*">
-                    <AppRoutes />
-                </Route>
                 <AppRoutes />
             </AppStateProvider>
         </BrowserRouter>

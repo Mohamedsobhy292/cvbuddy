@@ -5,31 +5,27 @@ import { ALL_RESUMES_URL, DELETE_RESUME_URL } from 'shared/api/endPoints'
 import Axios from 'axios'
 import { DOWNLOAD_RESUME } from 'shared/api/endPoints'
 import { toast } from 'react-toastify'
+import { SuccessToast } from './components/toaster'
+import { LOADING_STATUS } from 'shared/constants'
 
 const pattern = /(status=[\w-]+)/g
-
-const SuccessToast = ({ closeToast }) => {
-    return (
-        <div>
-            Lorem ipsum dolor
-            <button onClick={closeToast}>Close</button>
-        </div>
-    )
-}
 
 const useMyResumeLogic = () => {
     const [data, setData] = useState([])
     const navigate = useNavigate()
     const location = useLocation()
     const [isDownloading, setIsDownloading] = useState(null)
+    const [status, setStatus] = useState(LOADING_STATUS.IDLE)
 
     useEffect(() => {
+        setStatus(LOADING_STATUS.PENDING)
         const fetchData = async () => {
-            Axios(`${ALL_RESUMES_URL}`).then((res) => {
+            await Axios(`${ALL_RESUMES_URL}`).then((res) => {
                 setData(res.data.data)
             })
         }
         fetchData()
+        setStatus(LOADING_STATUS.RESOLVED)
     }, [setData])
 
     useEffect(() => {
@@ -38,14 +34,15 @@ const useMyResumeLogic = () => {
         if (search) {
             const status = search.match(pattern)
             status &&
-                toast.success('🦄 Wow so easy!', {
+                toast.success(<SuccessToast />, {
                     closeOnClick: true,
-                    pauseOnHover: true,
                     draggable: true,
-                    progress: 0.1,
+                    toastId: 'sucess-toast',
                 })
+
+            navigate('/', { replace: true })
         }
-    }, [location.search])
+    }, [location.search, navigate])
 
     const downloadResume = (id, e) => {
         e.stopPropagation()
@@ -87,6 +84,7 @@ const useMyResumeLogic = () => {
     }
 
     return {
+        status,
         data,
         handleCardClick,
         handleDelete,

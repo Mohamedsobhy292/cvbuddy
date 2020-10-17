@@ -1,0 +1,34 @@
+@import 'shared/styles/variables.scss';
+
+.successToast {
+    color: $text-color2;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    padding: 0 6px;
+    position: relative;
+}
+
+.checkIcon {
+    width: 10px;
+    fill: #fff;
+}
+
+.iconContainer {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: $success-color;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.closeIcon {
+    width: 10px;
+    fill: $text-color3;
+    position: absolute;
+    right: 0;
+}
