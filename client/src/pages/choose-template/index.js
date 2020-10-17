@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import classNames from 'classnames'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import styles from './ChooseTemplate.module.scss'
 import volgaImg from './volga.jpeg'
@@ -76,16 +76,6 @@ const ChooseTemplate = () => {
                 variant="primary"
             >
                 PROCEED
-                <span className={styles.arrow}>
-                    <Arrow />
-                </span>
-            </Button>
-            <Button
-                variant="primary"
-                href="http://localhost:4000/users/login/google"
-                className={styles.proceedBtn}
-            >
-                LOGIN WITH GOOGLE
                 <span className={styles.arrow}>
                     <Arrow />
                 </span>

@@ -1,27 +1,48 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { routes } from 'routes'
 import { ALL_RESUMES_URL, DELETE_RESUME_URL } from 'shared/api/endPoints'
 import Axios from 'axios'
 import { DOWNLOAD_RESUME } from 'shared/api/endPoints'
+import { toast } from 'react-toastify'
+import { SuccessToast } from './components/toaster'
+import { LOADING_STATUS } from 'shared/constants'
 
-const pattern = /token=([^&]*)/
+const pattern = /(status=[\w-]+)/g
 
 const useMyResumeLogic = () => {
     const [data, setData] = useState([])
-    console.log('data', data)
     const navigate = useNavigate()
-    const [isDownloading, setIsDownloading] = useState(null)
     const location = useLocation()
+    const [isDownloading, setIsDownloading] = useState(null)
+    const [status, setStatus] = useState(LOADING_STATUS.IDLE)
 
     useEffect(() => {
+        setStatus(LOADING_STATUS.PENDING)
         const fetchData = async () => {
-            Axios(`${ALL_RESUMES_URL}`).then((res) => {
+            await Axios(`${ALL_RESUMES_URL}`).then((res) => {
                 setData(res.data.data)
             })
         }
         fetchData()
+        setStatus(LOADING_STATUS.RESOLVED)
     }, [setData])
+
+    useEffect(() => {
+        const search = location.search.replace('?', '')
+
+        if (search) {
+            const status = search.match(pattern)
+            status &&
+                toast.success(<SuccessToast />, {
+                    closeOnClick: true,
+                    draggable: true,
+                    toastId: 'sucess-toast',
+                })
+
+            navigate('/', { replace: true })
+        }
+    }, [location.search, navigate])
 
     const downloadResume = (id, e) => {
         e.stopPropagation()
@@ -62,16 +83,8 @@ const useMyResumeLogic = () => {
         navigate(`/${routes.editResume}/${id}`)
     }
 
-    useEffect(() => {
-        const search = location.search.replace('?', '')
-        if (search) {
-            const token = search.match(pattern)[1]
-            localStorage.setItem('cvbuddy_access_token', token)
-            navigate('/')
-        }
-    }, [location.search, navigate])
-
     return {
+        status,
         data,
         handleCardClick,
         handleDelete,
