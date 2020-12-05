@@ -74,7 +74,7 @@ const MyResumes = () => {
                                     )
                                 })}
                             </TransitionGroup>
-                            <CreateResumeCard />
+                            {data?.length < 3 && <CreateResumeCard />}
                         </ul>
                     </>
                 )}

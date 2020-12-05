@@ -16,6 +16,18 @@ module.exports.getUsers = async (req, res) => {
     }
 }
 
+module.exports.getCurrentUser = async (req, res) => {
+    try {
+        res.json({
+            data: req.user,
+        })
+    } catch (e) {
+        res.status(500).json({
+            message: e,
+        })
+    }
+}
+
 module.exports.getSingleUser = async (req, res) => {
     const id = req.params.id
     console.log(id)

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Navbar } from './shared/components/navbar'
 import ChooseTemplate from './pages/choose-template'
 import { BuildResume } from './pages/build-resume'
 import { MyResumes } from './pages/my-resumes'
@@ -10,25 +11,36 @@ import { LoginToken } from 'pages/loginToken'
 import { routes } from 'routes'
 
 function AppRoutes() {
-    let location = useLocation()
+    const location = useLocation()
 
     return (
-        <Routes location={location}>
-            <Route path={routes.login} element={<Login />} />
-            <Route path={routes.loginToken} element={<LoginToken />} />
-            <Route path={routes.chooseTemplate} element={<ChooseTemplate />} />
-            <ProtectedRoute
-                path={routes.buildResume}
-                element={<BuildResume />}
-            />
+        <>
+            <Navbar location={location} />
+            <Routes location={location}>
+                <Route path={routes.login} element={<Login />} />
 
-            <ProtectedRoute
-                path={`${routes.editResume}/:id`}
-                element={<BuildResume />}
-            />
-            <ProtectedRoute path="/templates/volga/:id" element={<Volga />} />
-            <ProtectedRoute path="/" element={<MyResumes />} />
-        </Routes>
+                <Route path={routes.loginToken} element={<LoginToken />} />
+
+                <Route
+                    path={routes.chooseTemplate}
+                    element={<ChooseTemplate />}
+                />
+
+                <ProtectedRoute
+                    path={`${routes.editResume}/:id`}
+                    element={<BuildResume />}
+                />
+
+                <ProtectedRoute
+                    path="/templates/volga/:id"
+                    element={<Volga />}
+                />
+
+                <ProtectedRoute path="/" element={<MyResumes />} />
+
+                <Route path="*" element={<p>not found</p>} />
+            </Routes>
+        </>
     )
 }
 

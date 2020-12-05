@@ -1,4 +1,5 @@
 const ResumeInformationRepo = require('./resumeInformationRepo')
+const { validateUserCanCreateNewResume } = require('./resumeInformationService')
 const puppeteer = require('puppeteer')
 
 module.exports.getAllResumeInformation = async (req, res) => {
@@ -55,12 +56,16 @@ module.exports.deleteSingleResumeInformation = async (req, res) => {
 
 module.exports.createResumeInformation = async (req, res) => {
     const userId = req.user.id
+
+
+
     const resumeInformation = {
         ...req.body.data,
         userId,
     }
 
     try {
+        validateUserCanCreateNewResume(req.user)
         const createNewResumeInformation = await ResumeInformationRepo.createNewResumeInformation(
             resumeInformation
         )
@@ -71,7 +76,7 @@ module.exports.createResumeInformation = async (req, res) => {
         return res.status(403).send({
             error: {
                 error: 403,
-                message: e,
+                message: String(e),
             },
         })
     }
@@ -130,6 +135,7 @@ module.exports.downloadResumeInformation = async (req, res) => {
         format: 'A4',
         displayHeaderFooter: false,
         printBackground: true,
+
     })
 
     res.contentType('application/pdf')

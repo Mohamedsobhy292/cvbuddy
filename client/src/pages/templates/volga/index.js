@@ -30,7 +30,7 @@ const Volga = ({ className = '' }) => {
     }, [dispatch, id])
 
     return (
-        <div className={`${styles.templateWrapper} ${className}`}>
+        <div className={styles.templateWrapper}>
             <main className={styles.contentContainer}>
                 {/* HEADER */}
                 <Header />

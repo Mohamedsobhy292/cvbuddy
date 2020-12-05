@@ -4,7 +4,8 @@ const router = express.Router()
 const passport = require('passport')
 const authenticationMiddleware = require('../config/authenticationMiddleware')
 
-router.get('/', authenticationMiddleware, userController.getUsers)
+// router.get('/', authenticationMiddleware, userController.getUsers)
+router.get('/user', authenticationMiddleware, userController.getCurrentUser)
 router.get('/:id', authenticationMiddleware, userController.getSingleUser)
 router.post('/', userController.createUser)
 

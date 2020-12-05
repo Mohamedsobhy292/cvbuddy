@@ -1,6 +1,5 @@
 import React from 'react'
-import { Navbar } from './shared/components/navbar'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import './shared/styles/globalStyles.scss'
 import { AppStateProvider } from 'shared/context/appContext'
 import 'shared/api/axiosInstance'
@@ -12,7 +11,6 @@ function App() {
     return (
         <BrowserRouter>
             <AppStateProvider>
-                <Navbar />
                 <ToastContainer
                     position="bottom-right"
                     autoClose={3000}

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import styles from './BuildResume.module.scss'
 import { Volga } from '../templates/volga'
 import { Form } from './components/form'
@@ -19,13 +19,20 @@ const componentState = {
 
 const BuildResume = () => {
     const [loadingState, setLoadingState] = useState(null)
+    const [isEditResumePage, setIsEditResumePage] = useState(null)
     const { state } = useContext(AppContext)
     const { id } = useParams()
     const navigate = useNavigate()
 
+    useEffect(() => {
+        if (id) {
+            setIsEditResumePage(true)
+        }
+    }, [id])
+
     const updateData = async () => {
         const data = state.userData
-        if (id) {
+        if (isEditResumePage) {
             return Axios.put(`${UPADTE_RESUME_URL}/${id}`, {
                 data,
             })

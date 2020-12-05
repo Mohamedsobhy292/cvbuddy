@@ -1,5 +1,6 @@
 export const API_URL = process.env.REACT_APP_API_URL
 export const ALL_RESUMES_URL = `/resumeInformation`
+export const GET_CURRENT_USER = `/users/user`
 export const DELETE_RESUME_URL = `/resumeInformation`
 export const UPADTE_RESUME_URL = `/resumeInformation`
 export const CREATE_RESUME_URL = `/resumeInformation`

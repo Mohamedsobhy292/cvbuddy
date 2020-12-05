@@ -31,11 +31,22 @@ const reducer = (state, action) => {
             },
         }
     }
+
+    if (action.type === 'UPDATE_CURRENT_USER') {
+        return {
+            ...state,
+            currentUser: {
+                ...state.currentUser,
+                ...action.payload,
+            },
+        }
+    }
 }
 
 const AppStateProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, {
         userData: {},
+        currentUser: {},
     })
 
     return (

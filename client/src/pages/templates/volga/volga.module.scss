@@ -1,14 +1,15 @@
 @import 'shared/styles/variables.scss';
 
 .templateWrapper {
+    position: relative;
+    padding-bottom: 39px;
     display: flex;
     width: 1280px;
     background: #fff;
     align-self: stretch;
     justify-self: stretch;
     margin: auto;
-    height: 100%;
-    min-height: 100vh;
+    min-height: 1682px;
 }
 
 .contentContainer {

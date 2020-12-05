@@ -23,9 +23,11 @@ const useMyResumeLogic = () => {
             await Axios(`${ALL_RESUMES_URL}`).then((res) => {
                 setData(res.data.data)
             })
+
+            setStatus(LOADING_STATUS.RESOLVED)
         }
+
         fetchData()
-        setStatus(LOADING_STATUS.RESOLVED)
     }, [setData])
 
     useEffect(() => {

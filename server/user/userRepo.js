@@ -5,10 +5,12 @@ module.exports.findAllUsers = async () => {
 }
 
 module.exports.createNewGoogleUser = async (profile) => {
+    console.log(profile)
     const user = new User({
         firstName: profile._json.given_name,
         lastName: profile._json.family_name,
         email: profile._json.email,
+        imageUrl: profile._json.picture,
         google: {
             id: profile.id,
             firstName: profile._json.given_name,
