@@ -32,7 +32,7 @@ function AppRoutes() {
                 />
 
                 <ProtectedRoute
-                    path="/templates/volga/:id"
+                    path={`${routes.templates}/volga/:id`}
                     element={<Volga />}
                 />
 

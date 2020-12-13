@@ -4,7 +4,7 @@ import { GuestNavbar } from './guestNavBar'
 import { UserNavBar } from './userNavbar'
 
 const Navbar = ({ location }) => {
-    console.log(location)
+    if (location.pathname.includes(`${routes.templates}`)) return null
     return location.pathname !== `/${routes.login}` ? (
         <UserNavBar />
     ) : (

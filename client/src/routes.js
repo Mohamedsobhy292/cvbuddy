@@ -6,6 +6,7 @@ const routes = {
     workHistory: 'work-history',
     skills: 'skills',
     chooseTemplate: 'choose-template',
+    templates: 'templates',
     myResumes: '/',
 }
 
